@@ -219,7 +219,8 @@ const Hero = () => {
       <button 
         ref={playButtonRef}
         onClick={togglePlayPause}
-        className="absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 z-20 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white/90 hover:bg-white transition-colors duration-200 flex items-center justify-center shadow-lg"
+        className="absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 z-30 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white/90 hover:bg-white transition-colors duration-200 flex items-center justify-center shadow-lg cursor-pointer"
+        style={{ pointerEvents: 'auto' }}
       >
         {isPlaying ? (
           <Pause size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#CC5500]" fill="#CC5500" />
