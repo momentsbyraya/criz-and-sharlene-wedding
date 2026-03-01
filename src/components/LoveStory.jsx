@@ -22,17 +22,16 @@ const LoveStory = () => {
   // Split content into paragraphs
   const paragraphs = loveStory.content.split('\n\n').filter(p => p.trim())
 
-  // Polaroid images - using prenup images in specific order
+  // Polaroid images - 6 in story (2+2+2) + 2 below last paragraph (moment 5 & 6 = unused prenup5, prenup6)
   const polaroidImages = [
-    '/assets/images/prenup/prenup1.jpeg',  // 1. akyat ng ligaw
-    '/assets/images/prenup/prenup2.png',   // 2. ligawan stage 2.0
-    '/assets/images/prenup/prenup3.JPG',   // 3. ligawan stage 2.1
-    '/assets/images/prenup/prenup5.png',   // 4. ligawan stage 1
-    '/assets/images/prenup/prenup6.png',   // 5. rest of images
-    '/assets/images/prenup/prenup7.JPG',   // 6. moment 6 image
-    '/assets/images/prenup/prenup9.JPG',
-    '/assets/images/prenup/prenup10.JPG',
-    '/assets/images/prenup/prenup12.png',
+    '/assets/images/prenup/prenup1.jpg',   // moment 1
+    '/assets/images/prenup/prenup2.jpg',   // moment 2
+    '/assets/images/prenup/prenup3.jpg',   // moment 3
+    '/assets/images/prenup/prenup7.jpg',   // moment 4
+    '/assets/images/prenup/prenup5.jpg',  // moment 5
+    '/assets/images/prenup/prenup6.jpg',   // moment 6
+    '/assets/images/prenup/prenup10.jpg',
+    '/assets/images/prenup/prenup11.jpg',
   ]
 
   useEffect(() => {
@@ -185,7 +184,7 @@ const LoveStory = () => {
           alt={`Love story moment ${index + 1}`}
           className="w-full aspect-square object-cover"
           style={{
-            border: '2px solid #F8F1D6',
+            border: '2px solid #F3E8E2',
             borderBottom: 'none',
             display: 'block'
           }}
@@ -239,7 +238,7 @@ const LoveStory = () => {
             >
               <path
                 d="M 70 0 Q 100 25, 70 50 Q 40 75, 70 100"
-                stroke="#4D0011"
+                stroke="#5A1E2A"
                 strokeWidth="2"
                 fill="none"
                 strokeDasharray="6 5"
@@ -254,7 +253,7 @@ const LoveStory = () => {
                 left: '50%',
                 bottom: 0,
                 transform: 'translate(-50%, 50%)',
-                backgroundColor: '#4D0011',
+                backgroundColor: '#5A1E2A',
                 opacity: 0.5,
               }}
             />
@@ -267,25 +266,11 @@ const LoveStory = () => {
           {/* Story content */}
           <div className="relative z-10 space-y-16 sm:space-y-20 md:space-y-24">
             {paragraphs.map((paragraph, index) => {
-              const isEven = index % 2 === 0
-              // Calculate image indices: even = 2 photos, odd = 1 photo
-              // Pattern: index 0 (2 photos), index 1 (1 photo), index 2 (2 photos), index 3 (1 photo)...
-              // Calculate starting image index based on previous items
-              let startImageIndex
-              if (index === 0) {
-                startImageIndex = 0
-              } else {
-                // Count images used before this index
-                // index 0 uses 2, index 1 uses 1, index 2 uses 2, index 3 uses 1...
-                const pairs = Math.floor(index / 2)
-                const imagesBefore = pairs * 3 + (index % 2 === 0 ? 0 : 2)
-                startImageIndex = imagesBefore
-              }
-              
-              const singleImageIndex = isEven ? null : startImageIndex
-              const imageIndex1 = isEven ? startImageIndex : null
-              const imageIndex2 = isEven ? startImageIndex + 1 : null
+              // 6 images in story: para 0 → 2, para 1 → 2, para 2 (last) → 2
+              const startImageIndex = index * 2
               const isLast = index === paragraphs.length - 1
+              const imageCount = 2
+              const imageIndices = Array.from({ length: imageCount }, (_, i) => startImageIndex + i)
 
               return (
                 <div key={index} className="story-item relative">
@@ -308,7 +293,7 @@ const LoveStory = () => {
                       >
                         <path
                           d="M 60 0 Q 40 25, 60 50 T 60 100"
-                          stroke="#4D0011"
+                          stroke="#5A1E2A"
                           strokeWidth="2"
                           fill="none"
                           strokeDasharray="4,4"
@@ -319,61 +304,47 @@ const LoveStory = () => {
                       <div 
                         className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full"
                         style={{ 
-                          backgroundColor: '#4D0011',
+                          backgroundColor: '#5A1E2A',
                           opacity: 0.45
                         }}
                       />
                     </div>
                   )}
 
-                  {isEven ? (
-                    // Even rows (index 0, 2, 4...): 2 polaroids, then paragraph
-                    <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+                  {/* Each row: polaroids (if any) then paragraph */}
+                  <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+                    {imageCount > 0 && (
                       <div className="flex gap-4 sm:gap-6 justify-center flex-1">
-                        {polaroidImages[imageIndex1] && (
-                          <Polaroid 
-                            image={polaroidImages[imageIndex1]} 
-                            rotation={-5}
-                            index={imageIndex1}
+                        {imageIndices.map((imgIdx, i) => polaroidImages[imgIdx] && (
+                          <Polaroid
+                            key={imgIdx}
+                            image={polaroidImages[imgIdx]}
+                            rotation={i === 0 ? -5 : 5}
+                            index={imgIdx}
+                            size="normal"
                           />
-                        )}
-                        {polaroidImages[imageIndex2] && (
-                          <Polaroid 
-                            image={polaroidImages[imageIndex2]} 
-                            rotation={5}
-                            index={imageIndex2}
-                          />
-                        )}
+                        ))}
                       </div>
-                      <div className="flex-1 text-center sm:text-left">
-                        <p className="text-base sm:text-lg font-albert font-thin text-burgundy-dark leading-relaxed">
-                          {formatParagraph(paragraph)}
-                        </p>
-                      </div>
+                    )}
+                    <div className={`text-center sm:text-left ${imageCount > 0 ? 'flex-1' : 'w-full'}`}>
+                      <p className="text-base sm:text-lg font-albert font-thin text-burgundy-dark leading-relaxed">
+                        {formatParagraph(paragraph)}
+                      </p>
                     </div>
-                  ) : (
-                    // Odd rows (index 1, 3, 5...): 1 polaroid, then paragraph
-                    <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
-                      <div className="flex justify-center flex-1 order-1 sm:order-1">
-                        {polaroidImages[singleImageIndex] && (
-                          <Polaroid 
-                            image={polaroidImages[singleImageIndex]} 
-                            rotation={3}
-                            index={singleImageIndex}
-                            size="small"
-                          />
-                        )}
-                      </div>
-                      <div className="flex-1 text-center sm:text-left order-2 sm:order-2">
-                        <p className="text-base sm:text-lg font-albert font-thin text-burgundy-dark leading-relaxed">
-                          {formatParagraph(paragraph)}
-                        </p>
-                      </div>
-                    </div>
-                  )}
+                  </div>
                 </div>
               )
             })}
+
+            {/* 2 images below the last story paragraph */}
+            <div className="story-item flex justify-center gap-6 sm:gap-8 mt-16 sm:mt-20">
+              {polaroidImages[6] && (
+                <Polaroid image={polaroidImages[6]} rotation={-4} index={6} />
+              )}
+              {polaroidImages[7] && (
+                <Polaroid image={polaroidImages[7]} rotation={4} index={7} />
+              )}
+            </div>
           </div>
         </div>
       </div>

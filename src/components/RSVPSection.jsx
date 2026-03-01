@@ -1,9 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Mail } from 'lucide-react'
-import SecondaryButton from './SecondaryButton'
-import EntourageModal from './EntourageModal'
 import { couple } from '../data'
 import { themeConfig } from '../config/themeConfig'
 import './pages/Details.css'
@@ -15,7 +13,6 @@ const RSVPSection = ({ onOpenRSVP }) => {
   const rsvpSectionRef = useRef(null)
   const rsvpTitleRef = useRef(null)
   const rsvpContentRef = useRef(null)
-  const [isEntourageModalOpen, setIsEntourageModalOpen] = useState(false)
 
   useEffect(() => {
     // RSVP Section animation
@@ -109,24 +106,17 @@ const RSVPSection = ({ onOpenRSVP }) => {
         </div>
         <div ref={rsvpContentRef}>
           <p className="text-sm sm:text-base font-albert font-thin text-burgundy-dark max-w-3xl mx-auto leading-relaxed text-center mb-6">
-                Kindly respond on or before<br /><strong className="!font-bold" style={{ fontWeight: 700 }}>{couple.rsvpDeadline ? `${couple.rsvpDeadline.month} ${couple.rsvpDeadline.day}, ${couple.rsvpDeadline.year}` : 'March 7, 2026'}</strong>.<br />
+                Kindly respond on or before<br /><strong className="!font-bold" style={{ fontWeight: 700 }}>{couple.rsvpDeadline ? `${couple.rsvpDeadline.month} ${couple.rsvpDeadline.day}, ${couple.rsvpDeadline.year}` : 'April 30, 2026'}</strong>.<br />
                 After this date, arrangements are final.
           </p>
           {onOpenRSVP && (
             <div className="flex flex-col items-center gap-4">
               <button
                 onClick={onOpenRSVP}
-                    className="px-6 py-3 bg-burgundy-dark text-white rounded-full hover:bg-burgundy-wine transition-colors duration-200 font-albert flex items-center gap-2"
+                className="px-6 py-3 bg-burgundy-dark text-white rounded-full hover:bg-burgundy-wine transition-colors duration-200 font-albert flex items-center gap-2"
               >
-                    Respond
-                    <Mail size={18} />
-              </button>
-              <button
-                onClick={() => setIsEntourageModalOpen(true)}
-                className="text-sm sm:text-base font-albert font-thin underline hover:opacity-70 transition-opacity duration-200"
-                style={{ color: themeConfig.text.burntOrange }}
-              >
-                View Entourage
+                Respond
+                <Mail size={18} />
               </button>
             </div>
           )}
@@ -134,7 +124,6 @@ const RSVPSection = ({ onOpenRSVP }) => {
           </div>
         </div>
       </div>
-      <EntourageModal isOpen={isEntourageModalOpen} onClose={() => setIsEntourageModalOpen(false)} />
     </div>
   )
 }

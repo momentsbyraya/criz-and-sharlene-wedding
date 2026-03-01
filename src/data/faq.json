@@ -1,16 +1,16 @@
 {
   "faqData": [
     {
-      "question": "Can guests take photos during the ceremony?",
-      "answer": "Yes, guests may take photos during the ceremony. A QR code will be provided for uploading your photos. Thank you for your understanding."
-    },
-    {
       "question": "Can I bring a plus one?",
-      "answer": "Yes, you can bring a plus one! However, there will be an additional person fee. The fee structure is as follows:\n\n• Adults: ₱998 per head\n• Children 6 years old and below: Free\n• Children 7-12 years old: ₱499 per head (half of adult rate)\n\nPlease indicate in your RSVP if you will be bringing additional guests so we can make the necessary arrangements. Thank you!"
+      "answer": "No, we are unable to accommodate additional guests. To keep our celebration intimate and simple, we kindly ask that guests attend as indicated on their invitation. We truly appreciate your understanding and can't wait to celebrate with you."
     },
     {
-      "question": "Are children allowed at the wedding?",
-      "answer": "While we love children, we are only able to accommodate those who are part of the entourage. We appreciate your understanding and cooperation."
+      "question": "What to wear?",
+      "answer": "Our dress code is Burgundy Red Wine or a shade close to that color. We'd love our guests to dress in smart casual or semi-formal attire in this palette. Please avoid wearing white so the bride can shine."
+    },
+    {
+      "question": "Where's the reception?",
+      "answer": "Purok Mondalo Barangay Unidad Training Center, Cagwait Surigao del Sur"
     }
   ]
 }

@@ -1,13 +1,13 @@
 {
   "mainDressCode": {
     "title": "Attire Guide",
-    "description": "Formal attire with these colors on our special day."
+    "description": "Formal attire in burgundy red wine colors on our special day."
   },
   "sections": [
     {
       "title": "Principal Sponsors",
       "type": "text",
-      "description": "For Ninongs: Formal suit in black. For Ninangs: Floor-length gown in graceful sage green.",
+      "description": "For Ninongs: Formal suit in black. For Ninangs: Floor-length gown in burgundy red wine.",
       "image": "/assets/images/dresscode/sponsors.png"
     },
     {

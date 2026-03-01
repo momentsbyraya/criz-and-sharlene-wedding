@@ -174,10 +174,10 @@ const EntourageDetailsSection = () => {
     }
 
     return () => ScrollTrigger.getAll().forEach(t => t.kill())
-  const textColor = themeConfig.text.burgundyDark || '#4D0011'
+  const textColor = themeConfig.text.burgundyDark || '#5A1E2A'
   }, [])
 
-  const accentColor = themeConfig.text.burgundyDark || '#4D0011'
+  const accentColor = themeConfig.text.burgundyDark || '#5A1E2A'
 
   return (
     <section
@@ -206,12 +206,12 @@ const EntourageDetailsSection = () => {
         {/* Parents */}
         <div ref={parentsRef} className="mb-6 flex flex-row gap-4 sm:gap-6 justify-center items-center">
           <div className="flex-1">
-            <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-right uppercase" style={{ color: accentColor }}>Groom&apos;s Parents</p>
+            <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-right uppercase" style={{ color: accentColor }}>Parents of the Groom</p>
             <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-right text-burgundy-dark">{entourage.parents.groom.father}</p>
             <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-right text-burgundy-dark">{entourage.parents.groom.mother}</p>
           </div>
           <div className="flex-1">
-            <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-left uppercase" style={{ color: accentColor }}>Bride&apos;s Parents</p>
+            <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-left uppercase" style={{ color: accentColor }}>Parents of the Bride</p>
             <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-left text-burgundy-dark">{entourage.parents.bride.father}</p>
             <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-left text-burgundy-dark">{entourage.parents.bride.mother}</p>
           </div>
@@ -220,7 +220,7 @@ const EntourageDetailsSection = () => {
         {/* Principal Sponsors */}
         {principalSponsors && (
           <div ref={principalSponsorsRef} className="mb-6">
-            <h3 className="text-base sm:text-lg imperial-script-regular mb-4 text-center capitalize" style={{ color: accentColor }}>Principal Sponsors</h3>
+            <h3 className="text-base sm:text-lg imperial-script-regular mb-4 text-center" style={{ color: accentColor }}>Principal sponsors</h3>
             <div className="flex flex-row gap-4 sm:gap-6 justify-center items-center">
               <div className="flex-1">
                 <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-right uppercase" style={{ color: accentColor }}>NINONG</p>
@@ -245,7 +245,7 @@ const EntourageDetailsSection = () => {
         {/* Secondary Sponsors */}
         {secondarySponsors && (
           <div ref={secondarySponsorsRef} className="mb-6">
-            <h3 className="text-base sm:text-lg imperial-script-regular mb-4 text-center capitalize" style={{ color: accentColor }}>Secondary Sponsors</h3>
+            <h3 className="text-base sm:text-lg imperial-script-regular mb-4 text-center" style={{ color: accentColor }}>Secondary sponsors</h3>
             <div className="flex flex-row gap-4 sm:gap-6 justify-center items-center mb-4">
               {bestman && (
                 <div ref={bestmanRef} className="flex-1">

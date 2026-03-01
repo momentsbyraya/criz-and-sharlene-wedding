@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { dresscode } from '../data'
-import { themeConfig } from '../config/themeConfig'
 import Line from './Line'
 import './pages/Details.css'
 
@@ -18,37 +17,37 @@ const DressCode = () => {
   // State for tooltip visibility
   const [activeTooltip, setActiveTooltip] = useState(null)
   
-  // Color swatches for Principal Sponsors (black for Ninongs, sage green for Ninangs)
+  // Burgundy Red Wine palette
+  const BURGUNDY_DARK = '#5A1E2A'
+  const BURGUNDY_WINE = '#5A1E2A'
+  const BURGUNDY_TAN = '#C08A8F'
+  const BURGUNDY_CREAM = '#F3E8E2'
+
+  // Color swatches for Principal Sponsors (black for Ninongs, burgundy wine for Ninangs)
   const sponsorColors = [
-    '#000000',                      // Black (for Ninongs)
-    themeConfig.text.sageGreen      // Sage Green (for Ninangs)
+    '#000000',   // Black (for Ninongs)
+    BURGUNDY_WINE  // Burgundy wine (for Ninangs)
   ]
-  
-  // Color swatches for Guests (from the color palette shown)
+
+  // Color swatches for Guests (burgundy red wine palette)
   const guestColors = [
-    themeConfig.text.burntOrange,   // Deep burnt orange
-    '#E07A5F',                      // Lighter burnt orange/terracotta
-    themeConfig.text.sageGreen,      // Medium sage green
-    '#9CAF88',                      // Lighter sage green/grey-green
-    '#D3D3D3',                      // Light grey with lavender hint
-    '#FFE5D9',                      // Light peach/blush pink
-    '#FFD4C4'                       // Darker peach/blush pink
+    BURGUNDY_DARK,   // Dark burgundy
+    BURGUNDY_WINE,   // Wine
+    BURGUNDY_TAN,    // Tan
+    BURGUNDY_CREAM,  // Cream
+    '#a86d72',       // Lighter dusty rose variant
+    '#F3E8E2'        // Champagne beige
   ]
-  
+
   // Color name mappings
   const colorNames = {
     '#000000': 'Black',
-    [themeConfig.text.burntOrange]: 'Burnt Orange',
-    '#E07A5F': 'Terracotta',
-    [themeConfig.text.sageGreen]: 'Sage Green',
-    '#9CAF88': 'Garden Green',
-    '#D3D3D3': 'Light Grey',
-    '#FFE5D9': 'Blush Pink',
-    '#FFD4C4': 'Peach',
-    [themeConfig.text.brown]: 'Brown',
-    [themeConfig.text.beige]: 'Beige',
-    [themeConfig.text.ivory]: 'Ivory',
-    [themeConfig.text.gardenGreen]: 'Garden Green'
+    [BURGUNDY_DARK]: 'Burgundy Dark',
+    [BURGUNDY_WINE]: 'Burgundy Wine',
+    [BURGUNDY_TAN]: 'Burgundy Tan',
+    [BURGUNDY_CREAM]: 'Cream',
+    '#a86d72': 'Light Dusty Rose',
+    '#F3E8E2': 'Champagne Beige'
   }
 
   useEffect(() => {

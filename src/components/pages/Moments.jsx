@@ -547,7 +547,7 @@ const Moments = () => {
               className="stylish-calligraphy text-5xl sm:text-6xl md:text-7xl lg:text-8xl inline-block ml-2" 
               style={{ 
                 lineHeight: '1.2',
-                color: '#7B1830',
+                color: '#5A1E2A',
                 display: 'inline-block',
                 paddingTop: '0.5rem',
                 paddingBottom: '0.5rem'
@@ -634,7 +634,7 @@ const Moments = () => {
                      backgroundSize: 'cover',
                  backgroundPosition: 'center',
                  backgroundRepeat: 'no-repeat',
-                 color: '#F8F1D6',
+                 color: '#F3E8E2',
                  paddingTop: '4rem',
                  paddingBottom: '4rem',
                  overflow: 'visible',

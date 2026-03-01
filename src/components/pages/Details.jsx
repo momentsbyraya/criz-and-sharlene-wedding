@@ -14,8 +14,6 @@ import Venue from '../Venue'
 import Schedule from '../Schedule'
 import EntourageDetailsSection from '../EntourageDetailsSection'
 import DressCode from '../DressCode'
-import GiftRegistry from '../GiftRegistry'
-import PhotoUpload from '../PhotoUpload'
 import './Details.css'
 
 // Register ScrollTrigger plugin
@@ -46,6 +44,8 @@ const Details = () => {
       'What time is the wedding?': Clock,
       'What is the wedding theme and dress code?': Palette,
       'Can I bring a plus one?': Users,
+      'What to wear?': Palette,
+      "Where's the reception?": UtensilsCrossed,
       'Is RSVP required?': Mail,
       'Are children allowed?': Baby,
       'Is parking available?': Car,
@@ -362,7 +362,7 @@ const Details = () => {
         >
           <path 
             d="M0,50 Q300,20 600,50 T1200,50" 
-            stroke="#7B1830" 
+            stroke="#5A1E2A" 
             strokeWidth="2" 
             fill="none"
             opacity="0.4"
@@ -393,7 +393,7 @@ const Details = () => {
         >
           <path 
             d="M0,50 Q300,20 600,50 T1200,50" 
-            stroke="#7B1830" 
+            stroke="#5A1E2A" 
             strokeWidth="2" 
             fill="none"
             opacity="0.4"
@@ -406,12 +406,6 @@ const Details = () => {
         <div className="max-w-xs sm:max-w-md lg:max-w-3xl w-full mx-auto">
           {/* Dress Code Section */}
           <DressCode />
-
-          {/* Gift Registry Section */}
-          <GiftRegistry />
-
-          {/* Photo Upload Section */}
-          <PhotoUpload />
         </div>
       </div>
 
@@ -491,7 +485,7 @@ const Details = () => {
           navigate('/')
         }
       }}
-      className="fixed bottom-12 right-6 z-[100] w-14 h-14 bg-burgundy-dark text-white rounded-full shadow-lg hover:bg-burgundy-wine hover:scale-110 transition-all duration-300 flex items-center justify-center group back-button"
+      className="fixed bottom-12 right-6 z-[100] w-14 h-14 bg-burgundy-dark text-white rounded-full shadow-lg hover:bg-burgundy-tan hover:scale-110 transition-all duration-300 flex items-center justify-center group back-button"
       aria-label="Back to home"
     >
       <ArrowLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform duration-300" />

@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to bottom, #F8F1D6 0%, #DBBE9B 100%);
+  background: linear-gradient(to bottom, #F3E8E2 0%, #C08A8F 100%);
   overflow: hidden;
 }
 
@@ -20,7 +20,7 @@
 .opening-screen-text {
   font-family: 'Nanum Myeongjo', serif;
   font-size: clamp(1rem, 2vw, 1.5rem);
-  color: #7B1830;
+  color: #5A1E2A;
   text-align: center;
   opacity: 0;
   cursor: default;

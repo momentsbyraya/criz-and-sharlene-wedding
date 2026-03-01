@@ -10,24 +10,24 @@ export default {
         'lg-custom': '992px',
       },
       colors: {
-        // Burgundy Red Wine palette (1=minor → 4=main)
+        // Burgundy Red Wine palette - Deep Burgundy #5A1E2A, Champagne Beige #F3E8E2, Dusty Rose #C08A8F
         'burgundy': {
-          cream: '#F8F1D6',   // 1 - minor, lightest (backgrounds)
-          tan: '#DBBE9B',     // 2 - accent/support
-          wine: '#7B1830',    // 3 - secondary burgundy
-          dark: '#4D0011',    // 4 - main inspiration (primary)
+          cream: '#F3E8E2',   // Soft Champagne Beige (background sections)
+          tan: '#C08A8F',     // Warm Dusty Rose (secondary accents, hover)
+          wine: '#5A1E2A',    // Deep Burgundy Red Wine (primary)
+          dark: '#5A1E2A',    // Deep Burgundy (headings, buttons, accents)
         },
         'wedding': {
-          50: '#F8F1D6',
-          100: '#F0E8D0',
-          200: '#DBBE9B',
-          300: '#c9a882',
-          400: '#9d5a6a',
-          500: '#7B1830',
-          600: '#6a1430',
-          700: '#5a1228',
-          800: '#4D0011',
-          900: '#3d000e',
+          50: '#F3E8E2',
+          100: '#F0E0D8',
+          200: '#C08A8F',
+          300: '#a86d72',
+          400: '#8a4a50',
+          500: '#5A1E2A',
+          600: '#4d1a24',
+          700: '#40161e',
+          800: '#5A1E2A',
+          900: '#2d0f15',
         },
         'rose': {
           50: '#fff1f2',

@@ -23,6 +23,8 @@ const FAQ = () => {
       'What time is the wedding?': Clock,
       'What is the wedding theme and dress code?': Palette,
       'Can I bring a plus one?': Users,
+      'What to wear?': Palette,
+      "Where's the reception?": UtensilsCrossed,
       'Is RSVP required?': Mail,
       'Are children allowed?': Baby,
       'Is parking available?': Car,

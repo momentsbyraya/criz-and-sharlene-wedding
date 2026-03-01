@@ -1,33 +1,34 @@
 // Theme Configuration - Burgundy Red Wine palette
-// 1 = #F8F1D6 (minor/cream), 2 = #DBBE9B (tan), 3 = #7B1830 (wine), 4 = #4D0011 (main)
+// Primary: #5A1E2A Deep Burgundy | Background: #F3E8E2 Champagne Beige | Secondary: #C08A8F Dusty Rose
 export const themeConfig = {
     // Background Colors
     backgrounds: {
-        primary: 'bg-burgundy-dark',     // #4D0011 - main
-        secondary: 'bg-burgundy-wine',   // #7B1830 - secondary
-        accent: 'bg-burgundy-wine',     // #7B1830
+        primary: 'bg-burgundy-dark',
+        secondary: 'bg-burgundy-wine',
+        accent: 'bg-burgundy-wine',
         light: 'bg-white/50',
-        theme: 'bg-burgundy-cream',      // #F8F1D6 - minor/cream
-        garden: 'bg-burgundy-cream',     // light sections
+        theme: 'bg-burgundy-cream',      // Champagne Beige
+        garden: 'bg-burgundy-cream',
         crumpledPaper: 'bg-[url("/assets/images/crumpled-paper.png")] bg-cover bg-center bg-no-repeat',
     },
 
     // Text Colors
     text: {
-        primary: 'text-burgundy-dark',     // #4D0011 - main
-        secondary: 'text-burgundy-tan',    // #DBBE9B - support
-        accent: 'text-burgundy-wine',      // #7B1830
+        primary: 'text-burgundy-dark',
+        secondary: 'text-burgundy-tan',    // Dusty Rose
+        accent: 'text-burgundy-wine',
         muted: 'text-burgundy-tan/80',
-        dark: 'text-burgundy-dark',        // #4D0011
-        theme: 'text-burgundy-wine',       // #7B1830
-        pause: 'text-[#F8F1D6]',
+        dark: 'text-burgundy-dark',
+        theme: 'text-burgundy-wine',
+        pause: 'text-[#F3E8E2]',
         custom: 'text-burgundy-dark',
-        light: '#DBBE9B',
-        lightBlack: '#7B1830',
-        cream: '#F8F1D6',
-        tan: '#DBBE9B',
-        wine: '#7B1830',
-        burgundyDark: '#4D0011',
+        light: '#C08A8F',
+        lightBlack: '#5A1E2A',
+        cream: '#F3E8E2',
+        tan: '#C08A8F',
+        wine: '#5A1E2A',
+        burgundyDark: '#5A1E2A',
+        burntOrange: '#5A1E2A',
     },
 
     // Border Colors
@@ -41,7 +42,7 @@ export const themeConfig = {
 
     // Button Colors
     buttons: {
-        primary: 'bg-burgundy-wine hover:bg-burgundy-dark',   // #7B1830 → #4D0011
+        primary: 'bg-burgundy-wine hover:bg-burgundy-tan',
         secondary: 'border border-burgundy-tan hover:border-burgundy-wine',
         text: 'text-burgundy-cream hover:text-white',
         theme: 'bg-burgundy-wine hover:bg-burgundy-wine/90',
@@ -50,7 +51,7 @@ export const themeConfig = {
 
     // Hover Effects
     hover: {
-        primary: 'hover:bg-burgundy-dark',
+        primary: 'hover:bg-burgundy-tan',
         secondary: 'hover:border-burgundy-wine hover:text-burgundy-cream',
         theme: 'hover:bg-burgundy-wine/90',
         garden: 'hover:bg-burgundy-wine',
@@ -82,21 +83,21 @@ export const themeConfig = {
 
     // Custom CSS Variables
     cssVariables: {
-        '--primary-bg': '#4D0011',
-        '--secondary-bg': '#7B1830',
-        '--accent-bg': '#7B1830',
-        '--accent-hover': '#4D0011',
-        '--primary-text': '#4D0011',
-        '--secondary-text': '#DBBE9B',
-        '--accent-text': '#7B1830',
-        '--muted-text': '#DBBE9B',
-        '--border-color': '#7B1830',
-        '--custom-theme': '#7B1830',
-        '--cream': '#F8F1D6',
-        '--tan': '#DBBE9B',
-        '--wine': '#7B1830',
-        '--burgundy-dark': '#4D0011',
-        '--garden-bg': '#F8F1D6',
+        '--primary-bg': '#5A1E2A',
+        '--secondary-bg': '#5A1E2A',
+        '--accent-bg': '#5A1E2A',
+        '--accent-hover': '#C08A8F',
+        '--primary-text': '#5A1E2A',
+        '--secondary-text': '#C08A8F',
+        '--accent-text': '#5A1E2A',
+        '--muted-text': '#C08A8F',
+        '--border-color': '#5A1E2A',
+        '--custom-theme': '#5A1E2A',
+        '--cream': '#F3E8E2',
+        '--tan': '#C08A8F',
+        '--wine': '#5A1E2A',
+        '--burgundy-dark': '#5A1E2A',
+        '--garden-bg': '#F3E8E2',
     }
 }
 

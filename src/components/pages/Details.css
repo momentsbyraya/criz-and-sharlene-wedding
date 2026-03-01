@@ -14,7 +14,7 @@
 
 .venue-title-text {
   line-height: 0.8;
-  color: #7B1830;
+  color: #5A1E2A;
 }
 
 /* Venue Image Container */
@@ -48,7 +48,7 @@
 
 .program-title-text {
   line-height: 0.8;
-  color: #F8F1D6;
+  color: #F3E8E2;
   display: block;
   text-align: center;
 }
@@ -60,7 +60,7 @@
 /* Date Selector */
 .date-month-year {
   font-style: italic;
-  color: #DBBE9B;
+  color: #C08A8F;
 }
 
 .heart-day-number {
@@ -73,22 +73,22 @@
 }
 
 .timeline-event-time {
-  color: #F8F1D6;
+  color: #F3E8E2;
 }
 
 .timeline-event-description {
-  color: #F8F1D6;
+  color: #F3E8E2;
 }
 
 /* Dress Code */
 .dress-code-title-text {
   line-height: 0.8;
-  color: #7B1830;
+  color: #5A1E2A;
   white-space: nowrap;
 }
 
 .dress-code-description {
-  color: #4D0011;
+  color: #5A1E2A;
 }
 
 .dress-code-image-container {
@@ -133,7 +133,7 @@
 
 .gift-registry-title-text {
   line-height: 0.8;
-  color: #7B1830;
+  color: #5A1E2A;
 }
 
 .gift-button {
@@ -152,7 +152,7 @@
 
 .upload-title-text {
   line-height: 0.8;
-  color: #7B1830;
+  color: #5A1E2A;
 }
 
 .upload-qr-container {
@@ -177,12 +177,12 @@
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
-  background-color: #7B1830;
+  background-color: #5A1E2A;
 }
 
 .faq-title-text {
   line-height: 0.8;
-  color: #F8F1D6;
+  color: #F3E8E2;
 }
 
 /* Modal */

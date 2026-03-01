@@ -1,7 +1,5 @@
 {
-  "background": "/assets/music/Canon in D.mp3",
+  "background": "/assets/music/Christina Perri - A Thousand Years [Official Music Video].mp3",
   "volume": 0.5,
-  "loop": false,
-  "loopStart": 2,
-  "loopEnd": 159
-} 
+  "loop": true
+}
