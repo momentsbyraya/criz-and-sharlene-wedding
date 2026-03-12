@@ -50,14 +50,19 @@ const Venue = () => {
       const venueContainer = venueRef.current
       const venueImage = venueContainer.querySelector('.venue-image-container')
       const venueContent = venueContainer.querySelector('.venue-details')
+      const venueTextBlocks = venueContent ? venueContent.querySelectorAll('.venue-details > div:not(:last-child), .venue-details > div:last-child') : []
       if (venueImage) gsap.set(venueImage, { opacity: 0, x: -30 })
       if (venueContent) gsap.set(venueContent, { opacity: 0, x: 30 })
+      if (venueTextBlocks.length) gsap.set(venueTextBlocks, { opacity: 0, y: 16 })
       ScrollTrigger.create({
         trigger: venueRef.current,
         start: "top 75%",
         onEnter: () => {
           if (venueImage) gsap.to(venueImage, { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" })
           if (venueContent) gsap.to(venueContent, { opacity: 1, x: 0, duration: 0.8, ease: "power2.out", delay: 0.2 })
+          if (venueTextBlocks.length) {
+            gsap.to(venueTextBlocks, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.12, delay: 0.35 })
+          }
         }
       })
     }

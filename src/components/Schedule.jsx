@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const Schedule = () => {
   const scheduleTitleRef = useRef(null)
+  const scheduleDescRef = useRef(null)
   const timelineRef = useRef(null)
   const lineRef = useRef(null)
   const eventsRef = useRef(null)
@@ -23,6 +24,17 @@ const Schedule = () => {
           { opacity: 0, y: 30 },
           { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
         ),
+        toggleActions: "play none none reverse"
+      })
+    }
+
+    // Schedule description text animation
+    if (scheduleDescRef.current) {
+      gsap.set(scheduleDescRef.current, { opacity: 0, y: 20 })
+      ScrollTrigger.create({
+        trigger: scheduleDescRef.current,
+        start: "top 85%",
+        animation: gsap.to(scheduleDescRef.current, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", delay: 0.15 }),
         toggleActions: "play none none reverse"
       })
     }
@@ -66,6 +78,7 @@ const Schedule = () => {
       ScrollTrigger.getAll().forEach(trigger => {
         if (trigger.vars && (
           trigger.vars.trigger === scheduleTitleRef.current ||
+          trigger.vars.trigger === scheduleDescRef.current ||
           trigger.vars.trigger === timelineRef.current ||
           trigger.vars.trigger === eventsRef.current
         )) {
@@ -86,7 +99,7 @@ const Schedule = () => {
             Order of Events
           </span>
         </h3>
-        <p className="text-sm sm:text-base md:text-lg font-albert text-burgundy-cream text-center mt-4 mx-auto px-4 program-description">
+        <p ref={scheduleDescRef} className="text-sm sm:text-base md:text-lg font-albert text-burgundy-cream text-center mt-4 mx-auto px-4 program-description">
           Join us as we celebrate this special day together
         </p>
       </div>

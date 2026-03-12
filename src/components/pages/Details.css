@@ -108,6 +108,31 @@
   margin-top: 0;
 }
 
+/* Dress code: circular overlapping swatches (card style) */
+.dresscode-swatch-circle {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(90, 30, 42, 0.2);
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .dresscode-swatch-circle {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}
+
+.dresscode-swatches-overlap {
+  display: flex;
+  align-items: center;
+}
+
+.dresscode-swatches-overlap .dresscode-swatch-circle:not(:first-child) {
+  margin-left: -0.5rem;
+}
+
 /* Color Swatch Tooltip */
 .color-swatch-tooltip {
   animation: fadeIn 0.2s ease-in-out;

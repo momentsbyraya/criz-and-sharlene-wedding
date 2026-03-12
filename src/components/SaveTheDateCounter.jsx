@@ -14,6 +14,7 @@ const SaveTheDateCounter = () => {
   const sectionRef = useRef(null)
   const titleRef = useRef(null)
   const countdownRef = useRef(null)
+  const countdownLabelsRef = useRef(null)
 
   // Update countdown every second
   useEffect(() => {
@@ -42,6 +43,22 @@ const SaveTheDateCounter = () => {
           }
         }
       )
+    }
+
+    // Animate countdown labels (Days, Hours, etc.) on scroll
+    if (countdownLabelsRef.current) {
+      const labels = countdownLabelsRef.current.querySelectorAll('.text-center > div:last-child')
+      if (labels.length) {
+        gsap.set(labels, { opacity: 0, y: 12 })
+        ScrollTrigger.create({
+          trigger: countdownLabelsRef.current,
+          start: 'top 85%',
+          onEnter: () => {
+            gsap.to(labels, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.06 })
+          },
+          toggleActions: 'play none none reverse'
+        })
+      }
     }
 
     // Don't animate countdown numbers with ScrollTrigger - reversing would hide them again
@@ -110,6 +127,7 @@ const SaveTheDateCounter = () => {
         </div>
 
         {/* Countdown Timer */}
+        <div ref={countdownLabelsRef}>
         <div ref={countdownRef} className="flex justify-center items-center space-x-3 sm:space-x-4 md:space-x-6 px-4">
           <div className="text-center">
             <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#5A1E2A', opacity: 1 }}>
@@ -144,6 +162,7 @@ const SaveTheDateCounter = () => {
             </div>
             <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#5A1E2A', opacity: 0.9 }}>Seconds</div>
           </div>
+        </div>
         </div>
       </div>
     </section>

@@ -31,13 +31,17 @@ const Gallery = () => {
     if (gridRef.current) {
       const items = gridRef.current.querySelectorAll('.gallery-item')
       items.forEach((item, index) => {
+        const img = item.querySelector('img')
+        gsap.set([item, img], { opacity: 0 })
+        gsap.set(item, { y: 24, scale: 0.94 })
+        if (img) gsap.set(img, { scale: 0.92 })
         ScrollTrigger.create({
           trigger: item,
           start: 'top 90%',
-          animation: gsap.fromTo(item,
-            { opacity: 0, y: 24 },
-            { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: index * 0.06 }
-          ),
+          onEnter: () => {
+            gsap.to(item, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'power2.out', delay: index * 0.05 })
+            if (img) gsap.to(img, { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out', delay: index * 0.05 + 0.08 })
+          },
           toggleActions: 'play none none reverse'
         })
       })
@@ -89,6 +93,7 @@ const Gallery = () => {
               src={src}
               alt={`Gallery ${index + 1}`}
               className="w-full h-full object-cover"
+              style={['DE_00781.jpg', 'DE_00506-2.jpg', 'DE_00468.jpg'].some((f) => src.includes(f)) ? { objectPosition: '50% 20%' } : undefined}
               loading="lazy"
               onError={(e) => {
                 e.target.style.display = 'none'

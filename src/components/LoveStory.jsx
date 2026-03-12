@@ -46,16 +46,26 @@ const LoveStory = () => {
       })
     }
 
-    // Animate story items
+    // Animate story items (rows), polaroid images, and paragraph text
     const storyItems = sectionRef.current?.querySelectorAll('.story-item')
     storyItems?.forEach((item, index) => {
+      const polaroidWrapper = item.querySelector('.bg-white.shadow-lg')
+      const textParagraph = item.querySelector('p.font-albert')
+      gsap.set(item, { opacity: 0, y: 28 })
+      if (polaroidWrapper) gsap.set(polaroidWrapper, { scale: 0.92 })
+      if (textParagraph) gsap.set(textParagraph, { opacity: 0, y: 16 })
       ScrollTrigger.create({
         trigger: item,
-        start: "top 80%",
-        animation: gsap.fromTo(item,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", delay: index * 0.1 }
-        ),
+        start: "top 82%",
+        onEnter: () => {
+          gsap.to(item, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out", delay: index * 0.1 })
+          if (polaroidWrapper) {
+            gsap.to(polaroidWrapper, { scale: 1, duration: 0.6, ease: "back.out(1.2)", delay: index * 0.1 + 0.15 })
+          }
+          if (textParagraph) {
+            gsap.to(textParagraph, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", delay: index * 0.1 + 0.25 })
+          }
+        },
         toggleActions: "play none none reverse"
       })
     })
@@ -160,8 +170,8 @@ const LoveStory = () => {
     }
   }, [isModalOpen])
 
-  // Polaroid component
-  const Polaroid = ({ image, rotation = 0, index, size = 'normal' }) => {
+  // Polaroid component (objectPosition repositions image inside frame for better face visibility)
+  const Polaroid = ({ image, rotation = 0, index, size = 'normal', objectPosition }) => {
     const maxWidth = size === 'small' ? '150px' : '200px'
     return (
     <div 
@@ -184,7 +194,8 @@ const LoveStory = () => {
           style={{
             border: '2px solid #F3E8E2',
             borderBottom: 'none',
-            display: 'block'
+            display: 'block',
+            ...(objectPosition && { objectPosition })
           }}
         />
         {/* Stamp overlay */}
@@ -250,6 +261,7 @@ const LoveStory = () => {
                             rotation={-3}
                             index={index}
                             size="normal"
+                            objectPosition={index === 3 || index === 4 ? '50% 28%' : undefined}
                           />
                         )}
                       </div>
@@ -273,6 +285,7 @@ const LoveStory = () => {
                             rotation={3}
                             index={index}
                             size="normal"
+                            objectPosition={index === 3 || index === 4 ? '50% 28%' : undefined}
                           />
                         )}
                       </div>

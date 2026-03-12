@@ -7,15 +7,23 @@
     {
       "title": "Principal Sponsors",
       "type": "text",
-      "description": "For Ninongs: Formal suit in black. For Ninangs: Floor-length gown in Burgundy.",
-      "image": "/assets/images/dresscode/sponsors.png"
+      "ninong": {
+        "description": "Black Pants and Beige Barong",
+        "colors": ["#000000", "#E8DCC4"]
+      },
+      "ninang": {
+        "description": "long gown dusty rose/rose gold",
+        "colors": ["#C08081", "#E8B4B8"]
+      },
+      "image": "/assets/images/dresscode/principal.png"
     },
     {
       "title": "Guests",
       "type": "image",
-      "shortDescription": "Ladies: Modest dress. Men: Long sleeves.",
-      "description": "Ladies: Modest dress. Men: Long sleeves.",
+      "description": "Guests are requested to wear semi-formal / formal attire shades of Burgundy / Blush colors.",
+      "colorPaletteLabel": "Burgundy / Rose Gold",
+      "colors": ["#722F37", "#8B3A42", "#C08081", "#F4C2C2"],
       "image": "/assets/images/dresscode/guests.png"
     }
   ]
-} 
+}

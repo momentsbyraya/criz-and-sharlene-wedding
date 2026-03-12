@@ -11,6 +11,8 @@ gsap.registerPlugin(ScrollTrigger)
 
 const GiftRegistry = () => {
   const giftRegistryRef = useRef(null)
+  const giftTitleRef = useRef(null)
+  const giftDescRef = useRef(null)
   const [isGiftModalOpen, setIsGiftModalOpen] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null)
   const modalRef = useRef(null)
@@ -33,15 +35,21 @@ const GiftRegistry = () => {
   }
 
   useEffect(() => {
-    // Gift Registry animation
+    // Gift Registry: animate title, then description text, then rest
     if (giftRegistryRef.current) {
+      if (giftTitleRef.current) gsap.set(giftTitleRef.current, { opacity: 0, y: 24 })
+      if (giftDescRef.current) gsap.set(giftDescRef.current, { opacity: 0, y: 20 })
       ScrollTrigger.create({
         trigger: giftRegistryRef.current,
         start: "top 80%",
-        animation: gsap.fromTo(giftRegistryRef.current,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
-        ),
+        onEnter: () => {
+          if (giftTitleRef.current) {
+            gsap.to(giftTitleRef.current, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" })
+          }
+          if (giftDescRef.current) {
+            gsap.to(giftDescRef.current, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", delay: 0.2 })
+          }
+        },
         toggleActions: "play none none reverse"
       })
     }
@@ -69,7 +77,7 @@ const GiftRegistry = () => {
               className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain"
             />
           </div>
-          <h3 className="relative inline-block px-6 py-3">
+          <h3 ref={giftTitleRef} className="relative inline-block px-6 py-3">
             <span 
               className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl inline-block leading-none gift-registry-title-text"
               style={{ fontStyle: 'italic' }}
@@ -80,7 +88,7 @@ const GiftRegistry = () => {
           <div className="w-full max-w-3xl mx-auto mb-4">
             <div className="w-full h-px bg-burgundy-tan opacity-40"></div>
           </div>
-          <p className="text-base sm:text-lg font-albert font-thin text-burgundy-dark max-w-3xl mx-auto leading-relaxed text-center mb-6">
+          <p ref={giftDescRef} className="text-base sm:text-lg font-albert font-thin text-burgundy-dark max-w-3xl mx-auto leading-relaxed text-center mb-6">
             Your presence is the greatest gift. If you wish to honor us, we would be grateful for a <strong>monetary gift</strong> to help us start our new life together.
           </p>
           
