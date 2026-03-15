@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { gsap } from 'gsap'
 import { X } from 'lucide-react'
@@ -8,12 +8,11 @@ const EntourageModal = ({ isOpen, onClose }) => {
   const modalRef = useRef(null)
   const overlayRef = useRef(null)
   const contentRef = useRef(null)
+  const [fullscreenImage, setFullscreenImage] = useState(null)
 
   const entourageImages = [
-    '/assets/images/entourage/1st.png',
-    '/assets/images/entourage/2nd.png',
-    '/assets/images/entourage/3rd.png',
-    '/assets/images/entourage/4th.png'
+    { src: '/assets/images/entourage/entourage1.png', alt: 'Entourage' },
+    { src: '/assets/images/entourage/secondary.png', alt: 'Secondary Sponsors' }
   ]
 
   useEffect(() => {
@@ -69,6 +68,11 @@ const EntourageModal = ({ isOpen, onClose }) => {
     }
   }
 
+  // Close fullscreen when modal closes
+  useEffect(() => {
+    if (!isOpen) setFullscreenImage(null)
+  }, [isOpen])
+
   if (!isOpen) return null
 
   return createPortal(
@@ -100,21 +104,53 @@ const EntourageModal = ({ isOpen, onClose }) => {
           </button>
         </div>
         
-        {/* Content - Scrollable */}
+        {/* Content - Scrollable: Entourage first, then Secondary */}
         <div className="p-6 overflow-y-auto flex-1">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {entourageImages.map((image, index) => (
-              <div key={index} className="relative">
-                <img 
-                  src={image} 
-                  alt={`Entourage ${index + 1}`}
-                  className="w-full h-auto rounded-lg object-cover"
+          <div className="flex flex-col gap-6">
+            {entourageImages.map((item, index) => (
+              <button
+                key={index}
+                type="button"
+                className="relative w-full text-left cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 rounded-lg"
+                onClick={() => setFullscreenImage(item)}
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className="w-full h-auto rounded-lg object-contain"
                 />
-              </div>
+              </button>
             ))}
           </div>
         </div>
       </div>
+
+      {/* Fullscreen image overlay */}
+      {fullscreenImage && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4"
+          onClick={() => setFullscreenImage(null)}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Escape' && setFullscreenImage(null)}
+          aria-label="Close fullscreen"
+        >
+          <button
+            type="button"
+            onClick={() => setFullscreenImage(null)}
+            className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
+            aria-label="Close"
+          >
+            <X className="w-8 h-8" />
+          </button>
+          <img
+            src={fullscreenImage.src}
+            alt={fullscreenImage.alt}
+            className="max-w-full max-h-[90vh] w-auto h-auto object-contain rounded"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>,
     document.body
   )

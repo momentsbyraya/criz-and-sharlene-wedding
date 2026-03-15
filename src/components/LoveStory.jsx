@@ -24,12 +24,12 @@ const LoveStory = () => {
 
   // Polaroid images - 1 per paragraph (6 paragraphs)
   const polaroidImages = [
-    '/assets/images/prenup/DE_00873.jpg',
-    '/assets/images/prenup/DE_00846.jpg',
-    '/assets/images/prenup/DE_00876.jpg',
-    '/assets/images/prenup/DE_00817.jpg',
-    '/assets/images/prenup/DSC06257.jpg',
-    '/assets/images/prenup/DE_00903.jpg',
+    '/assets/images/couple-1.jpg',
+    '/assets/images/couple-2.jpg',
+    '/assets/images/couple-3.jpg',
+    '/assets/images/couple-4.jpg',
+    '/assets/images/couple-5.jpg',
+    '/assets/images/couple-6.jpg',
   ]
 
   useEffect(() => {
@@ -192,7 +192,7 @@ const LoveStory = () => {
           alt={`Love story moment ${index + 1}`}
           className="w-full aspect-square object-cover"
           style={{
-            border: '2px solid #F3E8E2',
+            border: '2px solid #FFFBFB',
             borderBottom: 'none',
             display: 'block',
             ...(objectPosition && { objectPosition })

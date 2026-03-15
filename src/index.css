@@ -157,8 +157,17 @@ body {
   font-family: 'Elsie Swash Caps', cursive;
   font-weight: 400;
   line-height: 1.6;
-  color: #5A1E2A;
-  background-color: #F3E8E2; /* Champagne Beige */
+  color: #7BA3C4;
+  /* Minimal pastel watercolor: blush pink dominant, powder blue at edges, clean center */
+  background-color: #FFFBFB;
+  background-image:
+    radial-gradient(ellipse 140% 90% at 0% 0%, rgba(212, 229, 244, 0.65) 0%, rgba(244, 198, 207, 0.25) 45%, transparent 70%),
+    radial-gradient(ellipse 120% 100% at 100% 0%, rgba(196, 212, 232, 0.55) 0%, transparent 55%),
+    radial-gradient(ellipse 110% 90% at 0% 100%, rgba(212, 229, 244, 0.5) 0%, transparent 55%),
+    radial-gradient(ellipse 130% 100% at 100% 100%, rgba(184, 212, 232, 0.55) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 70% at 50% 50%, rgba(255, 255, 255, 0.92) 0%, rgba(255, 251, 251, 0.98) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
 @layer base {
@@ -179,18 +188,31 @@ body {
   }
   
   .text-gradient {
-    background: linear-gradient(135deg, #5A1E2A 0%, #5A1E2A 100%);
+    background: linear-gradient(135deg, #B8D4E8 0%, #7BA3C4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   
   .card-shadow {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
   }
   
   .elegant-border {
-    border: 1px solid rgba(90, 30, 42, 0.25);
+    border: 1px solid rgba(123, 163, 196, 0.25);
+  }
+  
+  /* Pastel watercolor page background (optional overlay) */
+  .pastel-watercolor-bg {
+    background-color: #FFFBFB;
+    background-image:
+      radial-gradient(ellipse 140% 90% at 0% 0%, rgba(212, 229, 244, 0.6) 0%, rgba(244, 198, 207, 0.2) 45%, transparent 70%),
+      radial-gradient(ellipse 120% 100% at 100% 0%, rgba(196, 212, 232, 0.5) 0%, transparent 55%),
+      radial-gradient(ellipse 110% 90% at 0% 100%, rgba(212, 229, 244, 0.45) 0%, transparent 55%),
+      radial-gradient(ellipse 130% 100% at 100% 100%, rgba(184, 212, 232, 0.5) 0%, transparent 55%),
+      radial-gradient(ellipse 85% 65% at 50% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 251, 251, 1) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
   }
 }
 

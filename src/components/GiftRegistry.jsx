@@ -38,14 +38,14 @@ const GiftRegistry = () => {
   const didHorizontalRef = useRef(false)
   const carouselViewportRef = useRef(null)
 
-  const monetaryGiftImages = [
-    { src: '/images/qr/gcash.png', alt: 'GCash / InstaPay QR – scan to send a gift' },
-    { src: '/images/qr/Gcash2.png', alt: 'GCash / InstaPay QR – scan to send a gift' },
-    { src: '/images/qr/image.png', alt: 'Maya / InstaPay QR – scan to send a gift' }
+  const monetaryGiftPlaceholders = [
+    { label: 'QR code 1' },
+    { label: 'QR code 2' },
+    { label: 'QR code 3' }
   ]
 
-  const handleImageClick = (image) => {
-    setSelectedImage(image)
+  const handlePlaceholderClick = (placeholder) => {
+    setSelectedImage(placeholder)
   }
 
   const closeImageModal = () => {
@@ -275,34 +275,32 @@ const GiftRegistry = () => {
               className="gift-carousel-track flex gap-4 flex-nowrap will-change-transform"
             >
               <div ref={carouselFirstSetRef} className="flex gap-4 flex-shrink-0">
-                {monetaryGiftImages.map((image, index) => (
+                {monetaryGiftPlaceholders.map((item, index) => (
                   <div
                     key={`a-${index}`}
                     className="gift-carousel-card flex-shrink-0 w-[85vw] min-w-[260px] max-w-[280px]"
                   >
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-48 object-contain border border-gray-300 rounded p-2 cursor-pointer hover:opacity-90 transition-opacity select-none"
-                      onClick={() => handleImageClick(image)}
-                      draggable={false}
-                    />
+                    <div
+                      className="w-full h-48 flex items-center justify-center border border-gray-300 rounded p-2 cursor-pointer hover:opacity-90 transition-opacity select-none bg-gray-50 text-gray-500 font-medium text-sm sm:text-base"
+                      onClick={() => handlePlaceholderClick(item)}
+                    >
+                      QR code here
+                    </div>
                   </div>
                 ))}
               </div>
               <div className="flex gap-4 flex-shrink-0">
-                {monetaryGiftImages.map((image, index) => (
+                {monetaryGiftPlaceholders.map((item, index) => (
                   <div
                     key={`b-${index}`}
                     className="gift-carousel-card flex-shrink-0 w-[85vw] min-w-[260px] max-w-[280px]"
                   >
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-48 object-contain border border-gray-300 rounded p-2 cursor-pointer hover:opacity-90 transition-opacity select-none"
-                      onClick={() => handleImageClick(image)}
-                      draggable={false}
-                    />
+                    <div
+                      className="w-full h-48 flex items-center justify-center border border-gray-300 rounded p-2 cursor-pointer hover:opacity-90 transition-opacity select-none bg-gray-50 text-gray-500 font-medium text-sm sm:text-base"
+                      onClick={() => handlePlaceholderClick(item)}
+                    >
+                      QR code here
+                    </div>
                   </div>
                 ))}
               </div>
@@ -321,17 +319,17 @@ const GiftRegistry = () => {
             }}
           >
             <div className="flex gap-4 sm:gap-4 md:gap-6 min-w-min justify-center">
-              {monetaryGiftImages.map((image, index) => (
+              {monetaryGiftPlaceholders.map((item, index) => (
                 <div
                   key={index}
                   className="gift-registry-card flex-shrink-0 snap-center snap-always w-[85vw] min-w-[260px] max-w-[280px] sm:max-w-none sm:w-auto"
                 >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-48 sm:h-56 md:h-64 object-contain border border-gray-300 rounded p-2 cursor-pointer hover:opacity-90 transition-opacity"
-                    onClick={() => handleImageClick(image)}
-                  />
+                  <div
+                    className="w-full h-48 sm:h-56 md:h-64 flex items-center justify-center border border-gray-300 rounded p-2 cursor-pointer hover:opacity-90 transition-opacity bg-gray-50 text-gray-500 font-medium text-sm sm:text-base"
+                    onClick={() => handlePlaceholderClick(item)}
+                  >
+                    QR code here
+                  </div>
                 </div>
               ))}
             </div>
@@ -363,17 +361,13 @@ const GiftRegistry = () => {
             <X className="w-6 h-6 text-white" />
           </button>
 
-          {/* Image Container */}
+          {/* Content Container */}
           <div
             ref={contentRef}
             className="relative z-10 max-w-[90vw] max-h-[90vh] flex items-center justify-center"
             style={{ pointerEvents: 'none' }}
           >
-            <img 
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              className="max-w-full max-h-[90vh] object-contain"
-            />
+            <span className="text-white text-xl sm:text-2xl font-medium">QR code here</span>
           </div>
         </div>,
         document.body

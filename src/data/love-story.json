@@ -1,35 +1,35 @@
 {
   "title": "Our Love Story",
-  "content": "Our story began quietly, through a simple connection between family and work. What started as casual conversations soon turned into late-night chats and shared laughter.\n\nA brave decision to finally meet led to five months of courtship—filled with patience, sincerity, and growing certainty. On September 28, 2024, we chose each other.\n\nOur journey was not always easy. There were doubts, resistance, and moments when love was questioned by the voices around us. There were times when loving felt like fighting.\n\nBut instead of breaking us, those challenges strengthened our bond. Bitoy chose love—again and again—and together, we stood firm when it would have been easier to walk away.\n\nWhat we built was tested, proven, and refined. Now, with hearts fuller and faith stronger, we look forward to forever—and to the day we make it official.\n\nOn April 18, 2026, we say \"I do\"—not because love was easy, but because it was worth everything. That is our promise to each other.",
+  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nCurabitur pretium tincidunt lacus. Nulla facilisi. Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed augue. Integer eu magna sit amet metus fermentum posuere.\n\nMorbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue.\n\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci. Phasellus consectetuer vestibulum elit.",
   "timeline": [
     {
       "title": "The Beginning",
       "date": "Family & Work",
-      "description": "Our story began quietly, through a simple connection between family and work. Casual conversations turned into late-night chats, shared laughter, and a brave decision to finally meet.",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "image": "couple2"
     },
     {
       "title": "Five Months of Courtship",
       "date": "Patience & Certainty",
-      "description": "Five months of courtship followed—filled with patience, sincerity, and growing certainty.",
+      "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
       "image": "couple4"
     },
     {
       "title": "We Chose Each Other",
       "date": "September 28, 2024",
-      "description": "On September 28, 2024, we chose each other.",
+      "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "image": "couple7"
     },
     {
       "title": "Tested & Proven",
       "date": "Stronger Together",
-      "description": "Our journey was not always easy. There were doubts and resistance, but instead of breaking us, those challenges strengthened our bond. Bitoy chose love—again and again—and together, we stood firm.",
+      "description": "Curabitur pretium tincidunt lacus. Nulla facilisi. Ut convallis, sem sit amet interdum consectetuer.",
       "image": "couple2"
     },
     {
       "title": "Forever",
-      "date": "April 18, 2026",
-      "description": "Now, with hearts fuller and faith stronger, we look forward to forever. On April 18, 2026, we say \"I do\"—not because love was easy, but because it was worth everything.",
+      "date": "May 9, 2026",
+      "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.",
       "image": "couple7"
     }
   ]

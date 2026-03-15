@@ -88,10 +88,10 @@ const PhotoUpload = () => {
                 {/* Hashtags */}
                 <div className="mb-4 text-left lg-custom:text-center" style={{ overflow: 'visible', width: '100%' }}>
                   <p className="text-sm sm:text-base font-albert font-medium text-burgundy-dark whitespace-nowrap" style={{ overflow: 'visible' }}>
-                    #JollyDaneAndCharmaine
+                    #GlennAndNicole
                   </p>
                   <p className="text-sm sm:text-base font-albert font-medium text-burgundy-dark whitespace-nowrap" style={{ overflow: 'visible' }}>
-                    #JollyDaneAndCharmaine
+                    #GlennAndNicole
                   </p>
                 </div>
 

@@ -1,198 +1,149 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { venues as venuesData } from '../data'
-import SecondaryButton from './SecondaryButton'
 import './pages/Details.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const CAROUSEL_SPEED_PX_PER_SEC = 36
-const CAROUSEL_RESUME_DELAY_MS = 2500
+const SWIPE_THRESHOLD_PX = 50
 
-const VENUE_IMAGES = [
-  '/assets/images/venues/recep1.jpg',
-  '/assets/images/venues/recep2.jpg',
-  '/assets/images/venues/recep3.jpg',
-  '/assets/images/venues/recep4.jpg',
-  '/assets/images/venues/recep5.jpg',
-  '/assets/images/venues/recep6.jpg',
-]
+const hexToRgba = (hex, alpha) => {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`
+}
 
 const Venue = () => {
   const venueSectionRef = useRef(null)
   const venueTitleRef = useRef(null)
-  const venueCardsContainerRef = useRef(null)
-  const venueDetailsRef = useRef(null)
-
-  // Infinite carousel (mobile): same as gift section
   const carouselTrackRef = useRef(null)
-  const carouselFirstSetRef = useRef(null)
-  const setWidthRef = useRef(0)
-  const scrollOffsetRef = useRef(0)
-  const rafRef = useRef(null)
-  const pauseTimeoutRef = useRef(null)
-  const [isCarouselPaused, setIsCarouselPaused] = useState(false)
-  const touchStartXRef = useRef(0)
-  const touchStartYRef = useRef(0)
-  const touchStartOffsetRef = useRef(0)
-  const didHorizontalRef = useRef(false)
   const carouselViewportRef = useRef(null)
+  const touchStartX = useRef(0)
+  const dragOffset = useRef(0)
 
   const ceremony = venuesData.ceremony
   const reception = venuesData.reception
 
-  // Infinite carousel: measure, auto-scroll, touch/mouse (same as gift)
-  useEffect(() => {
-    const measureSetWidth = () => {
-      if (carouselFirstSetRef.current) {
-        setWidthRef.current = carouselFirstSetRef.current.offsetWidth
-      }
-    }
-    measureSetWidth()
-    requestAnimationFrame(measureSetWidth)
-    const resizeObserver = new ResizeObserver(measureSetWidth)
-    if (carouselFirstSetRef.current) {
-      resizeObserver.observe(carouselFirstSetRef.current)
-    }
+  const ceremonyImage = ceremony.images?.[0] ?? '/assets/images/venues/ceremony-1.jpg'
+  const receptionImage = reception.images?.[0] ?? '/assets/images/venues/reception-1.jpg'
 
-    const tick = () => {
-      const setWidth = setWidthRef.current
-      const track = carouselTrackRef.current
-      if (!track || setWidth <= 0) {
-        rafRef.current = requestAnimationFrame(tick)
-        return
-      }
-      if (!isCarouselPaused) {
-        scrollOffsetRef.current += CAROUSEL_SPEED_PX_PER_SEC / 60
-        if (scrollOffsetRef.current >= setWidth) {
-          scrollOffsetRef.current -= setWidth
-        }
-        if (scrollOffsetRef.current < 0) {
-          scrollOffsetRef.current += setWidth
-        }
-      }
-      track.style.transform = `translate3d(${-scrollOffsetRef.current}px, 0, 0)`
-      rafRef.current = requestAnimationFrame(tick)
-    }
-    rafRef.current = requestAnimationFrame(tick)
+  const eventSlides = [
+    {
+      title: 'Ceremony',
+      image: ceremonyImage,
+      location: ceremony.name,
+      time: ceremony.time,
+      googleMapsUrl: ceremony.googleMapsUrl,
+      backgroundColor: '#E8F2FC',
+      accentColor: '#9EC9F5',
+    },
+    {
+      title: 'Reception',
+      image: receptionImage,
+      location: reception.name,
+      time: reception.time ?? '',
+      googleMapsUrl: reception.googleMapsUrl,
+      backgroundColor: '#FDE8EF',
+      accentColor: '#F8C8DC',
+    },
+  ]
 
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current)
-      if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current)
-      resizeObserver.disconnect()
-    }
-  }, [isCarouselPaused])
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  const handleCarouselTouchStart = (e) => {
-    setIsCarouselPaused(true)
-    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current)
-    touchStartXRef.current = e.touches[0].clientX
-    touchStartYRef.current = e.touches[0].clientY
-    touchStartOffsetRef.current = scrollOffsetRef.current
-    didHorizontalRef.current = false
+  const goToSlide = (index) => {
+    const next = Math.max(0, Math.min(index, eventSlides.length - 1))
+    setActiveIndex(next)
   }
 
-  const handleCarouselTouchMove = (e) => {
-    const setWidth = setWidthRef.current
-    const track = carouselTrackRef.current
-    if (!track || setWidth <= 0) return
+  const goPrev = () => goToSlide(activeIndex - 1)
+  const goNext = () => goToSlide(activeIndex + 1)
+
+  // Touch swipe
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX
+    dragOffset.current = 0
+  }
+  const handleTouchMove = (e) => {
     const x = e.touches[0].clientX
-    const y = e.touches[0].clientY
-    const dx = Math.abs(x - touchStartXRef.current)
-    const dy = Math.abs(y - touchStartYRef.current)
-    if (!didHorizontalRef.current && (dx > 10 || dy > 10)) {
-      didHorizontalRef.current = dx > dy
+    dragOffset.current = touchStartX.current - x
+    if (carouselTrackRef.current && carouselViewportRef.current) {
+      const base = -activeIndex * (100 / eventSlides.length)
+      const percentPerPx = 100 / eventSlides.length / carouselViewportRef.current.offsetWidth
+      const percent = base + dragOffset.current * percentPerPx
+      carouselTrackRef.current.style.transition = 'none'
+      carouselTrackRef.current.style.transform = `translate3d(${percent}%, 0, 0)`
     }
-    if (didHorizontalRef.current && dx > 2) {
-      e.preventDefault()
+  }
+  const handleTouchEnd = () => {
+    const nextIndex =
+      dragOffset.current >= SWIPE_THRESHOLD_PX
+        ? Math.min(activeIndex + 1, eventSlides.length - 1)
+        : dragOffset.current <= -SWIPE_THRESHOLD_PX
+          ? Math.max(activeIndex - 1, 0)
+          : activeIndex
+    setActiveIndex(nextIndex)
+    if (carouselTrackRef.current) {
+      carouselTrackRef.current.style.transition = ''
+      carouselTrackRef.current.style.transform = `translate3d(${-nextIndex * (100 / eventSlides.length)}%, 0, 0)`
     }
-    const delta = touchStartXRef.current - x
-    let next = touchStartOffsetRef.current + delta
-    while (next >= setWidth) next -= setWidth
-    while (next < 0) next += setWidth
-    scrollOffsetRef.current = next
-    track.style.transform = `translate3d(${-scrollOffsetRef.current}px, 0, 0)`
+    dragOffset.current = 0
   }
 
-  const carouselTouchMoveRef = useRef(handleCarouselTouchMove)
-  carouselTouchMoveRef.current = handleCarouselTouchMove
+  // Mouse drag
+  const [isDragging, setIsDragging] = useState(false)
+  const mouseStartX = useRef(0)
+
+  const handleMouseDown = (e) => {
+    if (e.button !== 0) return
+    setIsDragging(true)
+    mouseStartX.current = e.clientX
+    dragOffset.current = 0
+  }
+  const handleMouseMove = (e) => {
+    if (!isDragging || !carouselViewportRef.current) return
+    dragOffset.current = mouseStartX.current - e.clientX
+    const base = -activeIndex * (100 / eventSlides.length)
+    const percentPerPx = 100 / eventSlides.length / carouselViewportRef.current.offsetWidth
+    const percent = base + dragOffset.current * percentPerPx
+    carouselTrackRef.current.style.transition = 'none'
+    carouselTrackRef.current.style.transform = `translate3d(${percent}%, 0, 0)`
+  }
+  const handleMouseUp = () => {
+    if (!isDragging) return
+    setIsDragging(false)
+    const nextIndex =
+      dragOffset.current >= SWIPE_THRESHOLD_PX
+        ? Math.min(activeIndex + 1, eventSlides.length - 1)
+        : dragOffset.current <= -SWIPE_THRESHOLD_PX
+          ? Math.max(activeIndex - 1, 0)
+          : activeIndex
+    setActiveIndex(nextIndex)
+    if (carouselTrackRef.current) {
+      carouselTrackRef.current.style.transition = ''
+      carouselTrackRef.current.style.transform = `translate3d(${-nextIndex * (100 / eventSlides.length)}%, 0, 0)`
+    }
+    dragOffset.current = 0
+  }
 
   useEffect(() => {
-    const viewport = carouselViewportRef.current
-    if (!viewport) return
-    const onTouchMove = (e) => {
-      carouselTouchMoveRef.current(e)
-    }
-    viewport.addEventListener('touchmove', onTouchMove, { passive: false })
-    return () => viewport.removeEventListener('touchmove', onTouchMove)
-  }, [])
-
-  const handleCarouselTouchEnd = () => {
-    const setWidth = setWidthRef.current
-    if (setWidth > 0) {
-      let o = scrollOffsetRef.current
-      o = ((o % setWidth) + setWidth) % setWidth
-      scrollOffsetRef.current = o
-      if (carouselTrackRef.current) {
-        carouselTrackRef.current.style.transform = `translate3d(${-scrollOffsetRef.current}px, 0, 0)`
-      }
-    }
-    pauseTimeoutRef.current = setTimeout(() => {
-      setIsCarouselPaused(false)
-    }, CAROUSEL_RESUME_DELAY_MS)
-  }
-
-  const handleCarouselMouseDown = (e) => {
-    if (e.button !== 0) return
-    setIsCarouselPaused(true)
-    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current)
-    touchStartXRef.current = e.clientX
-    touchStartOffsetRef.current = scrollOffsetRef.current
-    const onMouseMove = (e2) => {
-      const setWidth = setWidthRef.current
-      const track = carouselTrackRef.current
-      if (!track || setWidth <= 0) return
-      const delta = touchStartXRef.current - e2.clientX
-      let next = touchStartOffsetRef.current + delta
-      touchStartOffsetRef.current = next
-      touchStartXRef.current = e2.clientX
-      while (next >= setWidth) next -= setWidth
-      while (next < 0) next += setWidth
-      scrollOffsetRef.current = next
-      track.style.transform = `translate3d(${-scrollOffsetRef.current}px, 0, 0)`
-    }
-    const onMouseUp = () => {
-      const setWidth = setWidthRef.current
-      if (setWidth > 0) {
-        let o = scrollOffsetRef.current
-        o = ((o % setWidth) + setWidth) % setWidth
-        scrollOffsetRef.current = o
-        if (carouselTrackRef.current) {
-          carouselTrackRef.current.style.transform = `translate3d(${-scrollOffsetRef.current}px, 0, 0)`
-        }
-      }
-      document.removeEventListener('mousemove', onMouseMove)
-      document.removeEventListener('mouseup', onMouseUp)
-      pauseTimeoutRef.current = setTimeout(() => setIsCarouselPaused(false), CAROUSEL_RESUME_DELAY_MS)
-    }
+    const onMouseMove = (e) => handleMouseMove(e)
+    const onMouseUp = () => handleMouseUp()
     document.addEventListener('mousemove', onMouseMove)
     document.addEventListener('mouseup', onMouseUp)
-  }
+    return () => {
+      document.removeEventListener('mousemove', onMouseMove)
+      document.removeEventListener('mouseup', onMouseUp)
+    }
+  }, [isDragging, activeIndex])
 
+  // ScrollTrigger entrance
   useEffect(() => {
     if (!venueSectionRef.current) return
-
     if (venueTitleRef.current) gsap.set(venueTitleRef.current, { opacity: 0, y: 24 })
-    const cards = venueCardsContainerRef.current?.querySelectorAll('.venue-image-card') || []
-    cards.forEach((card) => {
-      gsap.set(card, { opacity: 0, y: 28 })
-    })
-    const detailBlocks = venueDetailsRef.current?.querySelectorAll('.venue-details > div') || []
-    detailBlocks.forEach((block) => {
-      gsap.set(block, { opacity: 0, y: 28 })
-    })
+    if (carouselViewportRef.current) gsap.set(carouselViewportRef.current, { opacity: 0, y: 28 })
 
     ScrollTrigger.create({
       trigger: venueSectionRef.current,
@@ -201,128 +152,157 @@ const Venue = () => {
         if (venueTitleRef.current) {
           gsap.to(venueTitleRef.current, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
         }
-        cards.forEach((card, i) => {
-          gsap.to(card, {
-            opacity: 1,
-            y: 0,
-            duration: 0.55,
-            ease: 'power2.out',
-            delay: 0.5 + i * 0.25,
-          })
-        })
-        const cardsEndDelay = 0.5 + cards.length * 0.25
-        detailBlocks.forEach((block, j) => {
-          gsap.to(block, {
-            opacity: 1,
-            y: 0,
-            duration: 0.55,
-            ease: 'power2.out',
-            delay: cardsEndDelay + 0.15 + j * 0.2,
-          })
-        })
+        if (carouselViewportRef.current) {
+          gsap.to(carouselViewportRef.current, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', delay: 0.2 })
+        }
       },
       toggleActions: 'play none none reverse',
     })
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars?.trigger === venueSectionRef.current) trigger.kill()
+      ScrollTrigger.getAll().forEach((t) => {
+        if (t.vars?.trigger === venueSectionRef.current) t.kill()
       })
     }
   }, [])
-
-  const venueCardContent = (src, index, prefix = '') => (
-    <div
-      key={`${prefix}-${src}`}
-      className="venue-image-card flex-shrink-0 w-[85vw] min-w-[260px] max-w-[280px]"
-    >
-      <img
-        src={src}
-        alt={`${reception.name} view ${index + 1}`}
-        className="w-full h-48 object-cover rounded-lg border-2 border-burgundy-wine/20 select-none"
-        draggable={false}
-      />
-    </div>
-  )
 
   return (
     <div ref={venueSectionRef} className="relative">
       <div ref={venueTitleRef}>
         <h3 className="relative inline-block px-6 venue-title text-center w-full">
-          <span className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl inline-block leading-none capitalize venue-title-text">
+          <span className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl inline-block leading-none capitalize" style={{ color: '#7BA3C4' }}>
             WHERE TO GO
           </span>
         </h3>
       </div>
 
-      <div className="relative overflow-visible flex flex-col items-center w-full max-w-4xl mx-auto">
-        {/* Mobile: infinite auto-scroll carousel (same moving behavior as gift) */}
+      <div className="relative w-full max-w-md mx-auto mt-6 px-2">
+        {/* One card visible - swipeable viewport */}
         <div
           ref={carouselViewportRef}
-          className="venue-carousel-viewport md:hidden overflow-hidden touch-pan-y w-full"
-          onTouchStart={handleCarouselTouchStart}
-          onTouchEnd={handleCarouselTouchEnd}
-          onMouseDown={handleCarouselMouseDown}
+          className="relative overflow-hidden w-full touch-pan-y select-none"
+          style={{ touchAction: 'pan-y' }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
         >
           <div
             ref={carouselTrackRef}
-            className="venue-carousel-track flex gap-4 flex-nowrap will-change-transform"
+            className="flex transition-transform duration-300 ease-out will-change-transform"
+            style={{
+              width: `${eventSlides.length * 100}%`,
+              transform: `translate3d(${-activeIndex * (100 / eventSlides.length)}%, 0, 0)`,
+            }}
           >
-            <div ref={carouselFirstSetRef} className="flex gap-4 flex-shrink-0">
-              {VENUE_IMAGES.map((src, index) => venueCardContent(src, index, 'a'))}
-            </div>
-            <div className="flex gap-4 flex-shrink-0">
-              {VENUE_IMAGES.map((src, index) => venueCardContent(src, index, 'b'))}
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop: static row with stagger animation */}
-        <div
-          ref={venueCardsContainerRef}
-          className="hidden md:block w-full overflow-x-auto overflow-y-hidden venue-cards-container -mx-4 sm:mx-0 px-4 sm:px-0"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-            WebkitOverflowScrolling: 'touch',
-            scrollSnapType: 'x mandatory',
-          }}
-        >
-          <div className="flex gap-4 md:gap-6 min-w-min justify-center py-2">
-            {VENUE_IMAGES.map((src, index) => (
+            {eventSlides.map((slide) => (
               <div
-                key={src}
-                className="venue-image-card flex-shrink-0 snap-center snap-always sm:w-[280px] md:w-[300px]"
+                key={slide.title}
+                className="flex-shrink-0 w-full max-w-full px-1"
+                style={{ width: `${100 / eventSlides.length}%`, minWidth: `${100 / eventSlides.length}%` }}
               >
-                <img
-                  src={src}
-                  alt={`${reception.name} view ${index + 1}`}
-                  className="w-full h-48 sm:h-56 md:h-64 object-cover rounded-lg border-2 border-burgundy-wine/20"
-                />
+                <div
+                  className="flex flex-col rounded-lg overflow-hidden shadow-sm"
+                  style={{ backgroundColor: slide.backgroundColor }}
+                >
+                  {/* Image */}
+                  <div
+                    className="relative w-full aspect-[3/4] max-h-72 sm:max-h-80"
+                    style={{ backgroundColor: slide.backgroundColor }}
+                  >
+                    <img
+                      src={slide.image}
+                      alt={slide.location}
+                      className="w-full h-full object-cover select-none pointer-events-none"
+                      draggable={false}
+                    />
+                  </div>
+                  {/* Card body - slide background and accent */}
+                  <div className="p-4 sm:p-5 text-center" style={{ backgroundColor: hexToRgba(slide.backgroundColor, 0.88) }}>
+                    <h4
+                      className="font-foglihten text-xl sm:text-2xl uppercase tracking-wide"
+                      style={{ color: slide.accentColor }}
+                    >
+                      {slide.title}
+                    </h4>
+                    <div className="mt-2 text-base sm:text-lg font-boska" style={{ color: slide.accentColor }}>
+                      {slide.location}
+                    </div>
+                    {slide.time && (
+                      <p className="text-sm font-albert font-thin mt-1" style={{ color: slide.accentColor }}>
+                        {slide.time}
+                      </p>
+                    )}
+                    <div className="mt-4 flex justify-center">
+                      <a
+                        href={slide.googleMapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm sm:text-base font-medium transition-all duration-300 hover:opacity-80 underline"
+                        style={{ color: slide.accentColor }}
+                      >
+                        Get Direction
+                        <ArrowRight className="w-4 h-4" style={{ color: slide.accentColor }} />
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div ref={venueDetailsRef} className="venue-details w-full flex flex-col gap-4 px-2 mt-6 text-center max-w-md mx-auto">
-          <div className="text-lg sm:text-xl font-boska text-burgundy-dark">
-            {reception.name}
-          </div>
-          <div className="text-sm sm:text-base font-albert font-thin text-burgundy-dark space-y-1">
-            <p>Ceremony: {ceremony.time}</p>
-            <p>Reception: {reception.time}</p>
-          </div>
-          <div className="flex justify-center">
-            <SecondaryButton
-              href={reception.googleMapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              icon={ArrowRight}
+        {/* Arrow buttons - desktop (use active slide accent) */}
+        {eventSlides.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={goPrev}
+              disabled={activeIndex === 0}
+              className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-10 w-10 h-10 rounded-full shadow-md items-center justify-center disabled:opacity-40 disabled:pointer-events-none transition-colors"
+              style={{
+                color: eventSlides[activeIndex].accentColor,
+                backgroundColor: 'rgba(255,255,255,0.95)',
+              }}
+              aria-label="Previous venue"
             >
-              Get Direction
-            </SecondaryButton>
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              type="button"
+              onClick={goNext}
+              disabled={activeIndex === eventSlides.length - 1}
+              className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-10 w-10 h-10 rounded-full shadow-md items-center justify-center disabled:opacity-40 disabled:pointer-events-none transition-colors"
+              style={{
+                color: eventSlides[activeIndex].accentColor,
+                backgroundColor: 'rgba(255,255,255,0.95)',
+              }}
+              aria-label="Next venue"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </>
+        )}
+
+        {/* Pagination dots - match slide accent colors */}
+        {eventSlides.length > 1 && (
+          <div className="flex justify-center gap-2 mt-4">
+            {eventSlides.map((slide, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => goToSlide(i)}
+                className="w-2.5 h-2.5 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1"
+                style={{
+                  backgroundColor: i === activeIndex ? slide.accentColor : slide.backgroundColor,
+                  transform: i === activeIndex ? 'scale(1.2)' : 'scale(1)',
+                }}
+                aria-label={`Go to slide ${i + 1}`}
+                aria-current={i === activeIndex ? 'true' : undefined}
+              />
+            ))}
           </div>
-        </div>
+        )}
       </div>
     </div>
   )

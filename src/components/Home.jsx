@@ -15,14 +15,14 @@ import './pages/Details.css'
 
 const Home = ({ onOpenRSVP }) => {
   return (
-    <div className="relative w-full bg-white">
+    <div className="relative w-full bg-transparent">
       {/* Hero Section */}
       <Hero />
 
-      {/* Flower Banner - Top */}
+      {/* Flower Banner - Top (Where to go) */}
       <div className="relative" style={{ width: '100vw' }}>
         <img 
-          src="/assets/images/graphics/flower-banner-2.png" 
+          src="/assets/images/graphics/for%20flower-banner.png" 
           alt="Flower banner"
           className="w-full h-auto object-contain"
         />
@@ -36,10 +36,10 @@ const Home = ({ onOpenRSVP }) => {
         </div>
       </div>
 
-      {/* Flower Banner - Bottom */}
+      {/* Flower Banner - Bottom (Where to go) */}
       <div className="relative" style={{ width: '100vw' }}>
         <img 
-          src="/assets/images/graphics/flower-banner-2.png" 
+          src="/assets/images/graphics/for%20flower-banner.png" 
           alt="Flower banner"
           className="w-full h-auto object-contain"
           style={{ transform: 'scaleY(-1)' }}
@@ -54,7 +54,7 @@ const Home = ({ onOpenRSVP }) => {
         </div>
       </div>
 
-      {/* Entourage Section - between Order of Events and Dress Code */}
+      {/* Entourage Section - image grid (same design as EntourageModal) */}
       <EntourageSection />
 
       {/* Content */}

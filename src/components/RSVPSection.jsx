@@ -106,7 +106,7 @@ const RSVPSection = ({ onOpenRSVP }) => {
         </div>
         <div ref={rsvpContentRef}>
           <p className="text-sm sm:text-base font-albert font-thin text-burgundy-dark max-w-3xl mx-auto leading-relaxed text-center mb-6">
-                Kindly respond on or before<br /><strong className="!font-bold" style={{ fontWeight: 700 }}>{couple.rsvpDeadline ? `${couple.rsvpDeadline.month} ${couple.rsvpDeadline.day}, ${couple.rsvpDeadline.year}` : 'April 30, 2026'}</strong>.<br />
+                Kindly respond on or before<br /><strong className="!font-bold" style={{ fontWeight: 700 }}>{couple.rsvpDeadline ? `${couple.rsvpDeadline.month} ${couple.rsvpDeadline.day}, ${couple.rsvpDeadline.year}` : 'May 4, 2026'}</strong>.<br />
                 After this date, arrangements are final.
           </p>
           {onOpenRSVP && (

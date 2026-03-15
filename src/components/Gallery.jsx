@@ -130,6 +130,9 @@ const Gallery = () => {
                 e.target.parentElement.classList.add('gallery-item--error')
               }}
             />
+            <span className="absolute inset-0 flex items-center justify-center text-white font-medium text-sm sm:text-base pointer-events-none z-10 drop-shadow-md">
+              Image Here
+            </span>
           </button>
         ))}
       </div>

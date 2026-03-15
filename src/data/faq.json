@@ -1,32 +1,16 @@
 {
   "faqData": [
     {
-      "question": "Do you have a gift preference?",
-      "answer": "As love is what this day is all about, your presence is one we could not celebrate without, but if you desire to give nonetheless, a monetary gift is one we suggest as we will begin our new life together."
+      "question": "Can I bring a plus one?",
+      "answer": "We regret that we are unable to accommodate plus ones due to limited seating. Each seat has been reserved for those on our guest list. We hope you understand."
     },
     {
-      "question": "Can I bring someone else to your wedding?",
-      "answer": "Unfortunately, no. We hope you understand that we can no longer accommodate those who are not in our guest list due to limited seats. Each seat has a name assigned."
+      "question": "Can I bring kids?",
+      "answer": "We kindly ask that this be an adults-only celebration. We are unable to accommodate children at the venue, with the exception of those in our entourage. We hope you understand and look forward to celebrating with you."
     },
     {
-      "question": "Can we bring our kids to the wedding?",
-      "answer": "We certainly love your kids, but due to necessity rather than choice, we regretfully cannot accommodate them at the venue. The only kids attending are those who are part of the entourage. We hope you understand and enjoy the night off."
-    },
-    {
-      "question": "Can we take photos or videos during the ceremony?",
-      "answer": "Please keep our ceremony CAMERA-FREE. We hired an amazing team to capture the moments. Though our \"I dos\" are unplugged, our reception is not. Once we finish our first kiss you are free to take shots! Most importantly, do not block the view of our hired professional photo and video team."
-    },
-    {
-      "question": "What should we do once the ceremony is done?",
-      "answer": "There will be cocktail hour after the ceremony, snacks will be available. You may also choose this time to mingle, find your seat, and use the photobooth. Our coordinators will be available if you need any assistance."
-    },
-    {
-      "question": "Can we seat anywhere during the reception?",
-      "answer": "NO. We planned a seating arrangement for our guests' convenience and group familiarity. Our coordinator will gladly assist you on your designated seats."
-    },
-    {
-      "question": "When should I RSVP by?",
-      "answer": "Please send your RSVP as soon as you can. The latest we can accept your response is on April 13, 2026. If we will not receive a response by this date, it will be marked as a \"NO\". We will miss you celebrating with us; however, we must promptly provide the total guest count to the venue, and we cannot accept late RSVPs past this point. We hope you understand."
+      "question": "Is there a dress code?",
+      "answer": "We encourage guests to dress in semi-formal or smart casual attire. Most importantly, wear something comfortable enough to celebrate with us all day!"
     }
   ]
 }

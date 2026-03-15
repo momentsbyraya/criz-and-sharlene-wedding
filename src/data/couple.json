@@ -1,29 +1,28 @@
 {
   "bride": {
-    "firstName": "Charmaine",
-    "lastName": "Madrona",
-    "fullName": "CHARMAINE Y. MADRONA"
+    "firstName": "Nicole",
+    "lastName": "Delicana",
+    "fullName": "JAN NICOLE DELOS SANTOS DELICANA"
   },
   "groom": {
-    "firstName": "Jolly Dane",
-    "lastName": "Dagwat",
-    "fullName": "JOLLY DANE S. DAGWAT"
+    "firstName": "Glenn",
+    "lastName": "Caracas",
+    "fullName": "GLENN JOHN MAGNO CARACAS"
   },
-  "together": "Jolly Dane & Charmaine",
-  "nickname": "Jolly Dane and Charmaine",
+  "together": "Glenn & Nicole",
+  "nickname": "Glenn and Nicole",
   "wedding": {
-    "date": "2026-04-18",
-    "time": "3:00 PM",
+    "date": "2026-05-09",
+    "time": "2:00 PM",
     "dayOfWeek": "Saturday",
-    "month": "April",
-    "day": "18",
+    "month": "May",
+    "day": "9",
     "year": "2026"
   },
   "rsvpDeadline": {
-    "date": "2026-04-13",
-    "month": "April",
-    "day": "13",
+    "date": "2026-05-04",
+    "month": "May",
+    "day": "4",
     "year": "2026"
   }
 }
-

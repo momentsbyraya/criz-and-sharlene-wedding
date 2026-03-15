@@ -1,25 +1,33 @@
 {
   "ceremony": {
-    "name": "San Antonio De Padua Church",
+    "name": "National Shrine of the Sacred Heart",
     "address": "",
     "city": "",
     "state": "",
     "zip": "",
-    "time": "4:30 PM",
-    "details": "Schedule: 4:30 PM",
+    "time": "2:00 PM",
+    "details": "Schedule: 2:00 PM",
     "googleMapsUrl": "https://maps.app.goo.gl/xMs2Y3mtFDyQ29DH7",
-    "directionsUrl": "https://maps.app.goo.gl/xMs2Y3mtFDyQ29DH7"
+    "directionsUrl": "https://maps.app.goo.gl/xMs2Y3mtFDyQ29DH7",
+    "images": [
+      "/assets/images/venues/Ceremony.png",
+      "/assets/images/venues/ceremony-2.jpg"
+    ]
   },
   "reception": {
-    "name": "SHING SPA RESORT PALAWAN",
+    "name": "Le Parc Pasay City",
     "address": "",
     "city": "",
     "state": "",
     "zip": "",
-    "time": "5:30 PM",
-    "details": "Schedule: 5:30 PM onwards",
-    "landmark": "Same venue as ceremony",
+    "time": "4:00 PM",
+    "details": "Schedule: 4:00 PM onwards",
+    "landmark": "",
     "googleMapsUrl": "https://maps.app.goo.gl/7cLcmUgkY6HurJbu8",
-    "directionsUrl": "https://maps.app.goo.gl/7cLcmUgkY6HurJbu8"
+    "directionsUrl": "https://maps.app.goo.gl/7cLcmUgkY6HurJbu8",
+    "images": [
+      "/assets/images/venues/Venue.png",
+      "/assets/images/venues/reception-2.jpg"
+    ]
   }
 }

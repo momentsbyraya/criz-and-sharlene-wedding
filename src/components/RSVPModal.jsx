@@ -95,29 +95,9 @@ const RSVPModal = ({ isOpen, onClose }) => {
           </button>
         </div>
         
-        {/* Content - embedded Google Form */}
-        <div className="p-4 sm:p-6 overflow-y-auto flex-1 rsvp-modal-content">
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSeiZwoMp7qvAw6k8MInty86a_wmVX845ZHl2eXSiQ8af0v6-g/viewform?embedded=true"
-            title="RSVP for the Wedding of Jolly Dane & Charmaine"
-            className="w-full min-h-[500px] sm:min-h-[600px] border-0 rounded-lg"
-            frameBorder="0"
-            marginHeight="0"
-            marginWidth="0"
-          >
-            Loading…
-          </iframe>
-          <p className="text-center text-sm text-gray-500 mt-2">
-            Or{' '}
-            <a
-              href="https://forms.gle/sXecbBWVXYf6fBHo7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-burgundy-dark underline hover:no-underline"
-            >
-              open the form in a new tab
-            </a>
-          </p>
+        {/* Content - To be added */}
+        <div className="p-4 sm:p-6 overflow-y-auto flex-1 rsvp-modal-content flex items-center justify-center min-h-[200px]">
+          <p className="text-center text-gray-600 font-albert text-lg">To be added</p>
         </div>
       </div>
     </div>,

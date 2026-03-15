@@ -26,13 +26,13 @@ function AppContent() {
     const preloadImages = async () => {
       const criticalImages = [
         // Hero image - most important
-        '/assets/images/prenup/DE_00574.jpg',  // Hero image
-        // NavIndex images - prenup photos used on home page
-        '/assets/images/prenup/DE_00873.jpg',  // Polaroid image
-        '/assets/images/prenup/DE_00846.jpg',  // RSVP container
-        '/assets/images/prenup/DE_00876.jpg',  // Moments polaroid 1
-        '/assets/images/prenup/DE_00817.jpg',  // Moments polaroid 2
-        '/assets/images/prenup/DSC06257.jpg',  // Save The Date countdown background
+        '/assets/images/hero-couple.jpg',  // Hero image
+        // Sample images used on home page
+        '/assets/images/couple-1.jpg',  // Polaroid image
+        '/assets/images/couple-2.jpg',  // RSVP container
+        '/assets/images/couple-3.jpg',  // Moments polaroid 1
+        '/assets/images/couple-4.jpg',  // Moments polaroid 2
+        '/assets/images/couple-5.jpg',  // Save The Date countdown background
         // NavIndex graphics - all decorative elements
         '/assets/images/graphics/dusty-blue.png',
         '/assets/images/graphics/flower-1.png',
@@ -115,7 +115,7 @@ function AppContent() {
             // Check if we're on the home page
             if (window.location.pathname === '/' || window.location.pathname === '') {
               // Look for hero image
-              const heroImg = document.querySelector('img[src="/assets/images/prenup/DE_00574.jpg"]')
+              const heroImg = document.querySelector('img[src="/assets/images/hero-couple.jpg"]')
               if (heroImg) {
                 // Check if image is loaded and visible
                 if (heroImg.complete && heroImg.naturalHeight > 0) {
@@ -181,7 +181,7 @@ function AppContent() {
   }
 
   return (
-    <div className="App min-h-screen wedding-gradient">
+    <div className="App min-h-screen pastel-watercolor-bg">
       <DynamicTitle />
       <ScrollToTop />
       {/* Loader - shows while preloading */}

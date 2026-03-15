@@ -86,7 +86,7 @@ function OpeningScreen({ onEnvelopeOpen }) {
       <section className="cssletter flex flex-col items-center relative z-10 w-full py-8" style={{ minHeight: 'auto', height: 'auto' }}>
         {/* Click me text */}
         <div ref={clickMeRef} className="mb-12 sm:mb-16 md:mb-20 lg:mb-24 text-center click-me-container">
-          <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold" style={{ fontFamily: 'var(--letter-font)', color: '#5A1E2A' }}>
+          <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold" style={{ fontFamily: 'var(--letter-font)', color: '#7BA3C4' }}>
             Click me!
           </p>
         </div>
@@ -132,7 +132,7 @@ function OpeningScreen({ onEnvelopeOpen }) {
           <h2 
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-script leading-tight"
             style={{ 
-              color: '#5A1E2A', 
+              color: '#7BA3C4', 
               fontSize: 'clamp(1.5rem, 4vw, 48px)',
               textShadow: 'none'
             }}
@@ -142,7 +142,7 @@ function OpeningScreen({ onEnvelopeOpen }) {
           <p 
             className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-script mt-1"
             style={{ 
-              color: '#5A1E2A', 
+              color: '#7BA3C4', 
               fontSize: 'clamp(1rem, 2.5vw, 30px)',
               textShadow: 'none'
             }}

@@ -47,44 +47,32 @@ const Moments = () => {
   const [startXThreePhotos, setStartXThreePhotos] = useState(0)
   const [scrollLeftThreePhotos, setScrollLeftThreePhotos] = useState(0)
 
-  // All prenup images
-  const allPrenupImages = [
-    '/assets/images/prenup/DE_00873.jpg',
-    '/assets/images/prenup/DE_00846.jpg',
-    '/assets/images/prenup/DE_00876.jpg',
-    '/assets/images/prenup/DE_00817.jpg',
-    '/assets/images/prenup/DSC06257.jpg',
-    '/assets/images/prenup/DE_00903.jpg',
-    '/assets/images/prenup/DSC06410.jpg',
-    '/assets/images/prenup/DE_00635.jpg',
-    '/assets/images/prenup/DE_00501-2.jpg',
-    '/assets/images/prenup/DE_00781.jpg',
-    '/assets/images/prenup/DE_00624.jpg',
-    '/assets/images/prenup/DE_00506-2.jpg',
-    '/assets/images/prenup/DE_00541.jpg',
-    '/assets/images/prenup/DE_00752.jpg',
-    '/assets/images/prenup/DE_00519.jpg',
-    '/assets/images/prenup/DE_00504.jpg',
-    '/assets/images/prenup/DE_00468.jpg',
-    '/assets/images/prenup/DE_00574.jpg',
-    '/assets/images/prenup/DE_00647.jpg',
-    '/assets/images/prenup/DE_00894.jpg'
+  // Sample images (replacing prenup)
+  const sampleImages = [
+    '/assets/images/couple-1.jpg',
+    '/assets/images/couple-2.jpg',
+    '/assets/images/couple-3.jpg',
+    '/assets/images/couple-4.jpg',
+    '/assets/images/couple-5.jpg',
+    '/assets/images/couple-6.jpg',
+    '/assets/images/couple-7.jpg',
+    '/assets/images/couple-8.jpg'
   ]
 
   // Images array for the lightbox (same order)
-  const lightboxImages = [...allPrenupImages]
+  const lightboxImages = [...sampleImages]
 
   // Gallery images for horizontal scroll
-  const galleryImages = [...allPrenupImages]
+  const galleryImages = [...sampleImages]
 
   // Polaroid images for the scrollable container
   const polaroidImages = [
-    { src: '/assets/images/prenup/DE_00468.jpg', rotation: -5, index: 3 },
-    { src: '/assets/images/prenup/DE_00504.jpg', rotation: 5, index: 4 },
-    { src: '/assets/images/prenup/DE_00519.jpg', rotation: -3, index: 5 },
-    { src: '/assets/images/prenup/DE_00541.jpg', rotation: 3, index: 6 },
-    { src: '/assets/images/prenup/DE_00752.jpg', rotation: -4, index: 7 },
-    { src: '/assets/images/prenup/DE_00574.jpg', rotation: 2, index: 8 }
+    { src: '/assets/images/couple-1.jpg', rotation: -5, index: 0 },
+    { src: '/assets/images/couple-2.jpg', rotation: 5, index: 1 },
+    { src: '/assets/images/couple-3.jpg', rotation: -3, index: 2 },
+    { src: '/assets/images/couple-4.jpg', rotation: 3, index: 3 },
+    { src: '/assets/images/couple-5.jpg', rotation: -4, index: 4 },
+    { src: '/assets/images/couple-6.jpg', rotation: 2, index: 5 }
   ]
 
   useEffect(() => {
@@ -457,7 +445,7 @@ const Moments = () => {
         <div className="relative z-20 w-full flex flex-col items-center">
           <div className="relative w-screen group cursor-pointer" onClick={handleVideoOpen}>
             <img 
-              src="/assets/images/prenup/DE_00873.jpg" 
+              src="/assets/images/couple-1.jpg" 
               alt="Index image" 
               className="w-full h-auto object-cover"
               loading="eager"
@@ -479,7 +467,7 @@ const Moments = () => {
               className="stylish-calligraphy text-5xl sm:text-6xl md:text-7xl lg:text-8xl inline-block ml-2" 
               style={{ 
                 lineHeight: '1.2',
-                color: '#5A1E2A',
+                color: '#7BA3C4',
                 display: 'inline-block',
                 paddingTop: '0.5rem',
                 paddingBottom: '0.5rem'
@@ -504,14 +492,14 @@ const Moments = () => {
            {/* FERL1949 Photo */}
            <div ref={ferl1949Ref} className="relative z-20 w-full max-w-2xl px-8 sm:px-12 md:px-8 lg:px-16 mt-8 flex justify-center">
              <img
-               src="/assets/images/prenup/DE_00635.jpg"
+               src="/assets/images/couple-2.jpg"
                alt="Love story photo"
                className="w-full h-auto object-cover cursor-pointer"
                loading="lazy"
                decoding="async"
                onClick={() => {
-                 const imageIndex = galleryImages.indexOf('/assets/images/prenup/DE_00635.jpg')
-                 setSelectedImage('/assets/images/prenup/DE_00635.jpg')
+                 const imageIndex = galleryImages.indexOf('/assets/images/couple-2.jpg')
+                 setSelectedImage('/assets/images/couple-2.jpg')
                  setSelectedImageIndex(imageIndex !== -1 ? imageIndex : 0)
                }}
              />
@@ -529,14 +517,14 @@ const Moments = () => {
             {/* FERL2103 Photo */}
             <div ref={photo2013Ref} className="relative z-20 w-full max-w-2xl px-8 sm:px-12 md:px-8 lg:px-16 mt-8 flex justify-center mx-auto">
               <img
-                src="/assets/images/prenup/DE_00647.jpg"
+                src="/assets/images/couple-3.jpg"
                 alt="2013 Photo"
                 className="w-full h-auto object-cover cursor-pointer"
                 loading="lazy"
                 decoding="async"
                 onClick={() => {
-                  const imageIndex = galleryImages.indexOf('/assets/images/prenup/DE_00647.jpg')
-                  setSelectedImage('/assets/images/prenup/DE_00647.jpg')
+                  const imageIndex = galleryImages.indexOf('/assets/images/couple-3.jpg')
+                  setSelectedImage('/assets/images/couple-3.jpg')
                   setSelectedImageIndex(imageIndex !== -1 ? imageIndex : 0)
                 }}
               />
@@ -566,7 +554,7 @@ const Moments = () => {
                      backgroundSize: 'cover',
                  backgroundPosition: 'center',
                  backgroundRepeat: 'no-repeat',
-                 color: '#F3E8E2',
+                 color: '#FFFBFB',
                  paddingTop: '4rem',
                  paddingBottom: '4rem',
                  overflow: 'visible',
@@ -690,14 +678,14 @@ const Moments = () => {
            <div ref={endPhoto4Ref} className="relative z-20 w-screen mt-8">
              <div className="relative">
                <img
-                 src="/assets/images/prenup/DE_00541.jpg"
+                 src="/assets/images/couple-4.jpg"
                  alt="Love story photo"
                  className="w-full h-auto object-cover cursor-pointer"
                  loading="lazy"
                  decoding="async"
                  onClick={() => {
-                   const imageIndex = galleryImages.indexOf('/assets/images/prenup/DE_00541.jpg')
-                   setSelectedImage('/assets/images/prenup/DE_00541.jpg')
+                   const imageIndex = galleryImages.indexOf('/assets/images/couple-4.jpg')
+                   setSelectedImage('/assets/images/couple-4.jpg')
                    setSelectedImageIndex(imageIndex !== -1 ? imageIndex : 0)
                  }}
                />

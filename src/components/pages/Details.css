@@ -14,7 +14,7 @@
 
 .venue-title-text {
   line-height: 0.8;
-  color: #5A1E2A;
+  color: #7BA3C4;
 }
 
 /* Venue Image Container */
@@ -48,7 +48,7 @@
 
 .program-title-text {
   line-height: 0.8;
-  color: #F3E8E2;
+  color: #FFFBFB;
   display: block;
   text-align: center;
 }
@@ -60,7 +60,7 @@
 /* Date Selector */
 .date-month-year {
   font-style: italic;
-  color: #C08A8F;
+  color: #F4C6CF;
 }
 
 .heart-day-number {
@@ -73,22 +73,22 @@
 }
 
 .timeline-event-time {
-  color: #F3E8E2;
+  color: #FFFBFB;
 }
 
 .timeline-event-description {
-  color: #F3E8E2;
+  color: #FFFBFB;
 }
 
 /* Dress Code */
 .dress-code-title-text {
   line-height: 0.8;
-  color: #5A1E2A;
+  color: #7BA3C4;
   white-space: nowrap;
 }
 
 .dress-code-description {
-  color: #5A1E2A;
+  color: #7BA3C4;
 }
 
 .dress-code-image-container {
@@ -113,7 +113,7 @@
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  border: 1px solid rgba(90, 30, 42, 0.2);
+  border: 1px solid rgba(123, 163, 196, 0.25);
   flex-shrink: 0;
 }
 
@@ -201,7 +201,7 @@
 
 .gift-registry-title-text {
   line-height: 0.8;
-  color: #5A1E2A;
+  color: #7BA3C4;
 }
 
 .gift-button {
@@ -220,7 +220,7 @@
 
 .upload-title-text {
   line-height: 0.8;
-  color: #5A1E2A;
+  color: #7BA3C4;
 }
 
 .upload-qr-container {
@@ -239,18 +239,27 @@
   }
 }
 
-/* FAQ Section */
+/* FAQ Section - light pink background */
 .faq-section {
   padding: 4rem 0;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
-  background-color: #5A1E2A;
+  background-color: #F4C6CF;
 }
 
 .faq-title-text {
   line-height: 0.8;
-  color: #F3E8E2;
+  color: #FFFFFF;
+}
+
+.faq-section .text-burgundy-cream,
+.faq-section .font-albert {
+  color: #FFFFFF !important;
+}
+
+.faq-section .h-px {
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Modal */

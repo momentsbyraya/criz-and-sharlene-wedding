@@ -40,7 +40,7 @@
 .oval-container {
   width: 42vw;
   height: 55vw;
-  background-color: #F3E8E2;
+  background-color: #FFFBFB;
   background-image: url(/assets/images/graphics/textured-bg-2.png);
   background-size: cover;
   background-position: center;
@@ -51,7 +51,7 @@
 
 
 .oval-border {
-  border: 1px solid var(--accent-hover, #C08A8F);
+  border: 1px solid var(--accent-hover, #F4C6CF);
 }
 
 /* Oval Text Styles */
@@ -60,7 +60,7 @@
 }
 
 .oval-text-entourage {
-  color: var(--accent-text, #5A1E2A);
+  color: var(--accent-text, #7BA3C4);
   font-size: clamp(4vw, 9vw, 9vw);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.15em;
@@ -155,7 +155,7 @@
 .rsvp-container {
   width: 50vw;
   height: 50vw;
-  background-color: #F3E8E2;
+  background-color: #FFFBFB;
   background-image: url(/assets/images/graphics/texture-bg2.png);
   background-size: cover;
   background-position: center;
@@ -207,11 +207,11 @@
 .rsvp-text-kindly {
   font-size: clamp(1.5vw, 2.2vw, 2.2vw);
   margin-bottom: 0;
-  color: #F3E8E2;
+  color: #FFFBFB;
 }
 
 .rsvp-text-container {
-  color: #F3E8E2;
+  color: #FFFBFB;
   margin-top: 0;
   line-height: 0.8;
 }
@@ -228,9 +228,9 @@
 .details-container {
   width: 50vw;
   height: 35vw;
-  background-color: #F3E8E2;
-  border-top: 6px solid var(--accent-bg, #5A1E2A);
-  border-bottom: 6px solid var(--accent-bg, #5A1E2A);
+  background-color: #FFFBFB;
+  border-top: 6px solid var(--accent-bg, #7BA3C4);
+  border-bottom: 6px solid var(--accent-bg, #7BA3C4);
   opacity: 0;
   transform: translateY(0px);
   margin-top: 35vw;
@@ -273,7 +273,7 @@
 }
 
 .details-text-details {
-  color: var(--accent-text, #5A1E2A);
+  color: var(--accent-text, #7BA3C4);
   font-size: clamp(4vw, 9.5vw, 9.5vw);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.15em;
@@ -304,7 +304,7 @@
 
 .moments-text {
   font-size: clamp(0.75rem, 1.2vw, 1.25rem);
-  color: var(--primary-text, #5A1E2A);
+  color: var(--primary-text, #7BA3C4);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.15em;
   margin: 0;

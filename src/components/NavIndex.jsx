@@ -259,7 +259,7 @@ const NavIndex = ({ onOpenRSVP }) => {
             <div 
               ref={polaroidRef}
                className="bg-white relative polaroid-container border-8 flex flex-col p-2"
-               style={{ borderColor: '#5A1E2A', transform: 'none' }}
+               style={{ borderColor: '#7BA3C4', transform: 'none' }}
              >
               {/* Date, Month, Year at Top */}
               <div className="flex justify-between items-center w-full mb-2">
@@ -285,7 +285,7 @@ const NavIndex = ({ onOpenRSVP }) => {
               <div className="text-center flex-1 flex flex-col items-center justify-center">
                 {/* Groom's Name */}
                 <div>
-                  <p className="font-tebranos polaroid-text-name uppercase leading-tight" style={{ color: '#5A1E2A' }}>
+                  <p className="font-tebranos polaroid-text-name uppercase leading-tight" style={{ color: '#7BA3C4' }}>
                     {couple.groom.firstName}
                   </p>
                   <p className="font-ballet polaroid-text-name leading-tight -mt-4" style={{ color: themeConfig.text.light }}>
@@ -297,7 +297,7 @@ const NavIndex = ({ onOpenRSVP }) => {
                 </p>
                 {/* Bride's Name */}
                 <div>
-                  <p className="font-tebranos polaroid-text-name uppercase leading-tight" style={{ color: '#5A1E2A' }}>
+                  <p className="font-tebranos polaroid-text-name uppercase leading-tight" style={{ color: '#7BA3C4' }}>
                     {couple.bride.firstName}
                   </p>
                   <p className="font-ballet polaroid-text-name leading-tight -mt-4" style={{ color: themeConfig.text.light }}>

@@ -1,24 +1,24 @@
 {
   "events": [
     {
-      "time": "4:00 PM",
+      "time": "1:30 PM",
       "description": "Guest gathering",
       "image": "/assets/images/graphics/welcome-2.png",
       "imageAlt": "Guest gathering",
       "position": "left"
     },
     {
-      "time": "4:30 PM",
+      "time": "2:00 PM",
       "description": "Wedding Ceremony",
       "image": "/assets/images/graphics/ceremony-2.png",
       "imageAlt": "Wedding Ceremony",
       "position": "right"
     },
     {
-      "time": "5:30 PM",
-      "description": "Reception dinner",
+      "time": "4:00 PM",
+      "description": "Reception",
       "image": "/assets/images/graphics/dinner-2.png",
-      "imageAlt": "Reception dinner",
+      "imageAlt": "Reception",
       "position": "left"
     },
     {

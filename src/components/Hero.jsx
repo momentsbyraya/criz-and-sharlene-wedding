@@ -27,6 +27,18 @@ const Hero = () => {
     return `${monthUpper}.${dayFormatted}.${year}`
   }
 
+  // Split full name into first line (all but last word) and last name for hero display
+  const splitFullName = (fullName) => {
+    if (!fullName || typeof fullName !== 'string') return { first: '', last: '' }
+    const parts = fullName.trim().split(/\s+/)
+    if (parts.length === 1) return { first: parts[0], last: '' }
+    const last = parts.pop()
+    return { first: parts.join(' '), last }
+  }
+
+  const groomName = splitFullName(couple.groom.fullName)
+  const brideName = splitFullName(couple.bride.fullName)
+
   const venueName = venues.reception.name
 
   const togglePlayPause = () => {
@@ -133,16 +145,21 @@ const Hero = () => {
       {/* Audio Element */}
       <audio
         ref={audioRef}
-        src="/assets/music/TJ Monterde - PALAGI (Lyrics).mp3"
+        src="/assets/music/NIKI - You'll be in my heart (Spotify Single)  Music Lyric Video.mp3"
         loop
         onEnded={() => setIsPlaying(false)}
       />
       
-      <img 
-        src="/assets/images/prenup/DE_00574.jpg" 
-        alt="Hero"
-        className="w-full h-full object-cover object-top md:object-[center_18%]"
-      />
+      <div className="absolute inset-0">
+        <img 
+          src="/assets/images/hero-couple.jpg" 
+          alt="Hero"
+          className="w-full h-full object-cover object-top md:object-[center_18%]"
+        />
+        <span className="absolute inset-0 flex items-center justify-center text-white font-medium text-lg sm:text-xl md:text-2xl pointer-events-none z-10 drop-shadow-md">
+          Image Here
+        </span>
+      </div>
       
       {/* Blurred White SVG Overlay at Top */}
       <svg 
@@ -169,25 +186,25 @@ const Hero = () => {
       <div className="absolute top-0 left-0 right-0 pt-8 sm:pt-12 md:pt-16 lg:pt-20 px-4 sm:px-6 md:px-8 z-20">
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex flex-col items-center justify-center">
-            {/* Groom's Name */}
+            {/* Groom's Name - full name */}
             <div>
-              <p ref={groomFirstNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight" style={{ color: '#5A1E2A' }}>
-                {couple.groom.firstName}
+              <p ref={groomFirstNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight" style={{ color: '#7BA3C4' }}>
+                {groomName.first}
               </p>
-              <p ref={groomLastNameRef} className="font-ballet text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight -mt-2 sm:-mt-3" style={{ color: '#A68B6E', textShadow: '0 1px 2px rgba(0,0,0,0.08)' }}>
-                {couple.groom.lastName}
+              <p ref={groomLastNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight -mt-2 sm:-mt-3" style={{ color: '#F4C6CF', textShadow: '0 1px 2px rgba(0,0,0,0.06)' }}>
+                {groomName.last}
               </p>
             </div>
             <p ref={andRef} className="caudex-bold text-sm sm:text-base md:text-lg lg:text-xl uppercase leading-tight my-2 sm:my-3" style={{ color: '#000000' }}>
               AND
             </p>
-            {/* Bride's Name */}
+            {/* Bride's Name - full name */}
             <div>
-              <p ref={brideFirstNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight" style={{ color: '#5A1E2A' }}>
-                {couple.bride.firstName}
+              <p ref={brideFirstNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight" style={{ color: '#7BA3C4' }}>
+                {brideName.first}
               </p>
-              <p ref={brideLastNameRef} className="font-ballet text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight -mt-2 sm:-mt-3" style={{ color: '#A68B6E', textShadow: '0 1px 2px rgba(0,0,0,0.08)' }}>
-                {couple.bride.lastName}
+              <p ref={brideLastNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight -mt-2 sm:-mt-3" style={{ color: '#F4C6CF', textShadow: '0 1px 2px rgba(0,0,0,0.06)' }}>
+                {brideName.last}
               </p>
             </div>
           </div>
@@ -215,24 +232,21 @@ const Hero = () => {
         <rect width="100%" height="100%" fill="url(#bottomGradient)" filter="url(#blurBottom)" />
       </svg>
 
-      {/* YouTube Link Button - Bottom Right */}
-      <a
-        href="https://youtu.be/O1r5alumaBs"
-        target="_blank"
-        rel="noopener noreferrer"
+      {/* Play/Pause Music Button - Bottom Right */}
+      <button
+        type="button"
         ref={playButtonRef}
-        className="youtube-btn-pulse absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 z-30 w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-105 transition-all duration-200 border-2 border-red-600/30"
-        style={{ pointerEvents: 'auto', backgroundColor: '#FF0000' }}
-        aria-label="Listen on YouTube"
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = '#CC0000'
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = '#FF0000'
-        }}
+        onClick={togglePlayPause}
+        className="absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 z-30 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white/90 hover:bg-white transition-colors duration-200 flex items-center justify-center shadow-lg cursor-pointer"
+        style={{ pointerEvents: 'auto' }}
+        aria-label={isPlaying ? 'Pause music' : 'Play music'}
       >
-        <Play size={16} className="sm:w-4 sm:h-4 md:w-5 md:h-5 text-white ml-0.5" fill="white" />
-      </a>
+        {isPlaying ? (
+          <Pause size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#7BA3C4]" fill="#7BA3C4" />
+        ) : (
+          <Play size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#7BA3C4] ml-1" fill="#7BA3C4" />
+        )}
+      </button>
 
       {/* Date and Venue at Bottom Center */}
       <div className="absolute bottom-0 left-0 right-0 pb-8 sm:pb-12 md:pb-16 lg:pb-20 px-4 sm:px-6 md:px-8 z-20">
