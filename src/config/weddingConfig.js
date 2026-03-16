@@ -22,18 +22,18 @@ export const weddingConfig = {
 
   // RSVP Information
   rsvp: {
-    deadline: "2026-05-04",
+    deadline: "2026-04-20",
     email: "",
     phone: "",
     website: "",
-    message: "Please RSVP by May 4th, 2026"
+    message: "Please RSVP by April 20th, 2026"
   },
 
   // Theme and Styling - Burgundy Red Wine
   theme: {
-    primaryColor: "burgundy-dark",
-    secondaryColor: "burgundy-tan",
-    accentColor: "burgundy-wine",
+    primaryColor: "navy",
+    secondaryColor: "gray-wedding-dark",
+    accentColor: "navy-accent",
     fontFamily: "serif",
     style: "elegant" // Options: elegant, modern, rustic, vintage
   },

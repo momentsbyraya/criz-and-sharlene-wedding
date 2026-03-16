@@ -49,14 +49,14 @@ const EntourageSection = () => {
           <div ref={contentRef} className="flex flex-col items-center text-center">
             {/* Decorative flower with horizontal lines - vibrant light blue */}
             <div className="flex items-center justify-center gap-4 w-full max-w-md mb-6">
-              <div className="flex-1 h-px bg-[#1e3a5f]/60" />
+              <div className="flex-1 h-px bg-[#0A1F44]/60" />
               <img
                 src="/assets/images/graphics/single-flower-2.png"
                 alt=""
                 className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
                 style={{ filter: 'hue-rotate(195deg) saturate(1.4) brightness(1.15)' }}
               />
-              <div className="flex-1 h-px bg-[#1e3a5f]/60" />
+              <div className="flex-1 h-px bg-[#0A1F44]/60" />
             </div>
 
             {/* Title - decorative serif */}

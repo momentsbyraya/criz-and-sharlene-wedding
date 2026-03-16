@@ -37,8 +37,8 @@ const Venue = () => {
       location: ceremony.name,
       time: ceremony.time,
       googleMapsUrl: ceremony.googleMapsUrl,
-      backgroundColor: '#E8F2FC',
-      accentColor: '#1e3a5f',
+      backgroundColor: 'var(--color-navy)',
+      accentColor: 'var(--color-silver-gray)',
     },
     {
       title: 'Reception',
@@ -46,8 +46,8 @@ const Venue = () => {
       location: reception.name,
       time: reception.time ?? '',
       googleMapsUrl: reception.googleMapsUrl,
-      backgroundColor: '#FDE8EF',
-      accentColor: '#B76E79',
+      backgroundColor: '#374151',
+      accentColor: '#FFFFFF',
     },
   ]
 
@@ -139,6 +139,15 @@ const Venue = () => {
     }
   }, [isDragging, activeIndex])
 
+  // Auto-advance carousel every 3 seconds
+  useEffect(() => {
+    if (eventSlides.length <= 1) return
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % eventSlides.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [eventSlides.length])
+
   // ScrollTrigger entrance
   useEffect(() => {
     if (!venueSectionRef.current) return
@@ -170,7 +179,7 @@ const Venue = () => {
     <div ref={venueSectionRef} className="relative">
       <div ref={venueTitleRef}>
         <h3 className="relative inline-block px-6 venue-title text-center w-full">
-          <span className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl inline-block leading-none capitalize" style={{ color: '#1e3a5f' }}>
+          <span className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl inline-block leading-none capitalize" style={{ color: 'var(--color-navy, #001F3F)' }}>
             WHERE TO GO
           </span>
         </h3>
@@ -262,10 +271,10 @@ const Venue = () => {
               type="button"
               onClick={goPrev}
               disabled={activeIndex === 0}
-              className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-10 w-10 h-10 rounded-full shadow-md items-center justify-center disabled:opacity-40 disabled:pointer-events-none transition-colors"
+              className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-10 w-10 h-10 rounded-full shadow-md items-center justify-center disabled:opacity-40 disabled:pointer-events-none transition-colors hover:bg-[#2E2E2E]"
               style={{
-                color: eventSlides[activeIndex].accentColor,
-                backgroundColor: 'rgba(255,255,255,0.95)',
+                color: '#FFFFFF',
+                backgroundColor: '#0A1F44',
               }}
               aria-label="Previous venue"
             >
@@ -275,10 +284,10 @@ const Venue = () => {
               type="button"
               onClick={goNext}
               disabled={activeIndex === eventSlides.length - 1}
-              className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-10 w-10 h-10 rounded-full shadow-md items-center justify-center disabled:opacity-40 disabled:pointer-events-none transition-colors"
+              className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-10 w-10 h-10 rounded-full shadow-md items-center justify-center disabled:opacity-40 disabled:pointer-events-none transition-colors hover:bg-[#2E2E2E]"
               style={{
-                color: eventSlides[activeIndex].accentColor,
-                backgroundColor: 'rgba(255,255,255,0.95)',
+                color: '#FFFFFF',
+                backgroundColor: '#0A1F44',
               }}
               aria-label="Next venue"
             >

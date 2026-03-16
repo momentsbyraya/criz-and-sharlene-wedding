@@ -8,15 +8,19 @@ const Footer = () => {
 
   return (
     <footer 
-      className="w-full pb-4 transition-colors duration-300 hover:bg-[#013718] active:bg-[#013718] cursor-pointer"
+      className="w-full pb-4 transition-colors duration-300 cursor-pointer"
+      style={{ backgroundColor: 'var(--footer-bg)' }}
+      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'var(--color-charcoal)' }}
+      onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'var(--footer-bg)' }}
+      onMouseDown={(e) => { e.currentTarget.style.backgroundColor = 'var(--color-charcoal)' }}
       onClick={handleFooterClick}
     >
       {/* Divider line on top */}
-      <div className="w-full h-px bg-burgundy-dark opacity-40 mb-4"></div>
+      <div className="w-full h-px bg-white/30 mb-4"></div>
       
-      {/* Footer text */}
+      {/* Footer text - white on dark navy */}
       <div className="text-center">
-        <p className="text-sm sm:text-base font-albert font-thin transition-colors duration-300 hover:!text-burgundy-cream active:!text-burgundy-cream" style={{ color: themeConfig.cssVariables['--accent-text'] }}>
+        <p className="text-sm sm:text-base font-albert font-thin text-white transition-colors duration-300 hover:!text-[#E5E7EB] active:!text-[#E5E7EB]">
           Made with <ion-icon name="heart" className="inline-block mx-1 align-middle" style={{ fontSize: '1em', verticalAlign: 'middle' }}></ion-icon> by Moments by Raya
         </p>
       </div>

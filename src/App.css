@@ -22,15 +22,15 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #7BA3C4;
+  background: var(--color-steel-blue, #3A5A7A);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #F4C6CF;
+  background: var(--color-charcoal, #2E2E2E);
 }
 
-/* RSVP Modal scrollbar - dark sage green */
+/* RSVP Modal scrollbar */
 .rsvp-modal-content::-webkit-scrollbar {
   width: 8px;
 }
@@ -40,12 +40,12 @@
 }
 
 .rsvp-modal-content::-webkit-scrollbar-thumb {
-  background: #7BA3C4;
+  background: var(--color-steel-blue, #3A5A7A);
   border-radius: 4px;
 }
 
 .rsvp-modal-content::-webkit-scrollbar-thumb:hover {
-  background: #F4C6CF;
+  background: var(--color-charcoal, #2E2E2E);
 }
 
 /* Print styles */
@@ -59,20 +59,20 @@
   }
 }
 
-/* Envelope Styles */
+/* Envelope Styles - Navy & Charcoal theme */
 :root {
   --envelope-x: 300px;
   --envelope-y: 200px;
-  --envelope-bg: #7BA3C4;
-  --envelope-shadow: #3A5563;
-  --heart-bg: darkred;
+  --envelope-bg: #001F3F;
+  --envelope-shadow: #333333;
+  --heart-bg: #333333;
   --heart-text: white;
   --letter-font: "Dancing Script", serif;
   --letter-x: 250px;
   --letter-y: calc(250px - 1rem - 10px);
-  --letter-bg: AntiqueWhite;
-  --letter-shadow: BurlyWood;
-  --letter-text: #180d07;
+  --letter-bg: #FFFFFF;
+  --letter-shadow: #D1D5DB;
+  --letter-text: #001F3F;
 }
 
 @media (min-width: 650px) {

@@ -175,10 +175,10 @@ const EntourageDetailsSection = () => {
     }
 
     return () => ScrollTrigger.getAll().forEach(t => t.kill())
-  const textColor = themeConfig.text.burgundyDark || '#7BA3C4'
+  const textColor = themeConfig.text.burgundyDark || '#0A1F44'
   }, [])
 
-  const accentColor = themeConfig.text.burgundyDark || '#7BA3C4'
+  const accentColor = themeConfig.text.burgundyDark || '#0A1F44'
 
   return (
     <section

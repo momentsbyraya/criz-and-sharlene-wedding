@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { dresscode } from '../data'
@@ -8,18 +8,48 @@ import './pages/Details.css'
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger)
 
+const PRINCIPAL_IMAGES = [
+  '/assets/images/dresscode/pricipal1.png',
+  '/assets/images/dresscode/principal2.png',
+]
+const PRINCIPAL_TRANSITION_MS = 4000
+
+const GUEST_IMAGES = [
+  '/assets/images/dresscode/guest1.png',
+  '/assets/images/dresscode/guest2.png',
+]
+const GUEST_TRANSITION_MS = 4000
+
 const DressCode = () => {
   const dressCodeTitleRef = useRef(null)
   const dressCodeDescRef = useRef(null)
   const category1Ref = useRef(null)
   const category2Ref = useRef(null)
+  const [principalImageIndex, setPrincipalImageIndex] = useState(0)
+  const [guestImageIndex, setGuestImageIndex] = useState(0)
 
   // Dress code color palette (fallback for guests when not in data)
   const BURGUNDY = '#800020'
-  const ROSE_GOLD = '#B76E79'
+  const ROSE_GOLD = '#6B7280'
   const BLUSH_PINK = '#F4C2C2'
   const DUSTY_ROSE = '#C08081'
   const defaultGuestColors = [BURGUNDY, ROSE_GOLD, BLUSH_PINK, DUSTY_ROSE]
+
+  // Principal section: cycle between two formal wear images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPrincipalImageIndex((prev) => (prev + 1) % PRINCIPAL_IMAGES.length)
+    }, PRINCIPAL_TRANSITION_MS)
+    return () => clearInterval(interval)
+  }, [])
+
+  // Guest section: cycle between two formal wear images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setGuestImageIndex((prev) => (prev + 1) % GUEST_IMAGES.length)
+    }, GUEST_TRANSITION_MS)
+    return () => clearInterval(interval)
+  }, [])
 
   useEffect(() => {
     // Dress Code Title animation
@@ -233,18 +263,25 @@ const DressCode = () => {
                       </div>
                     </div>
                     
-                    {/* Category Image - First category: right on mobile, top on desktop */}
-                    {section.image && (
-                      <div className="w-1/2 lg-custom:w-full order-2 lg-custom:order-1">
-                        <div className="w-full relative dresscode-image-container">
-                          <img 
-                            src={section.image} 
-                            alt={section.title} 
-                            className="w-full h-full object-cover rounded"
-              />
-            </div>
+                    {/* Category Image - First category: two images with crossfade (formal wear colors) */}
+                    <div className="w-1/2 lg-custom:w-full order-2 lg-custom:order-1">
+                      <div className="w-full relative dresscode-image-container overflow-hidden rounded">
+                        {PRINCIPAL_IMAGES.map((src, index) => (
+                          <img
+                            key={src}
+                            src={src}
+                            alt={`${section.title} – formal wear ${index + 1}`}
+                            className="absolute inset-0 w-full h-full object-cover rounded transition-opacity duration-700 ease-in-out"
+                            style={{
+                              opacity: index === principalImageIndex ? 1 : 0,
+                              zIndex: index === principalImageIndex ? 1 : 0,
+                            }}
+                          />
+                        ))}
+                        {/* Spacer for aspect ratio (first image dimensions) */}
+                        <div className="relative w-full aspect-[3/4] min-h-[200px]" aria-hidden />
                       </div>
-                    )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -274,18 +311,24 @@ const DressCode = () => {
                 >
                   {/* Category Image and Details - Side by side on mobile, stacked on 992px+ */}
                   <div className="flex flex-row lg-custom:flex-col gap-6 md:gap-8 lg-custom:gap-6 items-start">
-                    {/* Category Image - Second category: left on mobile, top on desktop */}
-                    {section.image && (
-                      <div className="w-1/2 lg-custom:w-full">
-                        <div className="w-full relative dresscode-image-container">
-                          <img 
-                            src={section.image} 
-                            alt={section.title} 
-                            className="w-full h-full object-cover rounded"
+                    {/* Category Image - Second category: two images with crossfade (guest formal wear colors) */}
+                    <div className="w-1/2 lg-custom:w-full">
+                      <div className="w-full relative dresscode-image-container overflow-hidden rounded">
+                        {GUEST_IMAGES.map((src, index) => (
+                          <img
+                            key={src}
+                            src={src}
+                            alt={`${section.title} – formal wear ${index + 1}`}
+                            className="absolute inset-0 w-full h-full object-cover rounded transition-opacity duration-700 ease-in-out"
+                            style={{
+                              opacity: index === guestImageIndex ? 1 : 0,
+                              zIndex: index === guestImageIndex ? 1 : 0,
+                            }}
                           />
-                        </div>
+                        ))}
+                        <div className="relative w-full aspect-[3/4] min-h-[200px]" aria-hidden />
                       </div>
-                    )}
+                    </div>
                     
                     {/* Category Details - Second category: left aligned on mobile, bottom on desktop */}
                     <div className="w-1/2 lg-custom:w-full flex flex-col justify-between text-left lg-custom:text-left dresscode-image-container">

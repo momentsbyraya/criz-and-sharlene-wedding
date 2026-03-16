@@ -27,17 +27,9 @@ const Hero = () => {
     return `${monthUpper}.${dayFormatted}.${year}`
   }
 
-  // Split full name into first line (all but last word) and last name for hero display
-  const splitFullName = (fullName) => {
-    if (!fullName || typeof fullName !== 'string') return { first: '', last: '' }
-    const parts = fullName.trim().split(/\s+/)
-    if (parts.length === 1) return { first: parts[0], last: '' }
-    const last = parts.pop()
-    return { first: parts.join(' '), last }
-  }
-
-  const groomName = splitFullName(couple.groom.fullName)
-  const brideName = splitFullName(couple.bride.fullName)
+  // Hero display names: no middle names (Arreola, Capuchino) for a cleaner look
+  const groomName = { first: 'Criz Mar', last: 'Castro' }
+  const brideName = { first: 'Sharlene', last: 'Tagal' }
 
   const venueName = venues.reception.name
 
@@ -145,7 +137,7 @@ const Hero = () => {
       {/* Audio Element */}
       <audio
         ref={audioRef}
-        src="/assets/music/NIKI - You'll be in my heart (Spotify Single)  Music Lyric Video.mp3"
+        src="/assets/music/Make It With You - Ben&Ben (Lyrics).mp3"
         loop
         onEnded={() => setIsPlaying(false)}
       />
@@ -155,13 +147,25 @@ const Hero = () => {
           src="/assets/images/hero-couple.jpg" 
           alt="Hero"
           className="w-full h-full object-cover object-top md:object-[center_18%]"
+          style={{ border: '2px solid var(--color-silver-gray, #D1D5DB)' }}
         />
-        <span className="absolute inset-0 flex items-center justify-center text-white font-medium text-lg sm:text-xl md:text-2xl pointer-events-none z-10 drop-shadow-md">
+        {/* Hero: navy at top/bottom (slightly transparent), white in center */}
+        <div 
+          className="absolute inset-0 z-[5]" 
+          style={{ 
+            background: 'linear-gradient(180deg, rgba(0,31,63,0.82) 0%, rgba(0,31,63,0.82) 12%, rgba(255,255,255,0.96) 28%, #FFFFFF 50%, rgba(255,255,255,0.96) 72%, rgba(0,31,63,0.82) 88%, rgba(0,31,63,0.82) 100%)',
+            opacity: 0.98
+          }}
+          aria-hidden
+        />
+        {/* CSS-only bokeh: soft gray radial circles, vertical mask fade */}
+        <div className="hero-bokeh-overlay" aria-hidden />
+        <span className="absolute inset-0 flex items-center justify-center text-[var(--color-navy)] font-medium text-lg sm:text-xl md:text-2xl pointer-events-none z-10 drop-shadow-md">
           Image Here
         </span>
       </div>
       
-      {/* Blurred White SVG Overlay at Top */}
+      {/* Navy fade at top */}
       <svg 
         className="absolute top-0 left-0 w-full h-64 sm:h-80 md:h-96 lg:h-[28rem] z-10 pointer-events-none" 
         preserveAspectRatio="none" 
@@ -173,10 +177,9 @@ const Hero = () => {
             <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
           </filter>
           <linearGradient id="topGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(255, 255, 255, 0.95)" />
-            <stop offset="40%" stopColor="rgba(255, 255, 255, 0.7)" />
-            <stop offset="70%" stopColor="rgba(255, 255, 255, 0.3)" />
-            <stop offset="100%" stopColor="rgba(255, 255, 255, 0)" />
+            <stop offset="0%" stopColor="rgba(0, 31, 63, 0.78)" />
+            <stop offset="50%" stopColor="rgba(0, 31, 63, 0.38)" />
+            <stop offset="100%" stopColor="rgba(0, 31, 63, 0)" />
           </linearGradient>
         </defs>
         <rect width="100%" height="100%" fill="url(#topGradient)" filter="url(#blur)" />
@@ -186,24 +189,24 @@ const Hero = () => {
       <div className="absolute top-0 left-0 right-0 pt-8 sm:pt-12 md:pt-16 lg:pt-20 px-4 sm:px-6 md:px-8 z-20">
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex flex-col items-center justify-center">
-            {/* Groom's Name - full name */}
+            {/* Groom's Name - white text */}
             <div>
-              <p ref={groomFirstNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight" style={{ color: '#1e3a5f' }}>
+              <p ref={groomFirstNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight" style={{ color: '#FFFFFF' }}>
                 {groomName.first}
               </p>
-              <p ref={groomLastNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight -mt-2 sm:-mt-3" style={{ color: '#B76E79', textShadow: '0 1px 2px rgba(0,0,0,0.06)' }}>
+              <p ref={groomLastNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight -mt-2 sm:-mt-3" style={{ color: '#FFFFFF', textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>
                 {groomName.last}
               </p>
             </div>
-            <p ref={andRef} className="caudex-bold text-sm sm:text-base md:text-lg lg:text-xl uppercase leading-tight my-2 sm:my-3" style={{ color: '#000000' }}>
+            <p ref={andRef} className="caudex-bold text-sm sm:text-base md:text-lg lg:text-xl uppercase leading-tight my-2 sm:my-3" style={{ color: '#FFFFFF' }}>
               AND
             </p>
-            {/* Bride's Name - full name */}
+            {/* Bride's Name - white text */}
             <div>
-              <p ref={brideFirstNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight" style={{ color: '#1e3a5f' }}>
+              <p ref={brideFirstNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight" style={{ color: '#FFFFFF' }}>
                 {brideName.first}
               </p>
-              <p ref={brideLastNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight -mt-2 sm:-mt-3" style={{ color: '#B76E79', textShadow: '0 1px 2px rgba(0,0,0,0.06)' }}>
+              <p ref={brideLastNameRef} className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase leading-tight -mt-2 sm:-mt-3" style={{ color: '#FFFFFF', textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>
                 {brideName.last}
               </p>
             </div>
@@ -211,7 +214,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Blurred White SVG Overlay at Bottom */}
+      {/* Navy fade at bottom */}
       <svg 
         className="absolute bottom-0 left-0 w-full h-64 sm:h-80 md:h-96 lg:h-[28rem] z-10 pointer-events-none" 
         preserveAspectRatio="none" 
@@ -223,10 +226,9 @@ const Hero = () => {
             <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
           </filter>
           <linearGradient id="bottomGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(255, 255, 255, 0)" />
-            <stop offset="30%" stopColor="rgba(255, 255, 255, 0.3)" />
-            <stop offset="60%" stopColor="rgba(255, 255, 255, 0.7)" />
-            <stop offset="100%" stopColor="rgba(255, 255, 255, 0.95)" />
+            <stop offset="0%" stopColor="rgba(0, 31, 63, 0)" />
+            <stop offset="50%" stopColor="rgba(0, 31, 63, 0.38)" />
+            <stop offset="100%" stopColor="rgba(0, 31, 63, 0.78)" />
           </linearGradient>
         </defs>
         <rect width="100%" height="100%" fill="url(#bottomGradient)" filter="url(#blurBottom)" />
@@ -237,25 +239,25 @@ const Hero = () => {
         type="button"
         ref={playButtonRef}
         onClick={togglePlayPause}
-        className="absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 z-30 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white/90 hover:bg-white transition-colors duration-200 flex items-center justify-center shadow-lg cursor-pointer"
+        className="absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 z-30 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white hover:bg-[var(--color-silver-gray)] transition-colors duration-200 flex items-center justify-center shadow-lg cursor-pointer"
         style={{ pointerEvents: 'auto' }}
         aria-label={isPlaying ? 'Pause music' : 'Play music'}
       >
         {isPlaying ? (
-          <Pause size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#1e3a5f]" fill="#1e3a5f" />
+          <Pause size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-[var(--color-navy)]" fill="currentColor" />
         ) : (
-          <Play size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#1e3a5f] ml-1" fill="#1e3a5f" />
+          <Play size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-[var(--color-navy)] ml-1" fill="currentColor" />
         )}
       </button>
 
       {/* Date and Venue at Bottom Center */}
       <div className="absolute bottom-0 left-0 right-0 pb-8 sm:pb-12 md:pb-16 lg:pb-20 px-4 sm:px-6 md:px-8 z-20">
         <div className="max-w-4xl mx-auto text-center">
-          <p ref={dateRef} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-foglihten" style={{ color: themeConfig.text.darkSageGreen }}>
+          <p ref={dateRef} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-foglihten" style={{ color: '#FFFFFF' }}>
               {formatDate()}
             </p>
-          {/* Venue - Plain Text */}
-          <p ref={venueRef} className="text-xs sm:text-sm md:text-base font-albert mt-2 sm:mt-3" style={{ color: themeConfig.text.lightBlack }}>
+          {/* Venue - white text */}
+          <p ref={venueRef} className="text-xs sm:text-sm md:text-base font-albert mt-2 sm:mt-3" style={{ color: 'var(--color-silver-gray, #D1D5DB)' }}>
               {venueName}
             </p>
         </div>

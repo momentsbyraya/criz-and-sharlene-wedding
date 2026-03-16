@@ -1,176 +1,140 @@
-// Theme Configuration - Dark blue + dark pink for text
-// #1e3a5f dark blue (text, headings) | #B76E79 dark pink (text, accents)
+// Theme Configuration - Midnight & Mist wedding
+// Uses centralized CSS variables from :root in index.css
+// Primary: #001F3F | Silver-Gray: #D1D5DB | Charcoal: #333333 | Mist: #F3F4F6 | White: #FFFFFF
 export const themeConfig = {
-    // Background Colors
+    // Background Colors (align with CSS variables)
     backgrounds: {
-        primary: 'bg-burgundy-dark',
-        secondary: 'bg-burgundy-wine',
-        accent: 'bg-burgundy-wine',
+        primary: 'bg-navy',
+        secondary: 'bg-[#2E2E2E]',
+        accent: 'bg-[#3A5A7A]',
         light: 'bg-white/60',
-        theme: 'bg-burgundy-cream',
-        garden: 'bg-burgundy-cream',
+        theme: 'bg-[#FFFFFF]',
+        garden: 'bg-[#FFFFFF]',
         crumpledPaper: 'bg-[url("/assets/images/crumpled-paper.png")] bg-cover bg-center bg-no-repeat',
+        heroGradient: 'linear-gradient(180deg, #001F3F, #D1D5DB)',
+        lightSection: 'linear-gradient(180deg, #FFFFFF, #F3F4F6)',
+        elegantSection: 'linear-gradient(135deg, #001F3F, #3A5A7A)',
+        footer: '#001F3F',
     },
 
-    // Text Colors (dark blue + dark pink)
+    // Text Colors - On light: headings #0A1F44, body #333333, subtle #6B7280; On dark: #FFFFFF
     text: {
-        primary: 'text-burgundy-dark',
-        secondary: 'text-burgundy-tan',
-        accent: 'text-burgundy-wine',
-        muted: 'text-burgundy-tan/80',
-        dark: 'text-burgundy-dark',
-        theme: 'text-burgundy-wine',
-        pause: 'text-[#FFFBFB]',
-        custom: 'text-burgundy-dark',
-        light: '#B76E79',
-        lightBlack: '#1e3a5f',
-        cream: '#FFFBFB',
-        tan: '#B76E79',
-        wine: '#B8D4E8',
-        burgundyDark: '#1e3a5f',
-        burntOrange: '#1e3a5f',
-        darkBlue: '#1e3a5f',
-        darkPink: '#B76E79',
+        primary: 'text-[#001F3F]',
+        secondary: 'text-[#333333]',
+        accent: 'text-[#3A5A7A]',
+        muted: 'text-[#6B7280]',
+        dark: 'text-[#001F3F]',
+        theme: 'text-[#3A5A7A]',
+        pause: 'text-[#FFFFFF]',
+        custom: 'text-[#001F3F]',
+        body: '#333333',
+        light: '#FFFFFF',
+        lightBlack: '#001F3F',
+        cream: '#FFFFFF',
+        tan: '#333333',
+        wine: '#3A5A7A',
+        burgundyDark: '#001F3F',
+        burntOrange: '#001F3F',
+        darkBlue: '#001F3F',
+        darkPink: '#333333',
+        darkSageGreen: '#FFFFFF',
+        subtle: '#6B7280',
     },
 
     // Border Colors
     borders: {
-        primary: 'border-burgundy-wine',
-        secondary: 'border-burgundy-tan',
-        accent: 'border-burgundy-wine',
-        theme: 'border-burgundy-tan',
-        garden: 'border-burgundy-tan',
+        primary: 'border-[#3A5A7A]',
+        secondary: 'border-[#2E2E2E]',
+        accent: 'border-[#3A5A7A]',
+        theme: 'border-[#2E2E2E]',
+        garden: 'border-[#2E2E2E]',
     },
 
-    // Button Colors
+    // Buttons - solid navy + subtle silver-gray hover hint
     buttons: {
-        primary: 'bg-burgundy-wine hover:bg-burgundy-tan',
-        secondary: 'border border-burgundy-tan hover:border-burgundy-wine',
-        text: 'text-burgundy-cream hover:text-white',
-        theme: 'bg-burgundy-wine hover:bg-burgundy-wine/90',
-        garden: 'bg-burgundy-tan hover:bg-burgundy-wine',
+        primary: 'bg-[#001F3F] hover:bg-[#001F3F] text-white',
+        secondary: 'bg-[#001F3F] hover:bg-[#001F3F] text-white',
+        text: 'text-white hover:text-white',
+        theme: 'bg-[#001F3F] hover:bg-[#001F3F]',
+        garden: 'bg-[#001F3F] hover:bg-[#001F3F]',
     },
 
-    // Hover Effects
     hover: {
-        primary: 'hover:bg-burgundy-tan',
-        secondary: 'hover:border-burgundy-wine hover:text-burgundy-cream',
-        theme: 'hover:bg-burgundy-wine/90',
-        garden: 'hover:bg-burgundy-wine',
+        primary: 'hover:bg-[#2E2E2E]',
+        secondary: 'hover:bg-[#0A1F44]',
+        theme: 'hover:bg-[#2E2E2E]',
+        garden: 'hover:bg-[#2E2E2E]',
     },
 
-    // Container Configuration
     container: {
         maxWidth: 'max-w-[1300px]',
         padding: 'px-4 sm:px-6 lg:px-8',
         center: 'mx-auto',
     },
 
-    // Calendar Configuration
     calendar: {
-        weddingDate: '2026-05-09',
-        highlightColor: 'bg-burgundy-wine',
-        heartColor: 'text-burgundy-wine',
-        textColor: 'text-burgundy-dark',
-        headerColor: 'text-burgundy-wine',
-        dayNamesColor: 'text-burgundy-tan',
-        background: 'bg-burgundy-cream',
+        weddingDate: '2026-05-30',
+        highlightColor: 'bg-[#3A5A7A]',
+        heartColor: 'text-[#3A5A7A]',
+        textColor: 'text-[#0A1F44]',
+        headerColor: 'text-[#3A5A7A]',
+        dayNamesColor: 'text-[#6B7280]',
+        background: 'bg-[#F8FAFC]',
     },
 
-    // Paragraph Configuration
     paragraph: {
-        background: 'bg-burgundy-cream',
-        garden: 'bg-burgundy-cream',
+        background: 'bg-[#F8FAFC]',
+        garden: 'bg-[#F8FAFC]',
     },
 
-    // Custom CSS Variables (dark blue + dark pink for text)
+    // Mirror of :root CSS variables for JS usage
     cssVariables: {
-        '--primary-bg': '#1e3a5f',
-        '--secondary-bg': '#B8D4E8',
-        '--accent-bg': '#B8D4E8',
-        '--accent-hover': '#B76E79',
-        '--primary-text': '#1e3a5f',
-        '--secondary-text': '#B76E79',
-        '--accent-text': '#B8D4E8',
-        '--muted-text': '#B76E79',
-        '--border-color': '#1e3a5f',
-        '--custom-theme': '#B8D4E8',
-        '--cream': '#FFFBFB',
-        '--tan': '#B76E79',
-        '--wine': '#B8D4E8',
-        '--burgundy-dark': '#1e3a5f',
-        '--garden-bg': '#FFFBFB',
-        '--blush': '#B76E79',
-        '--powder-blue': '#D4E5F4',
+        '--color-navy': '#001F3F',
+        '--color-silver-gray': '#D1D5DB',
+        '--color-charcoal': '#333333',
+        '--color-steel-blue': '#3A5A7A',
+        '--color-light-gray': '#F3F4F6',
+        '--color-soft-bg': '#FFFFFF',
+        '--color-white': '#FFFFFF',
+        '--primary-bg': '#001F3F',
+        '--secondary-bg': '#2E2E2E',
+        '--accent-bg': '#3A5A7A',
+        '--accent-hover': 'rgba(209, 213, 219, 0.22)',
+        '--primary-text': '#001F3F',
+        '--secondary-text': '#333333',
+        '--accent-text': '#3A5A7A',
+        '--muted-text': '#6B7280',
+        '--text-on-dark': '#FFFFFF',
+        '--burgundy-dark': '#001F3F',
+        '--garden-bg': '#FFFFFF',
+        '--powder-blue': '#D1D5DB',
     }
 }
 
-// Quick color presets for different themes
 export const themePresets = {
     darkElegant: {
-        backgrounds: {
-            primary: 'bg-burgundy-dark',
-            secondary: 'bg-burgundy-wine',
-            accent: 'bg-burgundy-wine',
-        },
-        text: {
-            primary: 'text-burgundy-cream',
-            secondary: 'text-burgundy-tan',
-            accent: 'text-burgundy-wine',
-        }
+        backgrounds: { primary: 'bg-[#0A1F44]', secondary: 'bg-[#2E2E2E]', accent: 'bg-[#3A5A7A]' },
+        text: { primary: 'text-[#F8FAFC]', secondary: 'text-[#E5E7EB]', accent: 'text-[#3A5A7A]' }
     },
-
     lightRomantic: {
-        backgrounds: {
-            primary: 'bg-burgundy-cream',
-            secondary: 'bg-white',
-            accent: 'bg-burgundy-wine',
-        },
-        text: {
-            primary: 'text-burgundy-dark',
-            secondary: 'text-burgundy-wine',
-            accent: 'text-burgundy-wine',
-        }
+        backgrounds: { primary: 'bg-[#F8FAFC]', secondary: 'bg-white', accent: 'bg-[#3A5A7A]' },
+        text: { primary: 'text-[#0A1F44]', secondary: 'text-[#3A5A7A]', accent: 'text-[#3A5A7A]' }
     },
-
     warmAutumn: {
-        backgrounds: {
-            primary: 'bg-burgundy-cream',
-            secondary: 'bg-burgundy-tan/30',
-            accent: 'bg-burgundy-wine',
-        },
-        text: {
-            primary: 'text-burgundy-dark',
-            secondary: 'text-burgundy-wine',
-            accent: 'text-burgundy-wine',
-        }
+        backgrounds: { primary: 'bg-[#F8FAFC]', secondary: 'bg-[#2E2E2E]/20', accent: 'bg-[#3A5A7A]' },
+        text: { primary: 'text-[#0A1F44]', secondary: 'text-[#3A5A7A]', accent: 'text-[#3A5A7A]' }
     },
-
     gardenWedding: {
-        backgrounds: {
-            primary: 'bg-burgundy-cream',
-            secondary: 'bg-white',
-            accent: 'bg-burgundy-wine',
-            theme: 'bg-burgundy-cream',
-        },
-        text: {
-            primary: 'text-burgundy-dark',
-            secondary: 'text-burgundy-wine',
-            accent: 'text-burgundy-wine',
-            garden: 'text-burgundy-tan',
-        }
+        backgrounds: { primary: 'bg-[#F8FAFC]', secondary: 'bg-white', accent: 'bg-[#3A5A7A]', theme: 'bg-[#F8FAFC]' },
+        text: { primary: 'text-[#0A1F44]', secondary: 'text-[#3A5A7A]', accent: 'text-[#3A5A7A]', garden: 'text-[#2E2E2E]' }
     }
 }
 
-// Helper function to get theme colors
 export const getThemeColor = (type, variant = 'primary') => {
     return themeConfig[type]?.[variant] || themeConfig.text.primary
 }
 
-// Helper function to apply theme preset
 export const applyThemePreset = (presetName) => {
     const preset = themePresets[presetName]
-    if (preset) {
-        Object.assign(themeConfig, preset)
-    }
+    if (preset) Object.assign(themeConfig, preset)
 }

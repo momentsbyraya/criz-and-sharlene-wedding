@@ -10,9 +10,12 @@ gsap.registerPlugin(ScrollTrigger)
 
 const FAQ = () => {
   const [copiedIndex, setCopiedIndex] = useState(null)
+  const [showAll, setShowAll] = useState(false)
   const faqRef = useRef(null)
   const faqTitleRef = useRef(null)
   const faqItems = faqData
+  const totalFaqs = faqItems?.faqData?.length ?? 0
+  const hiddenCount = Math.max(0, totalFaqs - 3)
 
   // Helper function to get icon and clean text for FAQ questions
   const getFaqIconAndText = (question) => {
@@ -96,57 +99,24 @@ const FAQ = () => {
   }
 
   useEffect(() => {
-    // FAQ section animation - title first, then items one after the other
+    // Title stays visible; animate the currently-rendered FAQ items
     if (faqRef.current && faqTitleRef.current) {
-      // Set initial states
-      gsap.set(faqTitleRef.current, { opacity: 0, y: 30 })
-        
-        ScrollTrigger.create({
-          trigger: faqRef.current,
-          start: "top 80%",
-          onEnter: () => {
-          // 1. Animate title first
-          gsap.to(faqTitleRef.current, {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            onComplete: () => {
-              // 2. After title animation, find and animate items one after the other
-              const faqItemsContainer = faqRef.current.querySelector('.space-y-6')
-              if (faqItemsContainer) {
-                const faqItems = Array.from(faqItemsContainer.children).filter(child => child.tagName === 'DIV')
-                
-                if (faqItems.length > 0) {
-                  // Set initial states for items
-                  gsap.set(faqItems, { opacity: 0, y: 30 })
-                  
-                  // Animate items one after the other
-            gsap.to(faqItems, {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power2.out",
-                    stagger: 0.2
-            })
-                }
-              }
-          }
-        })
+      gsap.set(faqTitleRef.current, { opacity: 1, y: 0 })
+      const faqItemsContainer = faqRef.current.querySelector('.space-y-6')
+      if (faqItemsContainer) {
+        const items = Array.from(faqItemsContainer.children).filter(child => child.tagName === 'DIV')
+        if (items.length > 0) {
+          gsap.set(items, { opacity: 0, y: 18 })
+          gsap.to(items, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out", stagger: 0.1 })
+        }
       }
-      })
     }
-
-    // Cleanup function
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-    }
-  }, [])
+  }, [showAll])
 
   return (
-    <div className="relative z-20 mt-20 faq-section">
+    <div className="relative z-20 faq-section">
       <div ref={faqRef} className="relative z-10 w-full px-8 sm:px-12 md:px-8 lg:px-16">
-        <h3 ref={faqTitleRef} className="relative inline-block px-6 py-3 mb-12 text-center w-full">
+        <h3 ref={faqTitleRef} className="faq-title-block relative inline-block px-6 py-3 pt-8 sm:pt-10 mb-10 sm:mb-12 text-center w-full">
           <span 
             className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl inline-block leading-none capitalize faq-title-text"
           >
@@ -155,7 +125,7 @@ const FAQ = () => {
         </h3>
         {faqItems && faqItems.faqData && (
           <div className="space-y-6 max-w-[600px] mx-auto">
-            {faqItems.faqData.map((item, index) => {
+            {(showAll ? faqItems.faqData : faqItems.faqData.slice(0, 3)).map((item, index) => {
               const { text } = getFaqIconAndText(item.question)
               return (
                 <div key={index}>
@@ -167,12 +137,32 @@ const FAQ = () => {
                       A: {parseAnswerWithPhoneNumbers(item.answer)}
                     </p>
                   </div>
-                  {index < faqItems.faqData.length - 1 && (
+                  {index < (showAll ? faqItems.faqData.length : Math.min(3, faqItems.faqData.length)) - 1 && (
                     <div className="h-px bg-burgundy-cream/30 mt-6"></div>
                   )}
                 </div>
               )
             })}
+
+            {totalFaqs > 3 && (
+              <div className="pt-3">
+                <button
+                  type="button"
+                  className="faq-more-toggle w-full flex items-center justify-center gap-3 py-3"
+                  onClick={() => setShowAll((v) => !v)}
+                  aria-label={showAll ? 'Show fewer FAQs' : `Show ${hiddenCount} more FAQs`}
+                >
+                  <span className="faq-more-line" aria-hidden="true" />
+                  <span className="faq-more-text font-albert text-xs sm:text-sm">
+                    {showAll ? 'Show less' : `+${hiddenCount} more FAQs`}
+                  </span>
+                  <span className="faq-more-icon" aria-hidden="true">
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${showAll ? 'rotate-180' : ''}`} />
+                  </span>
+                  <span className="faq-more-line" aria-hidden="true" />
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>

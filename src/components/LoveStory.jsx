@@ -13,16 +13,22 @@ gsap.registerPlugin(ScrollTrigger)
 const LoveStory = () => {
   const sectionRef = useRef(null)
   const titleRef = useRef(null)
+  const [isStoryModalOpen, setIsStoryModalOpen] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const modalRef = useRef(null)
   const overlayRef = useRef(null)
   const contentRef = useRef(null)
+  const storyModalRef = useRef(null)
+  const storyOverlayRef = useRef(null)
 
-  // Split content into paragraphs
+  // Split content into paragraphs (smaller paras for narrow wrap beside polaroids)
   const paragraphs = loveStory.content.split('\n\n').filter(p => p.trim())
 
-  // Polaroid images - 1 per paragraph (6 paragraphs)
+  // Six polaroids: text chunks wrap beside each image, then continue below
+  const CHUNK_SPLITS = [0, 3, 6, 8, 11, 14, paragraphs.length]
+  const getChunk = (i) => paragraphs.slice(CHUNK_SPLITS[i], CHUNK_SPLITS[i + 1])
+
   const polaroidImages = [
     '/assets/images/couple-1.jpg',
     '/assets/images/couple-2.jpg',
@@ -33,7 +39,6 @@ const LoveStory = () => {
   ]
 
   useEffect(() => {
-    // Title animation
     if (titleRef.current) {
       ScrollTrigger.create({
         trigger: titleRef.current,
@@ -45,32 +50,6 @@ const LoveStory = () => {
         toggleActions: "play none none reverse"
       })
     }
-
-    // Animate story items (rows), polaroid images, and paragraph text
-    const storyItems = sectionRef.current?.querySelectorAll('.story-item')
-    storyItems?.forEach((item, index) => {
-      const polaroidWrapper = item.querySelector('.bg-white.shadow-lg')
-      const textParagraph = item.querySelector('p.font-albert')
-      gsap.set(item, { opacity: 0, y: 28 })
-      if (polaroidWrapper) gsap.set(polaroidWrapper, { scale: 0.92 })
-      if (textParagraph) gsap.set(textParagraph, { opacity: 0, y: 16 })
-      ScrollTrigger.create({
-        trigger: item,
-        start: "top 82%",
-        onEnter: () => {
-          gsap.to(item, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out", delay: index * 0.1 })
-          if (polaroidWrapper) {
-            gsap.to(polaroidWrapper, { scale: 1, duration: 0.6, ease: "back.out(1.2)", delay: index * 0.1 + 0.15 })
-          }
-          if (textParagraph) {
-            gsap.to(textParagraph, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", delay: index * 0.1 + 0.25 })
-          }
-        },
-        toggleActions: "play none none reverse"
-      })
-    })
-
-    // Cleanup function
     return () => {
       ScrollTrigger.getAll().forEach(trigger => {
         if (trigger.vars && (
@@ -82,6 +61,16 @@ const LoveStory = () => {
       })
     }
   }, [])
+
+  // Animate story modal content when opened
+  useEffect(() => {
+    if (!isStoryModalOpen) return
+    const flowEl = storyModalRef.current?.querySelector('.love-story-flow')
+    if (flowEl) {
+      gsap.set(flowEl, { opacity: 0, y: 16 })
+      gsap.to(flowEl, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" })
+    }
+  }, [isStoryModalOpen])
 
   // Function to format paragraph text with styled quote
   const formatParagraph = (text) => {
@@ -120,53 +109,47 @@ const LoveStory = () => {
     setIsModalOpen(false)
   }
 
-  // Handle keyboard navigation
+  // Handle keyboard: Escape closes story or image modal; arrows only in image modal
   useEffect(() => {
-    if (!isModalOpen) return
-
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
-        setIsModalOpen(false)
-      } else if (e.key === 'ArrowLeft') {
-        setCurrentImageIndex((prev) => (prev - 1 + polaroidImages.length) % polaroidImages.length)
-      } else if (e.key === 'ArrowRight') {
-        setCurrentImageIndex((prev) => (prev + 1) % polaroidImages.length)
+        if (isModalOpen) setIsModalOpen(false)
+        else if (isStoryModalOpen) setIsStoryModalOpen(false)
+      } else if (isModalOpen && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+        e.preventDefault()
+        if (e.key === 'ArrowLeft') setCurrentImageIndex((prev) => (prev - 1 + polaroidImages.length) % polaroidImages.length)
+        else setCurrentImageIndex((prev) => (prev + 1) % polaroidImages.length)
       }
     }
-
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isModalOpen, polaroidImages.length])
+  }, [isModalOpen, isStoryModalOpen, polaroidImages.length])
 
-  // Modal animations
+  // Lock body scroll when story or image modal is open
   useEffect(() => {
-    if (isModalOpen) {
+    const open = isStoryModalOpen || isModalOpen
+    if (open) {
       document.body.style.overflow = 'hidden'
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
-      if (scrollbarWidth > 0) {
-        document.body.style.paddingRight = `${scrollbarWidth}px`
-      }
-
-      if (overlayRef.current && contentRef.current) {
-        gsap.set([overlayRef.current, contentRef.current], { opacity: 0 })
-        gsap.set(contentRef.current, { scale: 0.9 })
-
-        gsap.to(overlayRef.current, { opacity: 1, duration: 0.3, ease: "power2.out" })
-        gsap.to(contentRef.current, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.4,
-          ease: "power2.out"
-        })
-      }
+      if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`
     } else {
       document.body.style.overflow = ''
       document.body.style.paddingRight = ''
     }
-
     return () => {
       document.body.style.overflow = ''
       document.body.style.paddingRight = ''
+    }
+  }, [isStoryModalOpen, isModalOpen])
+
+  // Image modal (lightbox) animations
+  useEffect(() => {
+    if (!isModalOpen) return
+    if (overlayRef.current && contentRef.current) {
+      gsap.set([overlayRef.current, contentRef.current], { opacity: 0 })
+      gsap.set(contentRef.current, { scale: 0.9 })
+      gsap.to(overlayRef.current, { opacity: 1, duration: 0.3, ease: "power2.out" })
+      gsap.to(contentRef.current, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" })
     }
   }, [isModalOpen])
 
@@ -192,7 +175,7 @@ const LoveStory = () => {
           alt={`Love story moment ${index + 1}`}
           className="w-full aspect-square object-cover"
           style={{
-            border: '2px solid #FFFBFB',
+            border: '2px solid #F8FAFC',
             borderBottom: 'none',
             display: 'block',
             ...(objectPosition && { objectPosition })
@@ -228,8 +211,7 @@ const LoveStory = () => {
         </div>
         <h3 ref={titleRef} className="relative inline-block px-6 py-3">
           <span 
-            className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl inline-block leading-none capitalize"
-            style={{ color: themeConfig.text.wine }}
+            className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl inline-block leading-none capitalize love-story-title-white-gold"
           >
             {loveStory.title}
           </span>
@@ -237,68 +219,104 @@ const LoveStory = () => {
       </div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8">
-        <div className="relative">
-          {/* Story content */}
-          <div className="relative z-10 flex flex-col gap-12 sm:gap-16 md:gap-20">
-            {paragraphs.map((paragraph, index) => {
-              const photoLeft = index % 2 === 0
-              const image = polaroidImages[index]
-
-              return (
-                <div
-                  key={index}
-                  className="story-item grid w-full gap-4 sm:gap-6 md:gap-8 items-center min-h-0"
-                  style={{
-                    gridTemplateColumns: photoLeft ? '2fr 3fr' : '3fr 2fr',
-                  }}
-                >
-                  {photoLeft ? (
-                    <>
-                      <div className="flex justify-center items-center min-w-0">
-                        {image && (
-                          <Polaroid
-                            image={image}
-                            rotation={-3}
-                            index={index}
-                            size="normal"
-                            objectPosition={index === 3 || index === 4 ? '50% 28%' : undefined}
-                          />
-                        )}
-                      </div>
-                      <div className="flex items-center min-w-0">
-                        <p className="text-xs sm:text-sm font-albert font-thin text-burgundy-dark leading-relaxed text-left w-full">
-                          {formatParagraph(paragraph)}
-                        </p>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="flex items-center min-w-0">
-                        <p className="text-xs sm:text-sm font-albert font-thin text-burgundy-dark leading-relaxed text-right w-full">
-                          {formatParagraph(paragraph)}
-                        </p>
-                      </div>
-                      <div className="flex justify-center items-center min-w-0">
-                        {image && (
-                          <Polaroid
-                            image={image}
-                            rotation={3}
-                            index={index}
-                            size="normal"
-                            objectPosition={index === 3 || index === 4 ? '50% 28%' : undefined}
-                          />
-                        )}
-                      </div>
-                    </>
-                  )}
-                </div>
-              )
-            })}
+        {/* Teaser: 1 polaroid + short story hook */}
+        <div className="love-story-teaser flex flex-col sm:flex-row gap-6 sm:gap-8 items-center justify-center text-left mb-8 sm:mb-10">
+          <div className="flex-shrink-0">
+            <Polaroid
+              image={polaroidImages[0]}
+              rotation={-3}
+              index={0}
+              size="normal"
+            />
           </div>
+          <div className="love-story-hook min-w-0 flex-1">
+            <p className="font-foglihten text-lg sm:text-xl mb-2 capitalize love-story-title-white-gold">
+              {paragraphs[0]}
+            </p>
+            <p className="text-xs sm:text-sm font-albert font-thin text-burgundy-dark leading-relaxed">
+              {formatParagraph(paragraphs[1])}
+            </p>
+            <p className="text-xs sm:text-sm font-albert font-thin text-burgundy-dark leading-relaxed mt-2">
+              {formatParagraph(paragraphs[2])}
+            </p>
+          </div>
+        </div>
+        <div className="text-center">
+          <button
+            type="button"
+            onClick={() => setIsStoryModalOpen(true)}
+            className="love-story-open-btn love-story-open-btn-on-navy font-albert text-sm sm:text-base font-medium px-6 py-3 rounded-full border-2 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--color-navy)]"
+            aria-label="Read our love story"
+          >
+            Read our story
+          </button>
         </div>
       </div>
 
-      {/* Full Screen Image Modal */}
+      {/* Story modal: full story with polaroids and text */}
+      {isStoryModalOpen && createPortal(
+        <div
+          ref={storyModalRef}
+          className="fixed inset-0 z-[9998] flex flex-col items-center justify-start pt-14 pb-8 px-4 sm:px-6"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Our love story"
+        >
+          <div
+            ref={storyOverlayRef}
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setIsStoryModalOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="love-story-modal-panel relative z-10 w-full max-w-5xl max-h-[calc(100vh-7rem)] overflow-y-auto rounded-2xl shadow-2xl bg-white/95 p-6 sm:p-8 md:p-10">
+            <button
+              type="button"
+              onClick={() => setIsStoryModalOpen(false)}
+              className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center transition-colors cursor-pointer"
+              aria-label="Close story"
+            >
+              <X className="w-5 h-5 text-burgundy-dark" />
+            </button>
+            <h4 className="font-foglihten text-2xl sm:text-3xl mb-6 text-center capitalize" style={{ color: 'var(--color-navy)' }}>
+              {loveStory.title}
+            </h4>
+            <div className="love-story-flow relative z-10">
+              {polaroidImages.map((image, index) => {
+                const isLeft = index % 2 === 0
+                const chunkParagraphs = getChunk(index)
+                return (
+                  <React.Fragment key={index}>
+                    <div
+                      className={`love-story-polaroid-float ${isLeft ? 'love-story-polaroid-float-left' : 'love-story-polaroid-float-right'} ${!isLeft && index === 1 ? 'love-story-polaroid-clear-both' : ''}`}
+                    >
+                      <Polaroid
+                        image={image}
+                        rotation={isLeft ? -3 : 3}
+                        index={index}
+                        size="normal"
+                        objectPosition={index === 3 || index === 4 ? '50% 28%' : undefined}
+                      />
+                    </div>
+                    <div className="love-story-chunk">
+                      {chunkParagraphs.map((paragraph, pIndex) => (
+                        <p
+                          key={`${index}-${pIndex}`}
+                          className="love-story-paragraph text-xs sm:text-sm font-albert font-thin text-burgundy-dark leading-relaxed"
+                        >
+                          {formatParagraph(paragraph)}
+                        </p>
+                      ))}
+                    </div>
+                  </React.Fragment>
+                )
+              })}
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* Full Screen Image Modal (polaroid lightbox) */}
       {isModalOpen && createPortal(
         <div 
           ref={modalRef}

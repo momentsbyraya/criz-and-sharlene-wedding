@@ -10,12 +10,26 @@ export default {
         'lg-custom': '992px',
       },
       colors: {
-        // Dark blue + dark pink for text; cream/wine for backgrounds
+        // Navy Blue & Charcoal Gray wedding theme (use CSS vars in :root for single source of truth)
+        'navy': {
+          DEFAULT: '#001F3F',
+          primary: '#001F3F',
+          secondary: '#2E2E2E',
+          accent: '#3A5A7A',
+        },
+        'charcoal': '#333333',
+        'steel-blue': '#3A5A7A',
+        'gray-wedding': {
+          light: '#D1D5DB',
+          subtle: '#6B7280',
+        },
+        'bg-wedding': '#FFFFFF',
+        // Compatibility: burgundy classes map to new theme
         'burgundy': {
-          cream: '#FFFBFB',   // Clean / white
-          tan: '#B76E79',     // Dark pink (text, accents)
-          wine: '#B8D4E8',    // Light blue (accents)
-          dark: '#1e3a5f',    // Dark blue (text, headings)
+          cream: '#FFFFFF',
+          tan: '#333333',
+          wine: '#3A5A7A',
+          dark: '#001F3F',
         },
         'wedding': {
           50: '#FFFBFB',

@@ -147,6 +147,46 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   NAVY BLUE & CHARCOAL GRAY WEDDING THEME
+   Centralized CSS variables - use globally
+   ============================================ */
+:root {
+  /* Primary & secondary */
+  --color-navy: #001F3F; /* Primary */
+  --color-silver-gray: #D1D5DB; /* Secondary */
+  --color-charcoal: #333333; /* Body text */
+  --color-steel-blue: #3A5A7A;
+  --color-light-gray: #F3F4F6; /* very light gray hint */
+  --color-soft-bg: #FFFFFF;
+  --color-white: #FFFFFF;
+  --color-body-text: #333333;
+  --color-subtle-text: #6B7280;
+
+  /* Text on dark backgrounds (WCAG contrast) */
+  --text-on-dark: #FFFFFF;
+
+  /* Gradients */
+  --gradient-midnight-mist: linear-gradient(180deg, #001F3F 0%, #D1D5DB 100%);
+  --gradient-hero: var(--gradient-midnight-mist);
+  --gradient-elegant: linear-gradient(135deg, #001F3F, #3A5A7A);
+  --gradient-light-section: linear-gradient(180deg, #FFFFFF, #F3F4F6);
+
+  /* Buttons */
+  --btn-primary-bg: #001F3F;
+  --btn-primary-hover: rgba(209, 213, 219, 0.22); /* subtle silver-gray hover */
+  --btn-primary-text: #FFFFFF;
+  --btn-secondary-bg: #001F3F;
+  --btn-secondary-hover: rgba(209, 213, 219, 0.22);
+  --btn-secondary-text: #FFFFFF;
+
+  /* Section backgrounds */
+  --section-content-bg: #FFFFFF;
+  --section-alternate-bg: #F3F4F6;
+  --section-feature-bg: #001F3F;
+  --footer-bg: #001F3F;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden; /* Prevent horizontal scrollbar */
@@ -157,15 +197,9 @@ body {
   font-family: 'Elsie Swash Caps', cursive;
   font-weight: 400;
   line-height: 1.6;
-  color: #1e3a5f;
-  /* Minimal pastel watercolor: blush pink dominant, powder blue at edges, clean center */
-  background-color: #FFFBFB;
-  background-image:
-    radial-gradient(ellipse 140% 90% at 0% 0%, rgba(212, 229, 244, 0.65) 0%, rgba(244, 198, 207, 0.25) 45%, transparent 70%),
-    radial-gradient(ellipse 120% 100% at 100% 0%, rgba(196, 212, 232, 0.55) 0%, transparent 55%),
-    radial-gradient(ellipse 110% 90% at 0% 100%, rgba(212, 229, 244, 0.5) 0%, transparent 55%),
-    radial-gradient(ellipse 130% 100% at 100% 100%, rgba(184, 212, 232, 0.55) 0%, transparent 55%),
-    radial-gradient(ellipse 90% 70% at 50% 50%, rgba(255, 255, 255, 0.92) 0%, rgba(255, 251, 251, 0.98) 100%);
+  color: var(--color-body-text);
+  background-color: var(--color-soft-bg);
+  background-image: var(--gradient-light-section);
   background-attachment: fixed;
   min-height: 100vh;
 }
@@ -188,7 +222,7 @@ body {
   }
   
   .text-gradient {
-    background: linear-gradient(135deg, #B8D4E8 0%, #1e3a5f 100%);
+    background: var(--gradient-elegant);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -199,21 +233,87 @@ body {
   }
   
   .elegant-border {
-    border: 1px solid rgba(123, 163, 196, 0.25);
+    border: 1px solid rgba(58, 90, 122, 0.25);
   }
   
-  /* Pastel watercolor page background (optional overlay) */
+  /* Light section background - use theme variable */
   .pastel-watercolor-bg {
-    background-color: #FFFBFB;
-    background-image:
-      radial-gradient(ellipse 140% 90% at 0% 0%, rgba(212, 229, 244, 0.6) 0%, rgba(244, 198, 207, 0.2) 45%, transparent 70%),
-      radial-gradient(ellipse 120% 100% at 100% 0%, rgba(196, 212, 232, 0.5) 0%, transparent 55%),
-      radial-gradient(ellipse 110% 90% at 0% 100%, rgba(212, 229, 244, 0.45) 0%, transparent 55%),
-      radial-gradient(ellipse 130% 100% at 100% 100%, rgba(184, 212, 232, 0.5) 0%, transparent 55%),
-      radial-gradient(ellipse 85% 65% at 50% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 251, 251, 1) 100%);
+    background-color: var(--color-soft-bg);
+    background-image: var(--gradient-light-section);
     background-attachment: fixed;
     min-height: 100vh;
   }
+
+  /* Midnight-to-Mist gradient bookends (Hero + Save the Date) */
+  .bg-midnight-mist {
+    background: var(--gradient-midnight-mist);
+  }
+
+  /* Z-pattern section wrappers */
+  .section-navy {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .section-mist {
+    background-color: var(--section-alternate-bg);
+    color: var(--color-navy);
+  }
+
+  /* Buttons: solid navy with subtle silver-gray hover hint */
+  .btn-navy {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+  }
+  .btn-navy:hover {
+    box-shadow: 0 0 0 2px rgba(209, 213, 219, 0.45) inset;
+  }
+
+  /* Hero: CSS-only bokeh light overlay – soft gray radial circles, transparent, vertical fade */
+  .hero-bokeh-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 6;
+    pointer-events: none;
+    background-color: transparent;
+    background-image:
+      radial-gradient(ellipse 55% 45% at 18% 22%, rgba(255, 255, 255, 0.12) 0%, transparent 52%),
+      radial-gradient(ellipse 45% 50% at 82% 18%, rgba(248, 248, 252, 0.1) 0%, transparent 48%),
+      radial-gradient(ellipse 60% 55% at 45% 35%, rgba(255, 255, 255, 0.08) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 45% at 72% 48%, rgba(240, 242, 248, 0.11) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 40% at 25% 58%, rgba(252, 252, 255, 0.07) 0%, transparent 48%),
+      radial-gradient(ellipse 45% 55% at 88% 62%, rgba(255, 255, 255, 0.09) 0%, transparent 52%),
+      radial-gradient(ellipse 55% 50% at 8% 72%, rgba(245, 246, 250, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 42% 48% at 55% 72%, rgba(255, 255, 255, 0.06) 0%, transparent 45%),
+      radial-gradient(ellipse 48% 52% at 32% 42%, rgba(250, 250, 253, 0.07) 0%, transparent 48%),
+      radial-gradient(ellipse 38% 42% at 68% 28%, rgba(255, 255, 255, 0.09) 0%, transparent 42%),
+      radial-gradient(ellipse 50% 45% at 12% 48%, rgba(248, 249, 252, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 44% 50% at 92% 38%, rgba(255, 255, 255, 0.07) 0%, transparent 46%),
+      radial-gradient(ellipse 52% 48% at 38% 65%, rgba(252, 253, 255, 0.08) 0%, transparent 52%),
+      radial-gradient(ellipse 46% 44% at 62% 55%, rgba(255, 255, 255, 0.05) 0%, transparent 44%),
+      radial-gradient(ellipse 40% 55% at 5% 35%, rgba(248, 248, 252, 0.1) 0%, transparent 45%),
+      radial-gradient(ellipse 55% 42% at 78% 78%, rgba(242, 244, 250, 0.07) 0%, transparent 50%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-position: center;
+    -webkit-mask-position: center;
+  }
+
+  /* Theme utility classes */
+  .bg-theme-hero { background: var(--gradient-hero); }
+  .bg-theme-elegant { background: var(--gradient-elegant); }
+  .bg-theme-light { background: var(--gradient-light-section); }
+  .text-theme-heading { color: var(--color-navy); }
+  .text-theme-body { color: var(--color-body-text); }
+  .text-theme-on-dark { color: var(--text-on-dark); }
+  .btn-theme-primary { background: var(--btn-primary-bg); color: var(--btn-primary-text); }
+  .btn-theme-primary:hover { background: var(--btn-primary-hover); }
+  .btn-theme-secondary { background: var(--btn-secondary-bg); color: var(--btn-secondary-text); }
+  .btn-theme-secondary:hover { background: var(--btn-secondary-hover); }
 }
 
 @layer utilities {

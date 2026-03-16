@@ -467,7 +467,7 @@ const Moments = () => {
               className="stylish-calligraphy text-5xl sm:text-6xl md:text-7xl lg:text-8xl inline-block ml-2" 
               style={{ 
                 lineHeight: '1.2',
-                color: '#1e3a5f',
+                color: '#0A1F44',
                 display: 'inline-block',
                 paddingTop: '0.5rem',
                 paddingBottom: '0.5rem'
@@ -544,7 +544,7 @@ const Moments = () => {
              ref={momentsGridRef} 
              className="relative z-20 w-full flex flex-col mt-8"
              style={{
-               backgroundColor: '#f4f5ef'
+               backgroundColor: '#F8FAFC'
              }}
            >
              {/* Title - Full Width at Top */}
@@ -554,7 +554,7 @@ const Moments = () => {
                      backgroundSize: 'cover',
                  backgroundPosition: 'center',
                  backgroundRepeat: 'no-repeat',
-                 color: '#FFFBFB',
+                 color: '#FFFFFF',
                  paddingTop: '4rem',
                  paddingBottom: '4rem',
                  overflow: 'visible',
@@ -584,7 +584,7 @@ const Moments = () => {
                      paddingBottom: '0.5rem'
                    }}
                  >
-                   Moments
+                   Our Moments
                  </span>
                </h2>
                </div>
@@ -597,7 +597,7 @@ const Moments = () => {
                  backgroundSize: '100% 50%',
                  backgroundPosition: 'top center',
                  backgroundRepeat: 'no-repeat',
-                 backgroundColor: '#f4f5ef'
+                 backgroundColor: '#F8FAFC'
                }}
              >
                {/* Horizontal Scrollable Images */}
@@ -715,7 +715,7 @@ const Moments = () => {
             navigate('/')
           }
         }}
-        className="fixed bottom-12 right-6 z-[100] w-14 h-14 bg-burgundy-dark text-white rounded-full shadow-lg hover:bg-burgundy-wine hover:scale-110 transition-all duration-300 flex items-center justify-center group"
+        className="fixed bottom-12 right-6 z-[100] w-14 h-14 bg-[#0A1F44] text-white rounded-full shadow-lg hover:bg-[#2E2E2E] hover:scale-110 transition-all duration-300 flex items-center justify-center group"
         aria-label="Back to home"
         style={{ pointerEvents: 'auto' }}
       >

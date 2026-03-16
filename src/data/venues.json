@@ -1,32 +1,32 @@
 {
   "ceremony": {
-    "name": "National Shrine of the Sacred Heart",
+    "name": "Saint Joseph Church",
     "address": "",
     "city": "",
     "state": "",
     "zip": "",
-    "time": "2:00 PM",
-    "details": "Schedule: 2:00 PM",
-    "googleMapsUrl": "https://share.google/Jrit5Itxx1MZvmdlN",
-    "directionsUrl": "https://share.google/Jrit5Itxx1MZvmdlN",
+    "time": "10:00 AM",
+    "details": "Guest Gathering 9:30 AM · Wedding Ceremony 10:00 AM",
+    "googleMapsUrl": "https://maps.app.goo.gl/UHA2svvihLaBDVp56?g_st=ac",
+    "directionsUrl": "https://maps.app.goo.gl/UHA2svvihLaBDVp56?g_st=ac",
     "images": [
-      "/assets/images/venues/Ceremony.png",
+      "/assets/images/venues/ceremony.png",
       "/assets/images/venues/ceremony-2.jpg"
     ]
   },
   "reception": {
-    "name": "Le Parc Pasay City",
+    "name": "Naguilian Community Center",
     "address": "",
     "city": "",
     "state": "",
     "zip": "",
-    "time": "4:00 PM",
-    "details": "Schedule: 4:00 PM onwards",
+    "time": "11:00 AM",
+    "details": "Reception Lunch 11:00 AM · Lunch ends 3:00 PM",
     "landmark": "",
-    "googleMapsUrl": "https://share.google/D9BCcdO7ib49dqre2",
-    "directionsUrl": "https://share.google/D9BCcdO7ib49dqre2",
+    "googleMapsUrl": "https://maps.app.goo.gl/fdzChmqqbzeNpVC49",
+    "directionsUrl": "https://maps.app.goo.gl/fdzChmqqbzeNpVC49",
     "images": [
-      "/assets/images/venues/Venue.png",
+      "/assets/images/venues/reception.png",
       "/assets/images/venues/reception-2.jpg"
     ]
   }

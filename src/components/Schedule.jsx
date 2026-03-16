@@ -89,27 +89,26 @@ const Schedule = () => {
   }, [])
 
   return (
-    <div className="relative program-section bg-burgundy-wine">
-      {/* Program Title */}
+    <div className="relative program-section" style={{ backgroundColor: 'var(--color-navy, #001F3F)' }}>
+      {/* Program Title - white text on navy */}
       <div ref={scheduleTitleRef} className="relative z-10 mb-12 sm:mb-16 program-title-container">
         <h3 className="px-6 py-3">
           <span 
-            className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-none capitalize program-title-text"
+            className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-none capitalize"
+            style={{ color: '#FFFFFF' }}
           >
             Order of Events
           </span>
         </h3>
-        <p ref={scheduleDescRef} className="text-sm sm:text-base md:text-lg font-albert text-center mt-4 mx-auto px-4 program-description">
+        <p ref={scheduleDescRef} className="text-sm sm:text-base md:text-lg font-albert text-center mt-4 mx-auto px-4" style={{ color: 'var(--color-silver-gray, #D1D5DB)' }}>
           Join us as we celebrate this special day together
         </p>
       </div>
 
-      {/* Vertical Timeline */}
+      {/* Vertical Timeline - white/light elements */}
       <div ref={timelineRef} className="relative max-w-md sm:max-w-xl lg:max-w-2xl w-full mx-auto z-10 timeline-container">
-        {/* Central Vertical Line - Light Grey */}
-        <div ref={lineRef} className="absolute left-1/2 top-0 bottom-0 w-px transform -translate-x-1/2" style={{ backgroundColor: '#1e3a5f', opacity: 0.5 }}></div>
+        <div ref={lineRef} className="absolute left-1/2 top-0 bottom-0 w-px transform -translate-x-1/2" style={{ backgroundColor: 'rgba(255,255,255,0.5)' }}></div>
 
-        {/* Timeline Events */}
         <div ref={eventsRef} className="space-y-12 sm:space-y-16 md:space-y-20 lg:space-y-24">
            {scheduleData.events.map((event, index) => {
              const isLeft = event.position === 'left'
@@ -118,27 +117,27 @@ const Schedule = () => {
                  {isLeft ? (
                    <>
             <div className="w-1/2 pr-6 text-right flex flex-col justify-center">
-              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl alice-regular mb-1 timeline-event-time">
+              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl alice-regular mb-1" style={{ color: '#FFFFFF' }}>
                          {event.time}
               </div>
-              <div className="border-b border-dashed mb-1 opacity-50" style={{ borderColor: '#1e3a5f' }}></div>
-              <div className="text-sm sm:text-base md:text-lg font-albert timeline-event-description">
+              <div className="border-b border-dashed mb-1 opacity-50" style={{ borderColor: 'rgba(255,255,255,0.5)' }}></div>
+              <div className="text-sm sm:text-base md:text-lg font-albert" style={{ color: 'var(--color-silver-gray, #D1D5DB)' }}>
                          {event.description}
               </div>
             </div>
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full z-10" style={{ backgroundColor: '#1e3a5f' }}></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full z-10 bg-white"></div>
                      <div className="w-1/2 pl-6 text-left"></div>
                    </>
                  ) : (
                    <>
                      <div className="w-1/2 pr-6 text-right"></div>
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full z-10" style={{ backgroundColor: '#1e3a5f' }}></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full z-10 bg-white"></div>
             <div className="w-1/2 pl-6 text-left flex flex-col justify-center">
-              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl alice-regular mb-1 timeline-event-time">
+              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl alice-regular mb-1" style={{ color: '#FFFFFF' }}>
                          {event.time}
               </div>
-              <div className="border-b border-dashed mb-1 opacity-50" style={{ borderColor: '#1e3a5f' }}></div>
-              <div className="text-sm sm:text-base md:text-lg font-albert timeline-event-description">
+              <div className="border-b border-dashed mb-1 opacity-50" style={{ borderColor: 'rgba(255,255,255,0.5)' }}></div>
+              <div className="text-sm sm:text-base md:text-lg font-albert" style={{ color: 'var(--color-silver-gray, #D1D5DB)' }}>
                          {event.description}
               </div>
             </div>

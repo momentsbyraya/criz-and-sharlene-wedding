@@ -82,26 +82,14 @@ const SaveTheDateCounter = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-8 sm:py-12 md:py-16 lg:py-20 min-h-[50vh] sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[65vh] flex flex-col justify-center"
+      className="relative w-full py-8 sm:py-12 md:py-16 lg:py-20 min-h-[50vh] -mt-px sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[65vh] flex flex-col justify-center save-the-date-section"
       style={{
-        backgroundColor: '#F4C6CF',
+        backgroundColor: 'transparent',
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat'
       }}
     >
-      {/* SVG Overlay at Top */}
-      <svg className="absolute top-0 left-0 w-full h-32 sm:h-40 md:h-48 z-10 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1200 200" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="topGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(255, 255, 255, 0.9)" />
-            <stop offset="50%" stopColor="rgba(255, 255, 255, 0.5)" />
-            <stop offset="100%" stopColor="rgba(255, 255, 255, 0)" />
-          </linearGradient>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#topGradient)" />
-      </svg>
-
       {/* SVG Overlay at Bottom */}
       <svg className="absolute bottom-0 left-0 w-full h-32 sm:h-40 md:h-48 z-10 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1200 200" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -121,13 +109,23 @@ const SaveTheDateCounter = () => {
         </span>
       </div>
 
+      {/* Countdown container background: soft gray gradient card for legibility */}
+      <div
+        className="absolute inset-0 z-10 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background:
+            'radial-gradient(ellipse at center, rgba(209,213,219,0.92) 0%, rgba(209,213,219,0.72) 35%, rgba(209,213,219,0.18) 70%, rgba(209,213,219,0) 100%)',
+        }}
+      />
+
       <div className="relative z-20 max-w-xs sm:max-w-md lg:max-w-3xl w-full mx-auto px-4 sm:px-6 md:px-8 flex flex-col justify-between min-h-[400px] sm:min-h-[500px] md:min-h-[600px]">
         {/* Title */}
         <div className="text-center">
           <h2
             ref={titleRef}
             className="font-foglihten text-3xl sm:text-4xl md:text-5xl lg:text-6xl capitalize"
-            style={{ color: themeConfig.text.darkBlue }}
+            style={{ color: '#FFFFFF' }}
           >
             Save The Date
           </h2>
@@ -137,37 +135,37 @@ const SaveTheDateCounter = () => {
         <div ref={countdownLabelsRef}>
         <div ref={countdownRef} className="flex justify-center items-center space-x-3 sm:space-x-4 md:space-x-6 px-4">
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#1e3a5f', opacity: 1 }}>
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#FFFFFF', opacity: 1 }}>
               {countdown.days}
             </div>
-            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#1e3a5f', opacity: 0.9 }}>Days</div>
+            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#FFFFFF', opacity: 0.95 }}>Days</div>
           </div>
           
-          <div className="text-2xl sm:text-3xl md:text-4xl font-albert font-thin" style={{ color: '#1e3a5f' }}>:</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl font-albert font-thin" style={{ color: '#FFFFFF' }}>:</div>
           
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#1e3a5f', opacity: 1 }}>
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#FFFFFF', opacity: 1 }}>
               {countdown.hours}
             </div>
-            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#1e3a5f', opacity: 0.9 }}>Hours</div>
+            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#FFFFFF', opacity: 0.95 }}>Hours</div>
           </div>
           
-          <div className="text-2xl sm:text-3xl md:text-4xl font-albert font-thin" style={{ color: '#1e3a5f' }}>:</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl font-albert font-thin" style={{ color: '#FFFFFF' }}>:</div>
           
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#1e3a5f', opacity: 1 }}>
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#FFFFFF', opacity: 1 }}>
               {countdown.minutes}
             </div>
-            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#1e3a5f', opacity: 0.9 }}>Minutes</div>
+            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#FFFFFF', opacity: 0.95 }}>Minutes</div>
           </div>
           
-          <div className="text-2xl sm:text-3xl md:text-4xl font-albert font-thin" style={{ color: '#1e3a5f' }}>:</div>
+          <div className="text-2xl sm:text-3xl md:text-4xl font-albert font-thin" style={{ color: '#FFFFFF' }}>:</div>
           
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#1e3a5f', opacity: 1 }}>
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-albert font-semibold mb-1 countdown-number tabular-nums" style={{ color: '#FFFFFF', opacity: 1 }}>
               {countdown.seconds}
             </div>
-            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#1e3a5f', opacity: 0.9 }}>Seconds</div>
+            <div className="text-xs sm:text-sm font-albert font-medium" style={{ color: '#FFFFFF', opacity: 0.95 }}>Seconds</div>
           </div>
         </div>
         </div>

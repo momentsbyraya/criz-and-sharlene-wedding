@@ -1,16 +1,44 @@
 {
   "faqData": [
     {
-      "question": "Can I bring a plus one?",
-      "answer": "We regret that we are unable to accommodate plus ones due to limited seating. Each seat has been reserved for those on our guest list. We hope you understand."
+      "question": "Gaano na kayo katagal?",
+      "answer": "2 years and counting"
     },
     {
-      "question": "Can I bring kids?",
-      "answer": "We kindly ask that this be an adults-only celebration. We are unable to accommodate children at the venue, with the exception of those in our entourage. We hope you understand and look forward to celebrating with you."
+      "question": "Paano kayo nag kakilala?",
+      "answer": "Training Center Ngani"
     },
     {
-      "question": "Is there a dress code?",
-      "answer": "We encourage guests to dress in semi-formal or smart casual attire. Most importantly, wear something comfortable enough to celebrate with us all day!"
+      "question": "Pwede ba mag white na dress?",
+      "answer": "pwede kung Ikaw ikakasal pag Hindi stick to navy blue at gray nalang"
+    },
+    {
+      "question": "Can we bring kids?",
+      "answer": "You can but limit it to 2 kids na Hindi makulit"
+    },
+    {
+      "question": "Pwede bang perahin nalang ung gift?",
+      "answer": "Pwedeng pwede Po!"
+    },
+    {
+      "question": "Can we leave early?",
+      "answer": "No to eat and run"
+    },
+    {
+      "question": "Buntis naba ung bride?",
+      "answer": "Hindi pa Po"
+    },
+    {
+      "question": "Ano ung Gcash number nyo?",
+      "answer": "O9660716364 Thank you Po"
+    },
+    {
+      "question": "Favorite color ni bride?",
+      "answer": "anything pastel (light colors)"
+    },
+    {
+      "question": "Will there be available parking near the venue?",
+      "answer": "Meron Po wag lang Po truck"
     }
   ]
 }

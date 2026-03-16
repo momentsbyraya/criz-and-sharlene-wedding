@@ -1,35 +1,35 @@
 {
-  "title": "Our Love Story",
-  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nCurabitur pretium tincidunt lacus. Nulla facilisi. Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed augue. Integer eu magna sit amet metus fermentum posuere.\n\nMorbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue.\n\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci. Phasellus consectetuer vestibulum elit.",
+  "title": "Ang Simula ng Ating Istorya",
+  "content": "Ang Masungit at ang Makulit\n\nNagsimula ang lahat sa loob ng apat na sulok ng training center. Sa gitna ng pagod at seryosong focus, kilala ako ng lahat bilang ang \"masungit.\" Hindi ako palakibo, laging nakakunot ang noo, at tila walang oras para sa kahit anong biro.\n\nPero sa gitna ng kainitan Ng tanghaling tapat sa training, hindi ko napigilang mapangiti—isang bihirang pagkakataon na nahuli ng iyong mga mata. Sabi mo, doon ka nahulog.\n\nSa isang ngiting akala mo ay hindi kailanman susulpot.\n\nAng Maling Akala na Nauwi sa Pag-ibig\n\nSa totoo lang, noong una ay hindi ko man lang alam na babae ka pala. Dahil sa suot nating uniporme at sa bilis ng takbo ng mga pangyayari, akala ko ay isa ka lang sa \"mga boys\" na kasabayan ko.\n\nPero hindi mo ako tinantanan. Ang persistence mo—ang laging pagsama sa akin, ang pag-alok ng tulong, at ang hindi mo pagsuko sa kasungitan ko—ang nagbukas ng mga mata ko.\n\nNang malaman ko ang totoo, doon nagsimulang magbago ang lahat. Ang bawat asaran at bawat oras na magkasama tayo ay unti-unting naging malalim na damdamin. Doon ko natuklasan na sa likod ng iyong kakulitan ay ang kaisa-isang tao na kayang magpalambot sa puso ko.\n\nAng Sandigan sa Panahon ng Hirap\n\nHindi naging madali ang lahat. May mga pagkakataong dumaan ako sa matitinding pagsubok—yung mga araw na tila talo ako sa buhay at walang-wala.\n\nPero sa kabila ng aking pagkukulang at sa panahong down na down ako, hindi ka umalis. Nanatili ka sa tabi ko, minahal ako nang buong-buo, at naging lakas ko noong ako mismo ay mahina.\n\nDoon ko nakumpirma sa sarili ko: Ikaw na nga. Ikaw ang \"The One.\"\n\nAng Pangakong Walang Hanggan\n\nPagkalipas ng dalawang taon ng pag-aalaga sa ating relasyon, alam kong hindi ko na kayang mawala ka pa. Kaya naman, lumuhod ako at itinanong ang pinakamahalagang tanong sa buhay ko.\n\nSa gitna ng mga luha at kaba, sumagot ka ng \"Yes.\"\n\nAt heto na tayo ngayon, nagsisimula ng bagong kabanata, bitbit ang mga alaala ng training center at ang pag-ibig na kailanman ay hindi sumuko.",
   "timeline": [
     {
-      "title": "The Beginning",
-      "date": "Family & Work",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "title": "Ang Masungit at ang Makulit",
+      "date": "Sa Training Center",
+      "description": "Nagsimula ang lahat sa loob ng apat na sulok ng training center. Kilala ako bilang ang \"masungit\"—pero sa gitna ng kainitan ng tanghaling tapat, isang ngiti ang nahuli ng iyong mga mata. Sabi mo, doon ka nahulog.",
       "image": "couple2"
     },
     {
-      "title": "Five Months of Courtship",
-      "date": "Patience & Certainty",
-      "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "title": "Ang Maling Akala na Nauwi sa Pag-ibig",
+      "date": "Ang Katotohanan",
+      "description": "Noong una ay akala ko ay isa ka lang sa \"mga boys.\" Pero ang persistence mo—ang laging pagsama, pag-alok ng tulong, at hindi pagsuko sa kasungitan ko—ang nagbukas ng mga mata ko. Doon ko natuklasan na sa likod ng iyong kakulitan ay ang kaisa-isang tao na kayang magpalambot sa puso ko.",
       "image": "couple4"
     },
     {
-      "title": "We Chose Each Other",
-      "date": "September 28, 2024",
-      "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "title": "Ang Sandigan sa Panahon ng Hirap",
+      "date": "Nandyan Ka",
+      "description": "Hindi naging madali ang lahat. May mga araw na tila talo ako sa buhay. Pero sa kabila ng aking pagkukulang, hindi ka umalis. Nanatili ka sa tabi ko at naging lakas ko noong ako mismo ay mahina. Doon ko nakumpirma: Ikaw na nga. Ikaw ang \"The One.\"",
       "image": "couple7"
     },
     {
-      "title": "Tested & Proven",
-      "date": "Stronger Together",
-      "description": "Curabitur pretium tincidunt lacus. Nulla facilisi. Ut convallis, sem sit amet interdum consectetuer.",
+      "title": "Ang Pangakong Walang Hanggan",
+      "date": "Yes",
+      "description": "Pagkalipas ng dalawang taon, lumuhod ako at itinanong ang pinakamahalagang tanong. Sa gitna ng mga luha at kaba, sumagot ka ng \"Yes.\" At heto na tayo ngayon, nagsisimula ng bagong kabanata.",
       "image": "couple2"
     },
     {
-      "title": "Forever",
-      "date": "May 9, 2026",
-      "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.",
+      "title": "Magpakailanman",
+      "date": "May 30, 2026",
+      "description": "Bitbit ang mga alaala ng training center at ang pag-ibig na kailanman ay hindi sumuko. Sa May 30, 2026, sasabihin natin ang \"I do\"—ang pangakong walang hanggan.",
       "image": "couple7"
     }
   ]

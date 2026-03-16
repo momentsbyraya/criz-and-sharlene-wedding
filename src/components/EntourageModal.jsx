@@ -8,11 +8,12 @@ const EntourageModal = ({ isOpen, onClose }) => {
   const modalRef = useRef(null)
   const overlayRef = useRef(null)
   const contentRef = useRef(null)
-  const [fullscreenImage, setFullscreenImage] = useState(null)
+  const [fullscreenImage, setFullscreenImage] = useState(null) // reserved for when images are added
 
-  const entourageImages = [
-    { src: '/assets/images/entourage/entourage1.png', alt: 'Entourage' },
-    { src: '/assets/images/entourage/secondary.png', alt: 'Secondary Sponsors' }
+  /* Placeholder slots until entourage images are added */
+  const entouragePlaceholders = [
+    { label: 'Entourage' },
+    { label: 'Secondary Sponsors' }
   ]
 
   useEffect(() => {
@@ -104,28 +105,28 @@ const EntourageModal = ({ isOpen, onClose }) => {
           </button>
         </div>
         
-        {/* Content - Scrollable: Entourage first, then Secondary */}
+        {/* Content - Placeholder until entourage images are added */}
         <div className="p-6 overflow-y-auto flex-1">
           <div className="flex flex-col gap-6">
-            {entourageImages.map((item, index) => (
-              <button
+            {entouragePlaceholders.map((item, index) => (
+              <div
                 key={index}
-                type="button"
-                className="relative w-full text-left cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 rounded-lg"
-                onClick={() => setFullscreenImage(item)}
+                className="relative w-full rounded-lg border-2 border-dashed border-gray-300 bg-gray-50/80 flex flex-col items-center justify-center min-h-[180px] sm:min-h-[220px]"
+                aria-label={`${item.label} – to be added`}
               >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  className="w-full h-auto rounded-lg object-contain"
-                />
-              </button>
+                <span className="text-gray-400 font-albert text-sm uppercase tracking-wider mb-1">
+                  {item.label}
+                </span>
+                <span className="text-gray-500 font-albert text-base sm:text-lg">
+                  To be added
+                </span>
+              </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Fullscreen image overlay */}
+      {/* Fullscreen overlay – used when entourage images are added later */}
       {fullscreenImage && (
         <div
           className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4"

@@ -1,28 +1,28 @@
 {
   "bride": {
-    "firstName": "Nicole",
-    "lastName": "Delicana",
-    "fullName": "JAN NICOLE DELOS SANTOS DELICANA"
+    "firstName": "Sharlene",
+    "lastName": "Tagal",
+    "fullName": "Sharlene Capuchino Tagal"
   },
   "groom": {
-    "firstName": "Glenn",
-    "lastName": "Caracas",
-    "fullName": "GLENN JOHN MAGNO CARACAS"
+    "firstName": "Criz Mar",
+    "lastName": "Castro",
+    "fullName": "Criz Mar Arreola Castro"
   },
-  "together": "Glenn & Nicole",
-  "nickname": "Glenn and Nicole",
+  "together": "Criz Mar & Sharlene",
+  "nickname": "Criz Mar and Sharlene",
   "wedding": {
-    "date": "2026-05-09",
-    "time": "2:00 PM",
+    "date": "2026-05-30",
+    "time": "10:00 AM",
     "dayOfWeek": "Saturday",
     "month": "May",
-    "day": "9",
+    "day": "30",
     "year": "2026"
   },
   "rsvpDeadline": {
-    "date": "2026-05-04",
-    "month": "May",
-    "day": "4",
+    "date": "2026-04-20",
+    "month": "April",
+    "day": "20",
     "year": "2026"
   }
 }
