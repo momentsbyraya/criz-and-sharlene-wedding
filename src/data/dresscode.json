@@ -1,18 +1,18 @@
 {
   "mainDressCode": {
     "title": "Attire Guide",
-    "description": "Formal attire in Navy and Silver Grey on our special day."
+    "description": "Formal attire in Navy Blue or Gray on our special day."
   },
   "sections": [
     {
       "title": "Principal Sponsors",
       "type": "text",
       "ninong": {
-        "description": "Navy or Silver-Grey formal suit",
+        "description": "Navy Blue or Gray formal suit",
         "colors": ["#001F3F", "#6B7280"]
       },
       "ninang": {
-        "description": "Navy or Silver-Grey long gown",
+        "description": "Navy Blue or Gray long gown",
         "colors": ["#001F3F", "#9CA3AF"]
       },
       "image": "/assets/images/dresscode/principal.png"
@@ -20,8 +20,8 @@
     {
       "title": "Guests",
       "type": "image",
-      "description": "Guests are requested to wear semi-formal or formal attire in shades of Navy and Silver Grey.",
-      "colorPaletteLabel": "Navy / Silver Grey",
+      "description": "Guests are requested to wear semi-formal or formal attire in shades of Navy Blue or Gray.",
+      "colorPaletteLabel": "Navy Blue / Gray",
       "colors": ["#001F3F", "#374151", "#6B7280", "#9CA3AF"],
       "image": "/assets/images/dresscode/guests.png"
     }
