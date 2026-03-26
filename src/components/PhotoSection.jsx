@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gallery } from '../data'
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger)
@@ -17,11 +18,12 @@ const PhotoSection = ({
   const defaultTexts = ['Forever', 'Always', 'Together', 'Love', 'Us']
   const texts = backgroundTexts.length > 0 ? backgroundTexts : defaultTexts
   
-  // Default images if none provided
+  // Default images if none provided (first three prenup photos from gallery.json)
+  const g = gallery.images || []
   const defaultImages = [
-    { src: '/assets/images/couple-1.jpg', alt: 'Photo 1', label: 'Memories' },
-    { src: '/assets/images/couple-2.jpg', alt: 'Photo 2', label: 'Together' },
-    { src: '/assets/images/couple-3.jpg', alt: 'Photo 3', label: 'Love' }
+    { src: g[0] || '', alt: 'Photo 1', label: 'Memories' },
+    { src: g[1] || '', alt: 'Photo 2', label: 'Together' },
+    { src: g[2] || '', alt: 'Photo 3', label: 'Love' }
   ]
   const displayImages = images.length > 0 ? images : defaultImages
   

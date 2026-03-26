@@ -1,18 +1,20 @@
 {
-  "hero": "/assets/images/hero-couple.jpg",
+  "hero": "/assets/images/prenup/1000082213.jpg",
   "couple": {
-    "couple1": "/assets/images/couple-1.jpg",
-    "couple2": "/assets/images/couple-2.jpg",
-    "couple3": "/assets/images/couple-3.jpg",
-    "couple4": "/assets/images/couple-4.jpg",
-    "couple5": "/assets/images/couple-5.jpg",
-    "couple6": "/assets/images/couple-6.jpg",
-    "couple7": "/assets/images/couple-7.jpg",
-    "couple8": "/assets/images/couple-8.jpg"
+    "couple1": "/assets/images/prenup/1000082213.jpg",
+    "couple2": "/assets/images/prenup/1000082413.jpg",
+    "couple3": "/assets/images/prenup/1000082426.jpg",
+    "couple4": "/assets/images/prenup/1000082433%20%281%29.jpg",
+    "couple5": "/assets/images/prenup/retouch_2026032118285008.jpg",
+    "couple6": "/assets/images/prenup/retouch_2026032210125413.jpg",
+    "couple7": "/assets/images/prenup/retouch_2026032211205872.jpg",
+    "couple8": "/assets/images/prenup/retouch_2026032212261766.jpg",
+    "couple9": "/assets/images/prenup/retouch_2026032410423334.jpg",
+    "couple10": "/assets/images/prenup/retouch_2026032410020200.jpg"
   },
   "venues": {
     "church": "/assets/images/venues/church.svg",
     "reception": "/assets/images/venues/reception.svg"
   },
   "favicon": "/assets/images/favicon.png"
-} 
+}

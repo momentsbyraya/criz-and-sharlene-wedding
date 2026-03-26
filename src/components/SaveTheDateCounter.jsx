@@ -2,12 +2,16 @@ import React, { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { getTimeUntilWedding } from '../utils/countdown'
-import { themeConfig } from '../config/themeConfig'
-import { couple } from '../data'
+import { couple, gallery } from '../data'
 import './pages/Details.css'
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger)
+
+const saveTheDateBgUrl =
+  gallery.saveTheDateBackground ||
+  (gallery.images && gallery.images[8]) ||
+  ''
 
 const SaveTheDateCounter = () => {
   const [countdown, setCountdown] = useState(getTimeUntilWedding())
@@ -82,42 +86,35 @@ const SaveTheDateCounter = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-8 sm:py-12 md:py-16 lg:py-20 min-h-[50vh] -mt-px sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[65vh] flex flex-col justify-center save-the-date-section"
-      style={{
-        backgroundColor: 'transparent',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center center',
-        backgroundRepeat: 'no-repeat'
-      }}
+      className="relative w-full overflow-hidden py-8 sm:py-12 md:py-16 lg:py-20 min-h-[50vh] -mt-px sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[65vh] flex flex-col justify-center save-the-date-section"
     >
-      {/* SVG Overlay at Bottom */}
-      <svg className="absolute bottom-0 left-0 w-full h-32 sm:h-40 md:h-48 z-10 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1200 200" xmlns="http://www.w3.org/2000/svg">
+      {/* Full-bleed prenup photo (distinct from hero; warm / scenic works well for Save the Date) */}
+      {saveTheDateBgUrl ? (
+        <div
+          className="absolute inset-0 z-0 bg-cover bg-no-repeat bg-[center_52%] sm:bg-[center_54%] md:bg-[center_56%] lg:bg-[center_58%]"
+          style={{ backgroundImage: `url(${saveTheDateBgUrl})` }}
+          role="img"
+          aria-label="Save the date background"
+        />
+      ) : null}
+
+      {/* Readability: soft navy veil so white title & countdown stay crisp on any photo */}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-[rgba(0,31,63,0.5)] via-[rgba(0,31,63,0.35)] to-[rgba(0,31,63,0.55)]"
+        aria-hidden="true"
+      />
+
+      {/* SVG Overlay at Bottom — blend into light sections below */}
+      <svg className="absolute bottom-0 left-0 w-full h-32 sm:h-40 md:h-48 z-[5] pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1200 200" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="bottomGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <linearGradient id="saveTheDateBottomFade" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="rgba(255, 255, 255, 0)" />
-            <stop offset="50%" stopColor="rgba(255, 255, 255, 0.5)" />
-            <stop offset="100%" stopColor="rgba(255, 255, 255, 0.9)" />
+            <stop offset="50%" stopColor="rgba(255, 255, 255, 0.45)" />
+            <stop offset="100%" stopColor="rgba(255, 255, 255, 0.92)" />
           </linearGradient>
         </defs>
-        <rect width="100%" height="100%" fill="url(#bottomGradient)" />
+        <rect width="100%" height="100%" fill="url(#saveTheDateBottomFade)" />
       </svg>
-
-      {/* Image Here - centered on section (behind content) */}
-      <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
-        <span className="text-white/90 font-medium text-lg sm:text-xl md:text-2xl drop-shadow-md">
-          Image Here
-        </span>
-      </div>
-
-      {/* Countdown container background: soft gray gradient card for legibility */}
-      <div
-        className="absolute inset-0 z-10 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background:
-            'radial-gradient(ellipse at center, rgba(209,213,219,0.92) 0%, rgba(209,213,219,0.72) 35%, rgba(209,213,219,0.18) 70%, rgba(209,213,219,0) 100%)',
-        }}
-      />
 
       <div className="relative z-20 max-w-xs sm:max-w-md lg:max-w-3xl w-full mx-auto px-4 sm:px-6 md:px-8 flex flex-col justify-between min-h-[400px] sm:min-h-[500px] md:min-h-[600px]">
         {/* Title */}

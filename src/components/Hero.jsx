@@ -3,7 +3,8 @@ import { gsap } from 'gsap'
 import { Play, Pause } from 'lucide-react'
 import { couple } from '../data'
 import { venues } from '../data'
-import { themeConfig } from '../config/themeConfig'
+
+const HERO_BG_URL = '/assets/images/prenup/1000082213.jpg'
 
 const Hero = () => {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -143,47 +144,24 @@ const Hero = () => {
       />
       
       <div className="absolute inset-0">
-        <img 
-          src="/assets/images/hero-couple.jpg" 
-          alt="Hero"
-          className="w-full h-full object-cover object-top md:object-[center_18%]"
-          style={{ border: '2px solid var(--color-silver-gray, #D1D5DB)' }}
+        {/* Full-bleed photo as CSS background (not washed out by a white overlay) */}
+        <div
+          data-hero="true"
+          role="img"
+          aria-label="Criz and Sharlene"
+          className="absolute inset-0 z-0 bg-cover bg-no-repeat bg-[center_56%] sm:bg-[center_58%] md:bg-[center_60%] lg:bg-[center_62%] xl:bg-[center_64%]"
+          style={{ backgroundImage: `url(${HERO_BG_URL})` }}
         />
-        {/* Hero: navy at top/bottom (slightly transparent), white in center */}
-        <div 
-          className="absolute inset-0 z-[5]" 
-          style={{ 
-            background: 'linear-gradient(180deg, rgba(0,31,63,0.82) 0%, rgba(0,31,63,0.82) 12%, rgba(255,255,255,0.96) 28%, #FFFFFF 50%, rgba(255,255,255,0.96) 72%, rgba(0,31,63,0.82) 88%, rgba(0,31,63,0.82) 100%)',
-            opacity: 0.98
+        {/* Light navy vignette at top/bottom only — keeps names & date readable; center stays full photo */}
+        <div
+          className="absolute inset-0 z-[5] pointer-events-none"
+          style={{
+            background:
+              'linear-gradient(180deg, rgba(0,31,63,0.55) 0%, rgba(0,31,63,0.18) 22%, transparent 42%, transparent 58%, rgba(0,31,63,0.2) 78%, rgba(0,31,63,0.55) 100%)',
           }}
           aria-hidden
         />
-        {/* CSS-only bokeh: soft gray radial circles, vertical mask fade */}
-        <div className="hero-bokeh-overlay" aria-hidden />
-        <span className="absolute inset-0 flex items-center justify-center text-[var(--color-navy)] font-medium text-lg sm:text-xl md:text-2xl pointer-events-none z-10 drop-shadow-md">
-          Image Here
-        </span>
       </div>
-      
-      {/* Navy fade at top */}
-      <svg 
-        className="absolute top-0 left-0 w-full h-64 sm:h-80 md:h-96 lg:h-[28rem] z-10 pointer-events-none" 
-        preserveAspectRatio="none" 
-        viewBox="0 0 1200 400" 
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <filter id="blur">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
-          </filter>
-          <linearGradient id="topGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(0, 31, 63, 0.78)" />
-            <stop offset="50%" stopColor="rgba(0, 31, 63, 0.38)" />
-            <stop offset="100%" stopColor="rgba(0, 31, 63, 0)" />
-          </linearGradient>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#topGradient)" filter="url(#blur)" />
-      </svg>
       
       {/* Couple Names, Date and Venue at Top */}
       <div className="absolute top-0 left-0 right-0 pt-8 sm:pt-12 md:pt-16 lg:pt-20 px-4 sm:px-6 md:px-8 z-20">
@@ -213,26 +191,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* Navy fade at bottom */}
-      <svg 
-        className="absolute bottom-0 left-0 w-full h-64 sm:h-80 md:h-96 lg:h-[28rem] z-10 pointer-events-none" 
-        preserveAspectRatio="none" 
-        viewBox="0 0 1200 400" 
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <filter id="blurBottom">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
-          </filter>
-          <linearGradient id="bottomGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(0, 31, 63, 0)" />
-            <stop offset="50%" stopColor="rgba(0, 31, 63, 0.38)" />
-            <stop offset="100%" stopColor="rgba(0, 31, 63, 0.78)" />
-          </linearGradient>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#bottomGradient)" filter="url(#blurBottom)" />
-      </svg>
 
       {/* Play/Pause Music Button - Bottom Right */}
       <button

@@ -9,6 +9,7 @@ import Loader from './components/Loader'
 import OpeningScreen from './components/OpeningScreen'
 import ScrollToTop from './components/ScrollToTop'
 import { AudioProvider, useAudio } from './contexts/AudioContext'
+import { gallery } from './data'
 
 const Details = lazy(() => import('./components/pages/Details'))
 const Entourage = lazy(() => import('./components/pages/Entourage'))
@@ -24,15 +25,12 @@ function AppContent() {
   // Preload critical images and resources
   useEffect(() => {
     const preloadImages = async () => {
+      const prenup = gallery.images || []
       const criticalImages = [
         // Hero image - most important
-        '/assets/images/hero-couple.jpg',  // Hero image
-        // Sample images used on home page
-        '/assets/images/couple-1.jpg',  // Polaroid image
-        '/assets/images/couple-2.jpg',  // RSVP container
-        '/assets/images/couple-3.jpg',  // Moments polaroid 1
-        '/assets/images/couple-4.jpg',  // Moments polaroid 2
-        '/assets/images/couple-5.jpg',  // Save The Date countdown background
+        '/assets/images/prenup/1000082213.jpg',  // Hero image
+        // Prenup gallery (home / moments / details)
+        ...(prenup.slice(0, 5)),
         // NavIndex graphics - all decorative elements
         '/assets/images/graphics/dusty-blue.png',
         '/assets/images/graphics/flower-1.png',
@@ -114,12 +112,11 @@ function AppContent() {
           const checkHero = () => {
             // Check if we're on the home page
             if (window.location.pathname === '/' || window.location.pathname === '') {
-              // Look for hero image
-              const heroImg = document.querySelector('img[src="/assets/images/hero-couple.jpg"]')
-              if (heroImg) {
-                // Check if image is loaded and visible
+              // Hero may be <img> or a div with CSS background-image
+              const heroEl = document.querySelector('[data-hero="true"]')
+              if (heroEl instanceof HTMLImageElement) {
+                const heroImg = heroEl
                 if (heroImg.complete && heroImg.naturalHeight > 0) {
-                  // Use Intersection Observer to check if hero is visible
                   const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                       if (entry.isIntersecting) {
@@ -128,24 +125,33 @@ function AppContent() {
                       }
                     })
                   }, { threshold: 0.1 })
-                  
                   observer.observe(heroImg)
-                  
-                  // Fallback timeout
                   setTimeout(() => {
                     observer.disconnect()
                     resolve()
                   }, 2000)
                 } else {
-                  // Image not loaded yet, wait for load event
                   heroImg.onload = () => {
                     setTimeout(() => resolve(), 100)
                   }
-                  heroImg.onerror = () => resolve() // Resolve even on error
-                  setTimeout(() => resolve(), 2000) // Fallback timeout
+                  heroImg.onerror = () => resolve()
+                  setTimeout(() => resolve(), 2000)
                 }
+              } else if (heroEl) {
+                const observer = new IntersectionObserver((entries) => {
+                  entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                      observer.disconnect()
+                      resolve()
+                    }
+                  })
+                }, { threshold: 0.1 })
+                observer.observe(heroEl)
+                setTimeout(() => {
+                  observer.disconnect()
+                  resolve()
+                }, 2000)
               } else {
-                // Hero image not found, resolve anyway
                 resolve()
               }
             } else {

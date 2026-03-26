@@ -4,7 +4,7 @@
 // This file imports data from JSON files to avoid duplication
 // Update the JSON files in src/data/ to modify wedding information
 
-import { couple, venues } from '../data'
+import { couple, venues, gallery } from '../data'
 
 export const weddingConfig = {
   // Basic Wedding Information - imported from couple.json
@@ -40,13 +40,8 @@ export const weddingConfig = {
 
   // Photos and Media
   photos: {
-    hero: "/assets/images/hero-couple.jpg",
-    gallery: [
-      "/assets/images/couple-1.jpg",
-      "/assets/images/couple-2.jpg",
-      "/assets/images/couple-3.jpg",
-      "/assets/images/couple-4.jpg"
-    ],
+    hero: "/assets/images/prenup/1000082213.jpg",
+    gallery: (gallery.images || []).slice(0, 4),
     background: "/assets/images/background-pattern.jpg"
   },
 

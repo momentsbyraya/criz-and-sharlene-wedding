@@ -69,10 +69,16 @@ const Home = ({ onOpenRSVP }) => {
 
           {/* RSVP Section */}
           <RSVPSection onOpenRSVP={onOpenRSVP} />
+        </div>
+      </div>
 
-          {/* Love Story Section */}
-          <LoveStory />
+      {/* Love Story: full-width within navy (not constrained by RSVP column) */}
+      <div className="relative z-20 w-full section-navy px-4 sm:px-6 lg:px-8">
+        <LoveStory />
+      </div>
 
+      <div className="relative z-20 flex items-center justify-center section-navy">
+        <div className="max-w-xs sm:max-w-md lg:max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8">
           <hr className="section-separator-navy" aria-hidden />
 
           {/* Gallery Section */}

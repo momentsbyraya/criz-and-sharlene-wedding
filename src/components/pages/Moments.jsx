@@ -5,9 +5,17 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowLeft, ArrowRight, X, ChevronLeft, ChevronRight, Play } from 'lucide-react'
 import { useAudio } from '../../contexts/AudioContext'
+import { gallery } from '../../data'
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger)
+
+const prenupImages = gallery.images ?? []
+
+const storyHeroSrc = prenupImages[0] ?? ''
+const ferlStorySrc = prenupImages[1] ?? storyHeroSrc
+const photo2013Src = prenupImages[2] ?? storyHeroSrc
+const endPhoto4Src = prenupImages[3] ?? storyHeroSrc
 
 const Moments = () => {
   const navigate = useNavigate()
@@ -47,33 +55,9 @@ const Moments = () => {
   const [startXThreePhotos, setStartXThreePhotos] = useState(0)
   const [scrollLeftThreePhotos, setScrollLeftThreePhotos] = useState(0)
 
-  // Sample images (replacing prenup)
-  const sampleImages = [
-    '/assets/images/couple-1.jpg',
-    '/assets/images/couple-2.jpg',
-    '/assets/images/couple-3.jpg',
-    '/assets/images/couple-4.jpg',
-    '/assets/images/couple-5.jpg',
-    '/assets/images/couple-6.jpg',
-    '/assets/images/couple-7.jpg',
-    '/assets/images/couple-8.jpg'
-  ]
-
-  // Images array for the lightbox (same order)
-  const lightboxImages = [...sampleImages]
-
-  // Gallery images for horizontal scroll
-  const galleryImages = [...sampleImages]
-
-  // Polaroid images for the scrollable container
-  const polaroidImages = [
-    { src: '/assets/images/couple-1.jpg', rotation: -5, index: 0 },
-    { src: '/assets/images/couple-2.jpg', rotation: 5, index: 1 },
-    { src: '/assets/images/couple-3.jpg', rotation: -3, index: 2 },
-    { src: '/assets/images/couple-4.jpg', rotation: 3, index: 3 },
-    { src: '/assets/images/couple-5.jpg', rotation: -4, index: 4 },
-    { src: '/assets/images/couple-6.jpg', rotation: 2, index: 5 }
-  ]
+  // Prenup gallery (same order as src/data/gallery.json)
+  // Prevent duplicate usage: Save-the-Date background should only appear there
+  const galleryImages = prenupImages.filter((src) => src !== gallery.saveTheDateBackground)
 
   useEffect(() => {
     // Set initial hidden states to prevent glimpse
@@ -445,7 +429,7 @@ const Moments = () => {
         <div className="relative z-20 w-full flex flex-col items-center">
           <div className="relative w-screen group cursor-pointer" onClick={handleVideoOpen}>
             <img 
-              src="/assets/images/couple-1.jpg" 
+              src={storyHeroSrc} 
               alt="Index image" 
               className="w-full h-auto object-cover"
               loading="eager"
@@ -492,14 +476,14 @@ const Moments = () => {
            {/* FERL1949 Photo */}
            <div ref={ferl1949Ref} className="relative z-20 w-full max-w-2xl px-8 sm:px-12 md:px-8 lg:px-16 mt-8 flex justify-center">
              <img
-               src="/assets/images/couple-2.jpg"
+               src={ferlStorySrc}
                alt="Love story photo"
                className="w-full h-auto object-cover cursor-pointer"
                loading="lazy"
                decoding="async"
                onClick={() => {
-                 const imageIndex = galleryImages.indexOf('/assets/images/couple-2.jpg')
-                 setSelectedImage('/assets/images/couple-2.jpg')
+                 const imageIndex = galleryImages.indexOf(ferlStorySrc)
+                 setSelectedImage(ferlStorySrc)
                  setSelectedImageIndex(imageIndex !== -1 ? imageIndex : 0)
                }}
              />
@@ -517,14 +501,14 @@ const Moments = () => {
             {/* FERL2103 Photo */}
             <div ref={photo2013Ref} className="relative z-20 w-full max-w-2xl px-8 sm:px-12 md:px-8 lg:px-16 mt-8 flex justify-center mx-auto">
               <img
-                src="/assets/images/couple-3.jpg"
+                src={photo2013Src}
                 alt="2013 Photo"
                 className="w-full h-auto object-cover cursor-pointer"
                 loading="lazy"
                 decoding="async"
                 onClick={() => {
-                  const imageIndex = galleryImages.indexOf('/assets/images/couple-3.jpg')
-                  setSelectedImage('/assets/images/couple-3.jpg')
+                  const imageIndex = galleryImages.indexOf(photo2013Src)
+                  setSelectedImage(photo2013Src)
                   setSelectedImageIndex(imageIndex !== -1 ? imageIndex : 0)
                 }}
               />
@@ -678,14 +662,14 @@ const Moments = () => {
            <div ref={endPhoto4Ref} className="relative z-20 w-screen mt-8">
              <div className="relative">
                <img
-                 src="/assets/images/couple-4.jpg"
+                 src={endPhoto4Src}
                  alt="Love story photo"
                  className="w-full h-auto object-cover cursor-pointer"
                  loading="lazy"
                  decoding="async"
                  onClick={() => {
-                   const imageIndex = galleryImages.indexOf('/assets/images/couple-4.jpg')
-                   setSelectedImage('/assets/images/couple-4.jpg')
+                   const imageIndex = galleryImages.indexOf(endPhoto4Src)
+                   setSelectedImage(endPhoto4Src)
                    setSelectedImageIndex(imageIndex !== -1 ? imageIndex : 0)
                  }}
                />

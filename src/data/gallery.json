@@ -1,13 +1,20 @@
 {
   "title": "Gallery",
+  "saveTheDateBackground": "/assets/images/prenup/retouch_2026032412430647.jpg",
   "images": [
-    "/assets/images/couple-1.jpg",
-    "/assets/images/couple-2.jpg",
-    "/assets/images/couple-3.jpg",
-    "/assets/images/couple-4.jpg",
-    "/assets/images/couple-5.jpg",
-    "/assets/images/couple-6.jpg",
-    "/assets/images/couple-7.jpg",
-    "/assets/images/couple-8.jpg"
+    "/assets/images/prenup/1000082264.jpg",
+    "/assets/images/prenup/1000082413.jpg",
+    "/assets/images/prenup/1000082426.jpg",
+    "/assets/images/prenup/1000082433%20%281%29.jpg",
+    "/assets/images/prenup/retouch_2026032118285008.jpg",
+    "/assets/images/prenup/retouch_2026032210125413.jpg",
+    "/assets/images/prenup/retouch_2026032211205872.jpg",
+    "/assets/images/prenup/retouch_2026032212261766.jpg",
+    "/assets/images/prenup/retouch_2026032410423334.jpg",
+    "/assets/images/prenup/1000082254.jpg",
+    "/assets/images/prenup/1000082213.jpg",
+    "/assets/images/prenup/retouch_2026032120030382.jpg",
+    "/assets/images/prenup/retouch_2026032120574325.jpg",
+    "/assets/images/prenup/retouch_2026032410020200.jpg"
   ]
 }

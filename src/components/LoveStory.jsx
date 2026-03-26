@@ -3,8 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { createPortal } from 'react-dom'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
-import { loveStory } from '../data'
-import { themeConfig } from '../config/themeConfig'
+import { loveStory, gallery } from '../data'
 import './pages/Details.css'
 
 // Register ScrollTrigger plugin
@@ -29,14 +28,7 @@ const LoveStory = () => {
   const CHUNK_SPLITS = [0, 3, 6, 8, 11, 14, paragraphs.length]
   const getChunk = (i) => paragraphs.slice(CHUNK_SPLITS[i], CHUNK_SPLITS[i + 1])
 
-  const polaroidImages = [
-    '/assets/images/couple-1.jpg',
-    '/assets/images/couple-2.jpg',
-    '/assets/images/couple-3.jpg',
-    '/assets/images/couple-4.jpg',
-    '/assets/images/couple-5.jpg',
-    '/assets/images/couple-6.jpg',
-  ]
+  const polaroidImages = (gallery.images || []).slice(0, 6)
 
   useEffect(() => {
     if (titleRef.current) {
@@ -199,8 +191,11 @@ const LoveStory = () => {
   }
 
   return (
-    <div ref={sectionRef} className="relative pb-8 sm:pb-12 md:pb-16">
-      <div className="text-center mb-12 sm:mb-16">
+    <div
+      ref={sectionRef}
+      className="relative w-full max-w-5xl mx-auto pb-10 sm:pb-12 md:pb-16 pt-6 sm:pt-8 md:pt-10"
+    >
+      <div className="text-center mb-10 sm:mb-14 md:mb-16">
         {/* Heart Image */}
         <div className="flex justify-center mb-4">
           <img 
@@ -218,7 +213,7 @@ const LoveStory = () => {
         </h3>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8">
+      <div className="max-w-5xl mx-auto w-full">
         {/* Teaser: 1 polaroid + short story hook */}
         <div className="love-story-teaser flex flex-col sm:flex-row gap-6 sm:gap-8 items-center justify-center text-left mb-8 sm:mb-10">
           <div className="flex-shrink-0">
