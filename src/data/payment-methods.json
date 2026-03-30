@@ -1,13 +1,23 @@
 {
   "paymentMethods": [
     {
-      "name": "Bank of the Philippine Islands",
-      "image": "/assets/images/monetary-gifts/BPIQR_BPI.png",
+      "name": "Criz",
+      "image": "/assets/images/qr/criz.qr.png",
       "accountInfo": {
-        "provider": "BPI",
+        "provider": "Landbank",
         "accountNumber": "",
         "accountName": "",
-        "qrCode": "/assets/images/monetary-gifts/BPIQR_BPI.png"
+        "qrCode": "/assets/images/qr/criz.qr.png"
+      }
+    },
+    {
+      "name": "Sharlene",
+      "image": "/assets/images/qr/qr.sharlene.png",
+      "accountInfo": {
+        "provider": "Landbank",
+        "accountNumber": "",
+        "accountName": "",
+        "qrCode": "/assets/images/qr/qr.sharlene.png"
       }
     }
   ]

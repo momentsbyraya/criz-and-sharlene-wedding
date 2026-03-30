@@ -1,24 +1,32 @@
 {
   "faqData": [
     {
+      "question": "Do you have a gift preference?",
+      "answer": "As love is what this day is all about, your presence is one we could not celebrate without, but, if you desire to give nonetheless, a monetary gift is one we suggest as we will begin our new life together."
+    },
+    {
+      "question": "Can I bring a plus one?",
+      "answer": "Please refer to the number of seat/s allotted for you. As much as we want to celebrate with everybody, unfortunately, we can only accommodate a limited number of guests due to venue and budget restrictions."
+    },
+    {
+      "question": "Can I bring my kid(s) with me?",
+      "answer": "Children are really adorable but our event is an adult-only event. Only children who are part of the entourage are included in both ceremony and reception."
+    },
+    {
+      "question": "What if I did not RSVP but will attend the wedding?",
+      "answer": "NO RSVP = NO SEAT. We will assign your seats, so we strongly suggest you do the RSVP on or before April 25, 2026, or you may contact and inform us ahead of time. In any case that you may have said \"Yes\" to our RSVP but suddenly won't be able to attend, please let us know ASAP so we can accommodate any changes."
+    },
+    {
+      "question": "Is it okay to wear white?",
+      "answer": "We kindly ask guests to avoid wearing white."
+    },
+    {
       "question": "Gaano na kayo katagal?",
       "answer": "2 years and counting"
     },
     {
       "question": "Paano kayo nag kakilala?",
       "answer": "Training Center Ngani"
-    },
-    {
-      "question": "Pwede ba mag white na dress?",
-      "answer": "pwede kung Ikaw ikakasal pag Hindi stick to navy blue at gray nalang"
-    },
-    {
-      "question": "Can we bring kids?",
-      "answer": "You can but limit it to 2 kids na Hindi makulit"
-    },
-    {
-      "question": "Pwede bang perahin nalang ung gift?",
-      "answer": "Pwedeng pwede Po!"
     },
     {
       "question": "Can we leave early?",

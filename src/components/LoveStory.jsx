@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { createPortal } from 'react-dom'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
-import { loveStory, gallery } from '../data'
+import { loveStory } from '../data'
 import './pages/Details.css'
 
 // Register ScrollTrigger plugin
@@ -28,7 +28,15 @@ const LoveStory = () => {
   const CHUNK_SPLITS = [0, 3, 6, 8, 11, 14, paragraphs.length]
   const getChunk = (i) => paragraphs.slice(CHUNK_SPLITS[i], CHUNK_SPLITS[i + 1])
 
-  const polaroidImages = (gallery.images || []).slice(0, 6)
+  // Polaroid order matters: 1 = top, 6 = bottom (used by the modal layout)
+  const polaroidImages = [
+    '/assets/images/prenup/1st%20-%20our%20story.jpg',
+    '/assets/images/prenup/2nd%20-%20our%20story%20(sharlene%20POV).jpg',
+    '/assets/images/prenup/3rd%20-%20our%20story(sharlene%20POV).jpg',
+    '/assets/images/prenup/4th%20-%20our%20story%20(criz%20POV).jpg',
+    '/assets/images/prenup/5th%20-%20our%20story(criz%20POV).jpg',
+    '/assets/images/prenup/6th%20-%20our%20story.jpg',
+  ]
 
   useEffect(() => {
     if (titleRef.current) {

@@ -55,9 +55,18 @@ const Moments = () => {
   const [startXThreePhotos, setStartXThreePhotos] = useState(0)
   const [scrollLeftThreePhotos, setScrollLeftThreePhotos] = useState(0)
 
-  // Prenup gallery (same order as src/data/gallery.json)
-  // Prevent duplicate usage: Save-the-Date background should only appear there
-  const galleryImages = prenupImages.filter((src) => src !== gallery.saveTheDateBackground)
+  // Our Moments Gallery images (requested order)
+  // 1 = Slide 1 (top) ... 8 = Slide 14
+  const galleryImages = [
+    '/assets/images/prenup/Slide%201.jpg',
+    '/assets/images/prenup/Slide%202.jpg',
+    '/assets/images/prenup/Slide%203.jpg',
+    '/assets/images/prenup/Slide%204.jpg',
+    '/assets/images/prenup/Slide%205.jpg',
+    '/assets/images/prenup/Slide%206.jpg',
+    '/assets/images/prenup/Slide%208.jpg',
+    '/assets/images/prenup/Slide%2014.jpg',
+  ]
 
   useEffect(() => {
     // Set initial hidden states to prevent glimpse

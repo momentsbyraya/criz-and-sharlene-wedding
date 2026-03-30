@@ -8,6 +8,7 @@ import DynamicTitle from './components/DynamicTitle'
 import Loader from './components/Loader'
 import OpeningScreen from './components/OpeningScreen'
 import ScrollToTop from './components/ScrollToTop'
+import Watermark from './components/Watermark'
 import { AudioProvider, useAudio } from './contexts/AudioContext'
 import { gallery } from './data'
 
@@ -190,6 +191,7 @@ function AppContent() {
     <div className="App min-h-screen pastel-watercolor-bg">
       <DynamicTitle />
       <ScrollToTop />
+      <Watermark />
       {/* Loader - shows while preloading */}
       {isLoading && (
         <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-white">

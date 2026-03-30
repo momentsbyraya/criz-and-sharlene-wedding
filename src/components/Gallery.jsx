@@ -3,7 +3,6 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { createPortal } from 'react-dom'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
-import { gallery as galleryData } from '../data'
 import './pages/Details.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -31,9 +30,17 @@ const Gallery = () => {
   const contentRef = useRef(null)
   const imageRefs = useRef([])
 
-  const galleryImages = (galleryData.images || []).filter(
-    (src) => src !== galleryData.saveTheDateBackground
-  )
+  // Gallery Section images (explicit order requested)
+  const galleryImages = [
+    '/assets/images/prenup/Slide%201.jpg',
+    '/assets/images/prenup/Slide%202.jpg',
+    '/assets/images/prenup/Slide%203.jpg',
+    '/assets/images/prenup/Slide%204.jpg',
+    '/assets/images/prenup/Slide%205.jpg',
+    '/assets/images/prenup/Slide%206.jpg',
+    '/assets/images/prenup/Slide%208.jpg',
+    '/assets/images/prenup/Slide%2014.jpg',
+  ]
 
   useEffect(() => {
     if (titleRef.current) {
@@ -147,20 +154,19 @@ const Gallery = () => {
       </div>
 
       <div className="max-w-xs sm:max-w-md lg:max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
-        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4" style={{ gridAutoRows: '1fr' }}>
+        <div className="grid grid-cols-3 grid-flow-dense gap-2 sm:gap-3 md:gap-4" style={{ gridAutoRows: '1fr' }}>
           {galleryImages.map((image, index) => {
             const isFirst = index === 0
-            const isLast = index === galleryImages.length - 1
-            // Match first & last: full row (span 3) + same max height + same crop behavior
-            const fullWidthBanner = isFirst || isLast
+            // Only the first tile spans the full row; the last tile should pack beside the previous one.
+            const fullWidthBanner = isFirst
             const gridColumn = fullWidthBanner
               ? 'span 3'
               : gridColumnPattern[index % gridColumnPattern.length]
             const tileClass =
               'cursor-pointer overflow-hidden max-h-[150px] lg:max-h-[250px] rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(0,31,63,0.45)] focus-visible:ring-offset-2'
-            const imagePositionClass = image.includes('1000082213.jpg')
+            const imagePositionClass = isFirst
               ? 'object-[50%_78%] sm:object-[50%_78%]'
-              : 'object-[50%_32%] sm:object-center'
+              : 'object-[50%_70%] sm:object-[50%_65%]'
             return (
               <div
                 key={`${image}-${index}`}

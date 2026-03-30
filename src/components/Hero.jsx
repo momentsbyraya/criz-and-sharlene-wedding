@@ -1,15 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
-import { Play, Pause } from 'lucide-react'
 import { couple } from '../data'
-import { venues } from '../data'
 
-const HERO_BG_URL = '/assets/images/prenup/1000082213.jpg'
+const HERO_POSTER_URL = '/assets/images/prenup/1000082213.jpg'
+// Keep spaces URL-encoded so the browser can reliably load the file.
+const HERO_VIDEO_URL = '/assets/images/graphics/1st%20part.mp4'
 
 const Hero = () => {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const audioRef = useRef(null)
-  
   // Refs for animated elements
   const groomFirstNameRef = useRef(null)
   const groomLastNameRef = useRef(null)
@@ -17,34 +14,18 @@ const Hero = () => {
   const brideFirstNameRef = useRef(null)
   const brideLastNameRef = useRef(null)
   const dateRef = useRef(null)
-  const venueRef = useRef(null)
-  const playButtonRef = useRef(null)
 
   const formatDate = () => {
     const { day, year, month } = couple.wedding
-    // Format as MONTH.DD.YYYY (APRIL.07.2026)
-    const monthUpper = month.toUpperCase() // Get month name in uppercase (APRIL)
-    const dayFormatted = String(day).padStart(2, '0') // Ensure 2 digits (07)
-    return `${monthUpper}.${dayFormatted}.${year}`
+    // Format as "May 30, 2026"
+    return `${month} ${day}, ${year}`
   }
 
   // Hero display names: no middle names (Arreola, Capuchino) for a cleaner look
   const groomName = { first: 'Criz Mar', last: 'Castro' }
   const brideName = { first: 'Sharlene', last: 'Tagal' }
 
-  const venueName = venues.reception.name
-
-  const togglePlayPause = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause()
-        setIsPlaying(false)
-      } else {
-        audioRef.current.play()
-        setIsPlaying(true)
-      }
-    }
-  }
+  // Note: venue line removed from bottom date section per request.
 
   useEffect(() => {
     // Set initial hidden states
@@ -54,8 +35,6 @@ const Hero = () => {
     gsap.set(brideFirstNameRef.current, { opacity: 0, y: 30 })
     gsap.set(brideLastNameRef.current, { opacity: 0, y: 30 })
     gsap.set(dateRef.current, { opacity: 0, y: 20 })
-    gsap.set(venueRef.current, { opacity: 0, y: 20 })
-    gsap.set(playButtonRef.current, { opacity: 0, scale: 0.8 })
 
     // Create timeline for sequential animations
     const tl = gsap.timeline({ delay: 0.3 })
@@ -112,45 +91,28 @@ const Hero = () => {
       }, "-=0.2")
     }
 
-    // 5. Venue
-    if (venueRef.current) {
-      tl.to(venueRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        ease: "power2.out"
-      }, "-=0.3")
-    }
-
-    // 6. Play button
-    if (playButtonRef.current) {
-      tl.to(playButtonRef.current, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.5,
-        ease: "back.out(1.7)"
-      }, "-=0.2")
-    }
+    // (No play button on purpose)
   }, [])
 
   return (
     <div className="relative w-full" style={{ height: '100vh' }}>
       {/* Audio Element */}
-      <audio
-        ref={audioRef}
-        src="/assets/music/Make It With You - Ben&Ben (Lyrics).mp3"
-        loop
-        onEnded={() => setIsPlaying(false)}
-      />
+      {/* Music is handled globally by `AudioProvider` (started when envelope opens) */}
       
       <div className="absolute inset-0">
-        {/* Full-bleed photo as CSS background (not washed out by a white overlay) */}
-        <div
+        {/* Full-bleed looping video background */}
+        <video
           data-hero="true"
-          role="img"
-          aria-label="Criz and Sharlene"
-          className="absolute inset-0 z-0 bg-cover bg-no-repeat bg-[center_56%] sm:bg-[center_58%] md:bg-[center_60%] lg:bg-[center_62%] xl:bg-[center_64%]"
-          style={{ backgroundImage: `url(${HERO_BG_URL})` }}
+          aria-hidden
+          tabIndex={-1}
+          className="absolute inset-0 z-0 w-full h-full object-cover object-center"
+          src={HERO_VIDEO_URL}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={HERO_POSTER_URL}
         />
         {/* Light navy vignette at top/bottom only — keeps names & date readable; center stays full photo */}
         <div
@@ -192,31 +154,11 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Play/Pause Music Button - Bottom Right */}
-      <button
-        type="button"
-        ref={playButtonRef}
-        onClick={togglePlayPause}
-        className="absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8 z-30 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white hover:bg-[var(--color-silver-gray)] transition-colors duration-200 flex items-center justify-center shadow-lg cursor-pointer"
-        style={{ pointerEvents: 'auto' }}
-        aria-label={isPlaying ? 'Pause music' : 'Play music'}
-      >
-        {isPlaying ? (
-          <Pause size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-[var(--color-navy)]" fill="currentColor" />
-        ) : (
-          <Play size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-[var(--color-navy)] ml-1" fill="currentColor" />
-        )}
-      </button>
-
       {/* Date and Venue at Bottom Center */}
       <div className="absolute bottom-0 left-0 right-0 pb-8 sm:pb-12 md:pb-16 lg:pb-20 px-4 sm:px-6 md:px-8 z-20">
         <div className="max-w-4xl mx-auto text-center">
           <p ref={dateRef} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-foglihten" style={{ color: '#FFFFFF' }}>
               {formatDate()}
-            </p>
-          {/* Venue - white text */}
-          <p ref={venueRef} className="text-xs sm:text-sm md:text-base font-albert mt-2 sm:mt-3" style={{ color: 'var(--color-silver-gray, #D1D5DB)' }}>
-              {venueName}
             </p>
         </div>
       </div>
