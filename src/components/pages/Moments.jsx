@@ -17,6 +17,17 @@ const ferlStorySrc = prenupImages[1] ?? storyHeroSrc
 const photo2013Src = prenupImages[2] ?? storyHeroSrc
 const endPhoto4Src = prenupImages[3] ?? storyHeroSrc
 
+const momentsFaceFocusPositions = [
+  '50% 58%',
+  '50% 34%',
+  '50% 36%',
+  '50% 28%',
+  '50% 34%',
+  '50% 62%',
+  '50% 56%',
+  '50% 38%',
+]
+
 const Moments = () => {
   const navigate = useNavigate()
   const { pause, play, isPlaying, audioRef } = useAudio()
@@ -58,14 +69,14 @@ const Moments = () => {
   // Our Moments Gallery images (requested order)
   // 1 = Slide 1 (top) ... 8 = Slide 14
   const galleryImages = [
-    '/assets/images/prenup/Slide%201.jpg',
-    '/assets/images/prenup/Slide%202.jpg',
-    '/assets/images/prenup/Slide%203.jpg',
-    '/assets/images/prenup/Slide%204.jpg',
-    '/assets/images/prenup/Slide%205.jpg',
-    '/assets/images/prenup/Slide%206.jpg',
-    '/assets/images/prenup/Slide%208.jpg',
-    '/assets/images/prenup/Slide%2014.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%201.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%202.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%203.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%204.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%205.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%206.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%207.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%208.jpg',
   ]
 
   useEffect(() => {
@@ -629,6 +640,7 @@ const Moments = () => {
                          style={{
                            width: '300px',
                            height: '300px',
+                          objectPosition: momentsFaceFocusPositions[index] || '50% 50%',
                            borderRadius: '0'
                          }}
                          width="300"

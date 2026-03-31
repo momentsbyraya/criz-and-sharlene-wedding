@@ -126,3 +126,53 @@
 .falling-flower.delay-14 {
   animation-delay: 14s;
 }
+
+/* Entourage theme overrides for this project */
+#entourage.entourage-page,
+#entourage.entourage-page h1,
+#entourage.entourage-page h2,
+#entourage.entourage-page h3,
+#entourage.entourage-page h4,
+#entourage.entourage-page h5,
+#entourage.entourage-page h6,
+#entourage.entourage-page p,
+#entourage.entourage-page span,
+#entourage.entourage-page li,
+#entourage.entourage-page a,
+#entourage.entourage-page button,
+#entourage.entourage-page .text-burgundy-dark,
+#entourage.entourage-page .text-burgundy-cream {
+  color: #ffffff !important;
+}
+
+/* Ensure legacy inline dark text styles become white on navy background */
+#entourage.entourage-page [style*="color: #0A1F44"],
+#entourage.entourage-page [style*="color:#0A1F44"],
+#entourage.entourage-page [style*="color: #3A5A7A"],
+#entourage.entourage-page [style*="color:#3A5A7A"] {
+  color: #ffffff !important;
+}
+
+/* Keep entourage names on a single line */
+#entourage.entourage-page .font-poppins {
+  white-space: nowrap !important;
+}
+
+/* Prevent long names from overlapping adjacent column */
+#entourage.entourage-page .font-poppins,
+#entourage.entourage-page .ninong-item,
+#entourage.entourage-page .ninang-item,
+#entourage.entourage-page .groomsmen-item,
+#entourage.entourage-page .bridesmaids-item {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Flower Ladies names should always display fully */
+#entourage.entourage-page .flower-ladies-name {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}

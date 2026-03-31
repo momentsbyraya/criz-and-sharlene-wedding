@@ -1,0 +1,254 @@
+{
+  "couple": {
+    "groom": {
+      "name": "Criz Mar"
+    },
+    "bride": {
+      "name": "Sharlene"
+    }
+  },
+  "parents": {
+    "groom": {
+      "father": "Lorem Ipsum",
+      "mother": "Lorem Ipsum"
+    },
+    "bride": {
+      "father": "Lorem Ipsum",
+      "mother": "Lorem Ipsum"
+    }
+  },
+  "entourageList": [
+    {
+      "category": "Principal Sponsors",
+      "ninong": [
+        "HON. MAYOR & MRS. EDGAR CAPUCHINO",
+        "HON. & MRS. ENGR. JUAN CAPUCHINO",
+        "PCOL JEAN I DELA TORRE",
+        "PCOL & MRS. PAUL BOMETIVO",
+        "PLTCOL DARWIN O ABAINZA",
+        "PLTCOL MANNY E ISRAEL",
+        "PLTCOL & MRS. FEDIMER QUITEVIS",
+        "PCPT JIMMERY CALOSA",
+        "RET PCPT & MRS. FELIX APRICIO",
+        "PLT MARILYN QUIANZON",
+        "PEMS ROLAND LOMIBAO",
+        "PEMS RODERICK PLACIDO",
+        "PCMS & MRS. OLIVER PEREZ",
+        "PMSG ANNALYN AGGARI",
+        "PMSG JESUS RIVERA JR.",
+        "PSSG & MRS. CHARLIE CAPUCHINO",
+        "MSG & MRS. JIMMY AGGARI",
+        "SSG & MRS. ANDRO CAPUCHINO",
+        "ATTY. & MR. RICHARD LUGOD",
+        "DRA. ANNA MARIE LUCIA PINTUCAN",
+        "DR. JONATHAN CAPUCHINO",
+        "DR. & MRS. ARCEL CAPUCHINO",
+        "MR. & DRA. ROMAN CAPUCHINO JR.",
+        "ENGR. & MRS. EDUARDO PABLO",
+        "ENGR. & MRS. MEDARDO AGGARI",
+        "HON. & MRS. RAFFY RAMIREZ",
+        "HON. & MRS. ROMMEL CARO",
+        "HON. & MRS. ISIDRO ACOSTA JR.",
+        "HON. AMIE SAMONTE",
+        "HON. & MRS. DOMINGO PABLO",
+        "HON. & MR. JONATHAN PANG-AG",
+        "HON. & MRS. JONATHAN MATAVERDE",
+        "HON. & MRS. JUAN DARBIN JR.",
+        "HON. & MR. BOYET RAMIREZ",
+        "HON. IMELDA PABLO",
+        "MRS. WINNIE FINDLAY",
+        "MR. & MRS. JESSIE CARO",
+        "MRS. ELVIE TAGUBA",
+        "MR. & MRS. GARRY BAUTISTA",
+        "MRS. FREDELYN ARQUION",
+        "MRS. ROSEMARIE NARAG",
+        "MR. & MRS. BANJO TAGUBA",
+        "MR. & MRS. RODOLFO GERMAN YAP",
+        "MR. & MRS. TIMOTEO MACUTAY",
+        "MR. & MRS. ROMEO TAGUBA",
+        "MR. & MRS. JOHNNY SORIANO",
+        "MR. GAUDENCIO MEMAN",
+        "MR. NESTOR MEMAN",
+        "MR. & MRS. RAMELO TALOSIG",
+        "MR. & MRS. MELVIN ESDRELON",
+        "MR. & MRS. DARWIN VENTURA",
+        "MR. & MRS. ALBERTO MATEO",
+        "MR. & MRS. ROCKY BUCCUAN",
+        "MR. & MRS. EDIE NAZARENO",
+        "MR. & MRS. ERNESTO CAUILAN",
+        "MR. & MRS. ROBERTO NICOLAS",
+        "MR. & MRS. DANTE VENTURA",
+        "MRS. MILA BUENO",
+        "MR. & MRS. MILECIO FUGABAN",
+        "MR. & MRS. DIONISIO TAGUBA",
+        "MR. & MRS. PEDRO TORRE",
+        "MS. JOAN BANGUG",
+        "MR. & MRS. ANDO CASTRO",
+        "MR. & MRS. ALEX VERONA",
+        "MRS. RUTHLAINE CAMACHO",
+        "MR. & MRS. VICENTE LIBAN",
+        "MR. & MRS. FRANKLYN LAYUGAN",
+        "MRS. JOSEPHINE MARTIN",
+        "MRS. LINDA ABORDO",
+        "MS. CORA TOMINES"
+      ],
+      "ninang": [
+        "MR. & MRS. JEFFERSON IBARRA",
+        "MR. & MRS. NESTOR AREOLA",
+        "MR. & MRS. DADO AGSANO",
+        "MR. & MRS. GRAHAM HUTCHINSON",
+        "MR. & MRS. LODOVICO DE LEON",
+        "MR. FRANCISCO TAGAL",
+        "MRS. FELICIDAD TAGAL SMITH",
+        "MR. & MRS. MARLON MONTERUBIO SR.",
+        "MR. & MRS. LAZARO TAGAL JR.",
+        "MR. & MRS. FREDDIE BALDOVINO",
+        "MR. & MRS. NELSON OLLERO SR.",
+        "MRS. GLORY MAE BATUY",
+        "MRS. JULIET AGUSTIN",
+        "MRS. JOSIE MEMAN",
+        "MR. & MRS. ZALDY RAMIREZ",
+        "MR. & MRS. SAMUEL AGGARI",
+        "MR. & MRS. JOJO CAPUCHINO",
+        "MR. & MRS. ANGELITO VILORIA",
+        "MR. & MRS. EDGAR AGGARI",
+        "MR. & MRS. DANILO AGGARI",
+        "MR. & MRS. ROGIE AGGARI",
+        "MR. & MRS. OSCAR BAQUIRAN",
+        "MR. & MRS. NESTOR CABASAG",
+        "MR. & MRS. DANILO DE ASIS",
+        "MRS. JENNIFER MACADANGDANG",
+        "MR. & MRS. NELSON TUMPALAN",
+        "MR. & MRS. ROGELIO MARINDUQUE",
+        "MR. & MRS. ORLANDO BAQUIRAN SR.",
+        "MRS. RUTH CORAZON PASCUA",
+        "MR. & MRS. ERNESTO AGACER",
+        "MR. & MRS. REMITEO AGACER",
+        "MRS. IVY AGACER",
+        "MR. & MRS. HONESTO IBARRA",
+        "MRS. MARY ANN IBARRA",
+        "MR. & MRS. EDDIE RAMIREZ",
+        "MRS. VIVIAN RAMIREZ",
+        "MR. & MRS. ROLANDO LOPEZ",
+        "MR. & MRS. JAYSON GALLENA",
+        "MRS. MYCELLE LIM",
+        "MR. & MRS. LEOPOLDO BALAUAG",
+        "MR. & MRS. MAXIMAR BARTOLOME",
+        "MR. & MRS. BRUCE BUMANGLAG",
+        "MRS. RAMONA DANAO",
+        "MRS. SAMERA CAMACHO",
+        "MR. & MRS. FERDINAND GUIUO",
+        "MR. & MRS. BENJAMIN SUBIA JR.",
+        "MR. & MRS. ALEXANDER VERGARA",
+        "MRS. CLARITA ANDAYA",
+        "MR. & MRS. JESUSITO ANCHETA",
+        "MR. & MRS. ROMEL ANTIPORDA",
+        "MR. & MRS. WILHELMINO ANTIPORDA JR.",
+        "MR. & MRS. JOSE RODERICK ATIENZA",
+        "MS. MARY JANE BANGUG",
+        "MR. & MRS. MARY ANN CARPIO",
+        "MR. & MRS. BENSON CAYABYAB",
+        "MR. & MRS. RICO CENETA",
+        "MR. & MRS. SILVINO GUMPAL",
+        "MR. & MRS. TONY INIEGO",
+        "MR. ABRAHAM LAZO JR.",
+        "MR. & MRS. ALBERT MAGNO",
+        "MR. & MRS. ELMER PERALTA",
+        "MR. & MRS. TERESITA PUNGTILAN",
+        "MS. MARGIE RAMIREZ",
+        "MS. RIZALINA RAMIREZ",
+        "MRS. GRACE REYES",
+        "MR. & MRS. HARISON ROMERO",
+        "MRS. EVELYN SANTOS",
+        "MRS. CHARITY SEBASTIAN",
+        "MR. & MRS. GILBERT SOZA",
+        "MR. & MRS. ANDRES TAGAROMA JR.",
+        "MRS. MARY ROSE TORRES",
+        "MR. & MRS. JONATHAN VELASCO"
+      ]
+    },
+    {
+      "category": "Best Woman",
+      "names": [
+        "Jamaica Mae De Leon"
+      ]
+    },
+    {
+      "category": "Maid of Honor",
+      "names": [
+        "Rochelle Lacanaria"
+      ]
+    },
+    {
+      "category": "Secondary Sponsors",
+      "groomsmen": [
+        "Jethro Lorenzo",
+        "Marl Cristin Capuchino",
+        "Karl Bryn Casco",
+        "Aljim Tagal",
+        "Harold Tagal"
+      ],
+      "bridesmaid": [
+        "May Liezel Vidal",
+        "Roan Lia Ferrer",
+        "Precious Joy Aggari",
+        "Mary Grace Tagal",
+        "Daisylyn Tagal"
+      ]
+    },
+    {
+      "category": "Candle Sponsors",
+      "subtitle": "To Light our path to Righteousness",
+      "names": [
+        "Shena Monterubio",
+        "James Ollero"
+      ]
+    },
+    {
+      "category": "Veil Sponsors",
+      "subtitle": "To Clothe us in Love",
+      "names": [
+        "Ma. Rizelle Castro",
+        "Willie Gamit"
+      ]
+    },
+    {
+      "category": "Cord Sponsors",
+      "subtitle": "To Bind us together in Unity",
+      "names": [
+        "Jamica Pascua",
+        "Florentino Areola"
+      ]
+    },
+    {
+      "category": "Ring Bearer",
+      "subtitle": "To Carry our symbol of Love",
+      "names": [
+        "Daniel Ryan Vendivil"
+      ]
+    },
+    {
+      "category": "Coin Bearer",
+      "subtitle": "To Carry our symbol of Treasures",
+      "names": [
+        "David Vince Tagal"
+      ]
+    },
+    {
+      "category": "Bible Bearer",
+      "subtitle": "To Carry our symbol of Faith",
+      "names": [
+        "Heureux Miguel Moleño"
+      ]
+    },
+    {
+      "category": "Flower Ladies",
+      "subtitle": "To shower our path with flowers",
+      "names": [
+        "Kathleen Galabay",
+        "Maria Cristina Mataverde",
+        "Ma. Rhiane Vendivil"
+      ]
+    }
+  ]
+}

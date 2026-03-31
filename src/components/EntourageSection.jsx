@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Users } from 'lucide-react'
-import EntourageModal from './EntourageModal'
+import { useNavigate } from 'react-router-dom'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const EntourageSection = () => {
+  const navigate = useNavigate()
   const sectionRef = useRef(null)
   const contentRef = useRef(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     if (!sectionRef.current || !contentRef.current) return
@@ -74,7 +74,7 @@ const EntourageSection = () => {
             {/* Button - opens modal */}
             <button
               type="button"
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => navigate('/entourage')}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-300 bg-white/90 text-gray-700 font-albert text-sm sm:text-base hover:bg-gray-50 hover:border-gray-400 transition-colors duration-200"
             >
               View our entourage
@@ -83,8 +83,6 @@ const EntourageSection = () => {
           </div>
         </div>
       </section>
-
-      <EntourageModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   )
 }

@@ -4,6 +4,10 @@ import { gsap } from 'gsap'
 import { X } from 'lucide-react'
 import { themeConfig } from '../config/themeConfig'
 
+const RSVP_FORM_EMBED_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdTRbY7EWsMAr9A4vksM7ckJUhkH8ZAERJ6_b66XyaY6loYuA/viewform?embedded=true'
+const RSVP_FORM_SHORT_URL = 'https://forms.gle/g1oSXqATq6vDNTLN6'
+
 const RSVPModal = ({ isOpen, onClose }) => {
   const modalRef = useRef(null)
   const overlayRef = useRef(null)
@@ -82,7 +86,7 @@ const RSVPModal = ({ isOpen, onClose }) => {
       {/* Modal Content */}
       <div
         ref={contentRef}
-        className={`relative ${themeConfig.paragraph.background} rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden`}
+        className={`relative ${themeConfig.paragraph.background} rounded-2xl shadow-2xl max-w-3xl lg:max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden`}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-300/50 flex-shrink-0">
@@ -95,9 +99,25 @@ const RSVPModal = ({ isOpen, onClose }) => {
           </button>
         </div>
         
-        {/* Content - To be added */}
-        <div className="p-4 sm:p-6 overflow-y-auto flex-1 rsvp-modal-content flex items-center justify-center min-h-[200px]">
-          <p className="text-center text-gray-600 font-albert text-lg">To be added</p>
+        <div className="flex flex-col flex-1 min-h-0">
+          <div className="px-4 pt-2 pb-1 sm:px-6 text-center">
+            <a
+              href={RSVP_FORM_SHORT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-albert text-[#001F3F] hover:underline"
+            >
+              Open RSVP form in a new tab
+            </a>
+          </div>
+          <div className="flex-1 w-full min-h-0 bg-white">
+            <iframe
+              title="RSVP — Criz & Sharlene"
+              src={RSVP_FORM_EMBED_URL}
+              className="w-full h-[65vh] sm:h-[70vh] max-h-[75vh] min-h-[480px] border-0"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </div>,

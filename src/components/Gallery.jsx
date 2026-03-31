@@ -20,6 +20,18 @@ const gridColumnPattern = [
   'span 1',
 ]
 
+// Tailwind arbitrary object-position classes (literal strings so JIT always includes them)
+const galleryFacePositionClasses = [
+  'object-[50%_58%]',
+  'object-[50%_34%]',
+  'object-[50%_36%]',
+  'object-[50%_28%]',
+  'object-[50%_34%]',
+  'object-[50%_62%]',
+  'object-[50%_56%]',
+  'object-[50%_38%]',
+]
+
 const Gallery = () => {
   const sectionRef = useRef(null)
   const titleRef = useRef(null)
@@ -32,14 +44,14 @@ const Gallery = () => {
 
   // Gallery Section images (explicit order requested)
   const galleryImages = [
-    '/assets/images/prenup/Slide%201.jpg',
-    '/assets/images/prenup/Slide%202.jpg',
-    '/assets/images/prenup/Slide%203.jpg',
-    '/assets/images/prenup/Slide%204.jpg',
-    '/assets/images/prenup/Slide%205.jpg',
-    '/assets/images/prenup/Slide%206.jpg',
-    '/assets/images/prenup/Slide%208.jpg',
-    '/assets/images/prenup/Slide%2014.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%201.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%202.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%203.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%204.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%205.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%206.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%207.jpg',
+    '/assets/images/prenup/OUR%20MOMENTS-Slide%208.jpg',
   ]
 
   useEffect(() => {
@@ -164,9 +176,8 @@ const Gallery = () => {
               : gridColumnPattern[index % gridColumnPattern.length]
             const tileClass =
               'cursor-pointer overflow-hidden max-h-[150px] lg:max-h-[250px] rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(0,31,63,0.45)] focus-visible:ring-offset-2'
-            const imagePositionClass = isFirst
-              ? 'object-[50%_78%] sm:object-[50%_78%]'
-              : 'object-[50%_70%] sm:object-[50%_65%]'
+            const facePositionClass =
+              galleryFacePositionClasses[index] || 'object-center'
             return (
               <div
                 key={`${image}-${index}`}
@@ -194,8 +205,12 @@ const Gallery = () => {
                 <img
                   src={image}
                   alt={`Gallery ${index + 1}`}
-                  className={`w-full h-full object-cover ${imagePositionClass} hover:scale-105 transition-transform duration-300`}
-                  style={{ height: '100%', willChange: 'transform', backfaceVisibility: 'hidden' }}
+                  className={`w-full h-full object-cover ${facePositionClass} hover:scale-105 transition-transform duration-300`}
+                  style={{
+                    height: '100%',
+                    willChange: 'transform',
+                    backfaceVisibility: 'hidden',
+                  }}
                   loading="lazy"
                   decoding="async"
                   onError={(e) => {

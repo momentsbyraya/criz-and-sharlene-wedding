@@ -1,12 +1,15 @@
 import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { couple } from '../data'
+import { useAudio } from '../contexts/AudioContext'
 
 const HERO_POSTER_URL = '/assets/images/prenup/1000082213.jpg'
 // Keep spaces URL-encoded so the browser can reliably load the file.
-const HERO_VIDEO_URL = '/assets/images/graphics/1st%20part.mp4'
+const HERO_VIDEO_URL = '/assets/images/graphics/Final%20Video%20for%201st%20part%20%281%29.mp4'
 
 const Hero = () => {
+  const videoRef = useRef(null)
+  const { audioRef } = useAudio()
   // Refs for animated elements
   const groomFirstNameRef = useRef(null)
   const groomLastNameRef = useRef(null)
@@ -94,6 +97,41 @@ const Hero = () => {
     // (No play button on purpose)
   }, [])
 
+  // Keep hero video and background music in sync.
+  // Play once (no looping): audio ends with the video length.
+  useEffect(() => {
+    let isMounted = true
+
+    const startSyncedMedia = async () => {
+      const video = videoRef.current
+      const audio = audioRef.current
+      if (!video || !audio || !isMounted) return
+
+      video.currentTime = 0
+      audio.currentTime = 0
+
+      // Trigger both play attempts from the same user-allowed session.
+      await Promise.allSettled([video.play(), audio.play()])
+    }
+
+    startSyncedMedia()
+
+    return () => {
+      isMounted = false
+    }
+  }, [audioRef])
+
+  // Restart both from the beginning when the video ends.
+  const handleVideoEnded = async () => {
+    const video = videoRef.current
+    const audio = audioRef.current
+    if (!video || !audio) return
+
+    video.currentTime = 0
+    audio.currentTime = 0
+    await Promise.allSettled([video.play(), audio.play()])
+  }
+
   return (
     <div className="relative w-full" style={{ height: '100vh' }}>
       {/* Audio Element */}
@@ -102,6 +140,7 @@ const Hero = () => {
       <div className="absolute inset-0">
         {/* Full-bleed looping video background */}
         <video
+          ref={videoRef}
           data-hero="true"
           aria-hidden
           tabIndex={-1}
@@ -109,7 +148,7 @@ const Hero = () => {
           src={HERO_VIDEO_URL}
           autoPlay
           muted
-          loop
+          onEnded={handleVideoEnded}
           playsInline
           preload="auto"
           poster={HERO_POSTER_URL}

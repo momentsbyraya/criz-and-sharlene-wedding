@@ -8,7 +8,6 @@ import DynamicTitle from './components/DynamicTitle'
 import Loader from './components/Loader'
 import OpeningScreen from './components/OpeningScreen'
 import ScrollToTop from './components/ScrollToTop'
-import Watermark from './components/Watermark'
 import { AudioProvider, useAudio } from './contexts/AudioContext'
 import { gallery } from './data'
 
@@ -20,7 +19,6 @@ function AppContent() {
   const [isRSVPModalOpen, setIsRSVPModalOpen] = useState(false)
   const [showInvitation, setShowInvitation] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  const { play } = useAudio()
   const navigate = useNavigate()
 
   // Preload critical images and resources
@@ -181,8 +179,7 @@ function AppContent() {
   }, [])
 
   const handleEnvelopeOpen = async () => {
-    // Start playing music when invitation is revealed (user interaction allows auto-play)
-    await play()
+    // Reveal invitation first; Hero handles synced video + music playback.
     setShowInvitation(true)
     navigate('/')
   }
@@ -191,7 +188,6 @@ function AppContent() {
     <div className="App min-h-screen pastel-watercolor-bg">
       <DynamicTitle />
       <ScrollToTop />
-      <Watermark />
       {/* Loader - shows while preloading */}
       {isLoading && (
         <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-white">
