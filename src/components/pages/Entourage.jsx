@@ -49,6 +49,7 @@ const Entourage = () => {
   const ringBearerRef = useRef(null)
   const coinBearerRef = useRef(null)
   const flowerGirlsRef = useRef(null)
+  const littleGroomsmenRef = useRef(null)
   const flowerBoysRef = useRef(null)
   const hereComesTheBrideRef = useRef(null)
   const veilSponsorsRef = useRef(null)
@@ -314,7 +315,7 @@ const Entourage = () => {
     })
     
     // Bible Bearer, Ring Bearer, Coin Bearer, Flower Ladies, Flower Boys - collect (single column - one name per row)
-    const bearerRefs = [bibleBearerRef, ringBearerRef, coinBearerRef, flowerGirlsRef, flowerBoysRef].filter(ref => ref.current)
+    const bearerRefs = [bibleBearerRef, ringBearerRef, coinBearerRef, flowerGirlsRef, littleGroomsmenRef, flowerBoysRef].filter(ref => ref.current)
       bearerRefs.forEach(ref => {
         const names = ref.current.querySelectorAll('p.font-poppins')
       if (names.length > 0) {
@@ -425,6 +426,7 @@ const Entourage = () => {
   const candleSponsors = entourage.entourageList.find(item => item.category === "Candle Sponsors")
   const juniorFlowerGirls = entourage.entourageList.find(item => item.category === "Junior Flower Girls")
   const littleFlowerGirls = entourage.entourageList.find(item => item.category === "Little Flower Girls")
+  const littleGroomsmen = entourage.entourageList.find(item => item.category === "Little Groomsmen")
 
   return (
     <>
@@ -515,20 +517,20 @@ const Entourage = () => {
 
             {/* Formal entourage layout */}
             <div className="space-y-10">
-              {/* PARENTS - Two columns */}
+              {/* PARENTS - Two columns (bride left, groom right) */}
               <div ref={parentsRef} className="flex flex-row gap-6 sm:gap-10 justify-center items-start">
                 <div className="flex-1 min-w-0">
-                  <p className="text-[10px] sm:text-[13px] md:text-[15px] caudex-bold mb-3 text-right uppercase" style={{ color: '#0A1F44' }}>Parents of the Groom</p>
+                  <p className="text-[10px] sm:text-[13px] md:text-[15px] caudex-bold mb-3 text-right uppercase" style={{ color: '#0A1F44' }}>Parents of the Bride</p>
                   <div className="space-y-1 text-right">
-                    {entourage.parents.groom.father && <p className="text-[8.5px] sm:text-[12px] md:text-[14px] font-poppins uppercase text-burgundy-dark">{entourage.parents.groom.father}</p>}
-                    {entourage.parents.groom.mother && <p className="text-[8.5px] sm:text-[12px] md:text-[14px] font-poppins uppercase text-burgundy-dark">{entourage.parents.groom.mother}</p>}
+                    {entourage.parents.bride.father && <p className="text-[8.5px] sm:text-[12px] md:text-[14px] font-poppins uppercase text-burgundy-dark">{entourage.parents.bride.father}</p>}
+                    {entourage.parents.bride.mother && <p className="text-[8.5px] sm:text-[12px] md:text-[14px] font-poppins uppercase text-burgundy-dark">{entourage.parents.bride.mother}</p>}
                   </div>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[10px] sm:text-[13px] md:text-[15px] caudex-bold mb-3 text-left uppercase" style={{ color: '#0A1F44' }}>Parents of the Bride</p>
+                  <p className="text-[10px] sm:text-[13px] md:text-[15px] caudex-bold mb-3 text-left uppercase" style={{ color: '#0A1F44' }}>Parents of the Groom</p>
                   <div className="space-y-1 text-left">
-                    {entourage.parents.bride.father && <p className="text-[8.5px] sm:text-[12px] md:text-[14px] font-poppins uppercase text-burgundy-dark">{entourage.parents.bride.father}</p>}
-                    {entourage.parents.bride.mother && <p className="text-[8.5px] sm:text-[12px] md:text-[14px] font-poppins uppercase text-burgundy-dark">{entourage.parents.bride.mother}</p>}
+                    {entourage.parents.groom.father && <p className="text-[8.5px] sm:text-[12px] md:text-[14px] font-poppins uppercase text-burgundy-dark">{entourage.parents.groom.father}</p>}
+                    {entourage.parents.groom.mother && <p className="text-[8.5px] sm:text-[12px] md:text-[14px] font-poppins uppercase text-burgundy-dark">{entourage.parents.groom.mother}</p>}
                   </div>
                 </div>
               </div>
@@ -536,7 +538,17 @@ const Entourage = () => {
               {/* PRINCIPAL SPONSORS - Two columns */}
               {principalSponsors && (
                 <div ref={principalSponsorsRef}>
-                  <h3 className="text-lg sm:text-xl md:text-2xl imperial-script-regular font-bold mb-6 text-center" style={{ color: '#0A1F44' }}>Principal sponsors</h3>
+                  <h3
+                    className={`text-lg sm:text-xl md:text-2xl imperial-script-regular font-bold text-center ${principalSponsors.subtitle ? 'mb-3' : 'mb-6'}`}
+                    style={{ color: '#0A1F44' }}
+                  >
+                    Principal sponsors
+                  </h3>
+                  {principalSponsors.subtitle && (
+                    <p className="text-[9px] sm:text-[12px] md:text-[14px] italic text-center mb-6" style={{ color: '#0A1F44' }}>
+                      {principalSponsors.subtitle}
+                    </p>
+                  )}
                   <div className="flex flex-row gap-6 sm:gap-10 justify-center items-start">
                     <div className="flex-1 min-w-0">
                       <div className="space-y-1.5">
@@ -715,6 +727,22 @@ const Entourage = () => {
                       ))}
                     </div>
                   </div>
+                </div>
+              )}
+
+              {littleGroomsmen && littleGroomsmen.names?.length > 0 && (
+                <div ref={littleGroomsmenRef} className="flex flex-col gap-1 justify-center items-center">
+                  <p className="text-[10px] sm:text-[13px] md:text-[15px] caudex-bold mb-2 text-center uppercase" style={{ color: '#0A1F44' }}>
+                    {littleGroomsmen.category}
+                  </p>
+                  {littleGroomsmen.names.map((name, index) => (
+                    <p
+                      key={index}
+                      className="text-[8.5px] sm:text-[12px] md:text-[14px] font-poppins uppercase text-burgundy-dark text-center"
+                    >
+                      {name}
+                    </p>
+                  ))}
                 </div>
               )}
             </div>

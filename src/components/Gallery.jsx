@@ -49,7 +49,7 @@ const Gallery = () => {
     '/assets/images/prenup/OUR%20MOMENTS-Slide%203.jpg',
     '/assets/images/prenup/OUR%20MOMENTS-Slide%204.jpg',
     '/assets/images/prenup/OUR%20MOMENTS-Slide%205.jpg',
-    '/assets/images/prenup/OUR%20MOMENTS-Slide%206.jpg',
+    '/assets/images/prenup/slide%206%20%282%29.jpg',
     '/assets/images/prenup/OUR%20MOMENTS-Slide%207.jpg',
     '/assets/images/prenup/OUR%20MOMENTS-Slide%208.jpg',
   ]

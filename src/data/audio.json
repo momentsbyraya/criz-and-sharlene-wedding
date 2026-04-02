@@ -1,5 +1,6 @@
 {
   "background": "/assets/music/Make It With You - Ben&Ben (Lyrics).mp3",
   "volume": 0.5,
-  "loop": true
+  "loop": true,
+  "loopStart": 12
 }

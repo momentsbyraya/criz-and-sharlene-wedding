@@ -29,13 +29,17 @@ const EntourageDetailsSection = () => {
 
   const principalSponsors = entourage.entourageList.find(item => item.category === 'Principal Sponsors')
   const secondarySponsors = entourage.entourageList.find(item => item.category === 'Secondary Sponsors')
-  const bestman = entourage.entourageList.find(item => item.category === 'Bestman')
+  const bestman =
+    entourage.entourageList.find(item => item.category === 'Bestman') ||
+    entourage.entourageList.find(item => item.category === 'Best Woman')
   const maidOfHonor = entourage.entourageList.find(item => item.category === 'Maid of Honor') || entourage.entourageList.find(item => item.category === 'Matron')
   const bibleBearer = entourage.entourageList.find(item => item.category === 'Bible Bearer')
   const ringBearer = entourage.entourageList.find(item => item.category === 'Ring Bearer')
   const coinBearer = entourage.entourageList.find(item => item.category === 'Coin Bearer')
   const bannerBearer = entourage.entourageList.find(item => item.category === 'Banner Bearer')
-  const flowerGirls = entourage.entourageList.find(item => item.category === 'Flower Girls')
+  const flowerGirls =
+    entourage.entourageList.find(item => item.category === 'Flower Girls') ||
+    entourage.entourageList.find(item => item.category === 'Flower Ladies')
 
   useEffect(() => {
     if (!sectionRef.current) return
@@ -68,17 +72,17 @@ const EntourageDetailsSection = () => {
     }
 
     if (parentsRef.current) {
-      const groomParentsDiv = parentsRef.current.querySelector('[class*="flex-1"]:first-child')
-      const brideParentsDiv = parentsRef.current.querySelector('[class*="flex-1"]:last-child')
-      if (groomParentsDiv && brideParentsDiv) {
-        const groomNames = groomParentsDiv.querySelectorAll('p.font-poppins')
-        const brideNames = brideParentsDiv.querySelectorAll('p.font-poppins')
-        const maxLen = Math.max(groomNames.length, brideNames.length)
+      const leftParentsDiv = parentsRef.current.querySelector('[class*="flex-1"]:first-child')
+      const rightParentsDiv = parentsRef.current.querySelector('[class*="flex-1"]:last-child')
+      if (leftParentsDiv && rightParentsDiv) {
+        const leftNames = leftParentsDiv.querySelectorAll('p.font-poppins')
+        const rightNames = rightParentsDiv.querySelectorAll('p.font-poppins')
+        const maxLen = Math.max(leftNames.length, rightNames.length)
         const rows = []
         for (let i = 0; i < maxLen; i++) {
           const row = []
-          if (groomNames[i]) row.push(groomNames[i])
-          if (brideNames[i]) row.push(brideNames[i])
+          if (leftNames[i]) row.push(leftNames[i])
+          if (rightNames[i]) row.push(rightNames[i])
           if (row.length) rows.push(row)
         }
         rows.forEach(row => gsap.set(row, { opacity: 0, y: 20 }))
@@ -175,7 +179,6 @@ const EntourageDetailsSection = () => {
     }
 
     return () => ScrollTrigger.getAll().forEach(t => t.kill())
-  const textColor = themeConfig.text.burgundyDark || '#0A1F44'
   }, [])
 
   const accentColor = themeConfig.text.burgundyDark || '#0A1F44'
@@ -204,24 +207,34 @@ const EntourageDetailsSection = () => {
           </div>
         </div>
 
-        {/* Parents */}
+        {/* Parents — bride left, groom right (matches full entourage page) */}
         <div ref={parentsRef} className="mb-6 flex flex-row gap-4 sm:gap-6 justify-center items-center">
           <div className="flex-1">
-            <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-right uppercase" style={{ color: accentColor }}>Parents of the Groom</p>
-            <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-right text-burgundy-dark">{entourage.parents.groom.father}</p>
-            <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-right text-burgundy-dark">{entourage.parents.groom.mother}</p>
+            <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-right uppercase" style={{ color: accentColor }}>Parents of the Bride</p>
+            <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-right text-burgundy-dark">{entourage.parents.bride.father}</p>
+            <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-right text-burgundy-dark">{entourage.parents.bride.mother}</p>
           </div>
           <div className="flex-1">
-            <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-left uppercase" style={{ color: accentColor }}>Parents of the Bride</p>
-            <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-left text-burgundy-dark">{entourage.parents.bride.father}</p>
-            <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-left text-burgundy-dark">{entourage.parents.bride.mother}</p>
+            <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-left uppercase" style={{ color: accentColor }}>Parents of the Groom</p>
+            <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-left text-burgundy-dark">{entourage.parents.groom.father}</p>
+            <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-left text-burgundy-dark">{entourage.parents.groom.mother}</p>
           </div>
         </div>
 
         {/* Principal Sponsors */}
         {principalSponsors && (
           <div ref={principalSponsorsRef} className="mb-6">
-            <h3 className="text-base sm:text-lg imperial-script-regular mb-4 text-center" style={{ color: accentColor }}>Principal sponsors</h3>
+            <h3
+              className={`text-base sm:text-lg imperial-script-regular text-center ${principalSponsors.subtitle ? 'mb-2' : 'mb-4'}`}
+              style={{ color: accentColor }}
+            >
+              Principal sponsors
+            </h3>
+            {principalSponsors.subtitle && (
+              <p className="text-[9px] sm:text-[11px] md:text-[13px] italic text-center mb-4" style={{ color: accentColor }}>
+                {principalSponsors.subtitle}
+              </p>
+            )}
             <div className="flex flex-row gap-4 sm:gap-6 justify-center items-center">
               <div className="flex-1">
                 <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-right uppercase" style={{ color: accentColor }}>NINONG</p>
@@ -250,7 +263,9 @@ const EntourageDetailsSection = () => {
             <div className="flex flex-row gap-4 sm:gap-6 justify-center items-center mb-4">
               {bestman && (
                 <div ref={bestmanRef} className="flex-1">
-                  <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-right uppercase" style={{ color: accentColor }}>Bestman</p>
+                  <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-right uppercase" style={{ color: accentColor }}>
+                    {bestman.category || 'Bestman'}
+                  </p>
                   {bestman.names?.map((name, index) => (
                     <p key={index} className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-burgundy-dark text-right">{name}</p>
                   ))}
@@ -292,7 +307,9 @@ const EntourageDetailsSection = () => {
             <div className="flex flex-col gap-4 justify-center items-center mt-4">
               {flowerGirls && (
                 <div ref={flowerGirlsRef}>
-                  <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-center uppercase" style={{ color: accentColor }}>Flower Girls</p>
+                  <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-center uppercase" style={{ color: accentColor }}>
+                    {flowerGirls.category || 'Flower Girls'}
+                  </p>
                   {flowerGirls.names?.map((name, index) => (
                     <p key={index} className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-burgundy-dark text-center">{name}</p>
                   ))}

@@ -503,6 +503,25 @@
   overflow: hidden;
 }
 
+/* Full-width line below polaroid + floated text (clears floats first) */
+.love-story-float-clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+.love-story-below-polaroid {
+  clear: both;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.love-story-polaroid6-text-stack .love-story-paragraph:first-child {
+  margin-bottom: 0.5rem;
+}
+
 .love-story-paragraph {
   margin-bottom: 0.375rem;
   text-align: justify;

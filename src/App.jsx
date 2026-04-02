@@ -8,8 +8,8 @@ import DynamicTitle from './components/DynamicTitle'
 import Loader from './components/Loader'
 import OpeningScreen from './components/OpeningScreen'
 import ScrollToTop from './components/ScrollToTop'
+import Watermark from './components/Watermark'
 import { AudioProvider, useAudio } from './contexts/AudioContext'
-import { gallery } from './data'
 
 const Details = lazy(() => import('./components/pages/Details'))
 const Entourage = lazy(() => import('./components/pages/Entourage'))
@@ -24,19 +24,17 @@ function AppContent() {
   // Preload critical images and resources
   useEffect(() => {
     const preloadImages = async () => {
-      const prenup = gallery.images || []
+      // Keep this list small — every URL here downloads before the envelope (Vercel/Netlify bandwidth).
+      // Hero video is YouTube by default; do not preload the large MP4. Gallery below uses OUR MOMENTS slides.
       const criticalImages = [
-        // Hero image - most important
-        '/assets/images/prenup/1000082213.jpg',  // Hero image
-        // Prenup gallery (home / moments / details)
-        ...(prenup.slice(0, 5)),
-        // NavIndex graphics - all decorative elements
+        '/assets/images/prenup/1000082213.jpg',
+        '/assets/images/prenup/OUR%20MOMENTS-Slide%201.jpg',
         '/assets/images/graphics/dusty-blue.png',
         '/assets/images/graphics/flower-1.png',
         '/assets/images/graphics/flower-3.png',
         '/assets/images/graphics/flower-4.png',
         '/assets/images/graphics/textured-bg-2.png',
-        '/assets/images/graphics/bg-1.png'
+        '/assets/images/graphics/bg-1.png',
       ]
 
       // Preload fonts
@@ -54,12 +52,7 @@ function AppContent() {
       const imagePromises = criticalImages.map((src) => {
         return new Promise((resolve) => {
           if (src.endsWith('.mp4')) {
-            // For video, preload it properly
-            const video = document.createElement('video')
-            video.preload = 'auto'
-            video.oncanplaythrough = () => resolve()
-            video.onerror = () => resolve() // Resolve even on error to not block
-            video.src = src
+            resolve()
           } else {
             const img = new Image()
             img.onload = () => {
@@ -185,34 +178,37 @@ function AppContent() {
   }
 
   return (
-    <div className="App min-h-screen pastel-watercolor-bg">
-      <DynamicTitle />
-      <ScrollToTop />
-      {/* Loader - shows while preloading */}
-      {isLoading && (
-        <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-white">
-          <Loader />
-        </div>
-      )}
-      {/* Opening screen - envelope with "Click me!"; shows after loading until user opens */}
-      {!isLoading && !showInvitation && (
-        <OpeningScreen onEnvelopeOpen={handleEnvelopeOpen} />
-      )}
-      {/* Main content - shows after invitation is opened (stamp clicked) */}
-      {!isLoading && showInvitation && (
-        <>
-          <Suspense fallback={<Loader />}>
-            <Routes>
-              <Route path="/" element={<Home onOpenRSVP={() => setIsRSVPModalOpen(true)} />} />
-              <Route path="/details" element={<Details />} />
-              <Route path="/entourage" element={<Entourage />} />
-              <Route path="/moments" element={<Moments />} />
-            </Routes>
-          </Suspense>
-          <Footer />
-        </>
-      )}
-      <RSVPModal isOpen={isRSVPModalOpen} onClose={() => setIsRSVPModalOpen(false)} />
+    <div className="App relative min-h-screen pastel-watercolor-bg">
+      <Watermark />
+      <div className="relative z-10 min-h-screen">
+        <DynamicTitle />
+        <ScrollToTop />
+        {/* Loader - shows while preloading */}
+        {isLoading && (
+          <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-white">
+            <Loader />
+          </div>
+        )}
+        {/* Opening screen - envelope with "Click me!"; shows after loading until user opens */}
+        {!isLoading && !showInvitation && (
+          <OpeningScreen onEnvelopeOpen={handleEnvelopeOpen} />
+        )}
+        {/* Main content - shows after invitation is opened (stamp clicked) */}
+        {!isLoading && showInvitation && (
+          <>
+            <Suspense fallback={<Loader />}>
+              <Routes>
+                <Route path="/" element={<Home onOpenRSVP={() => setIsRSVPModalOpen(true)} />} />
+                <Route path="/details" element={<Details />} />
+                <Route path="/entourage" element={<Entourage />} />
+                <Route path="/moments" element={<Moments />} />
+              </Routes>
+            </Suspense>
+            <Footer />
+          </>
+        )}
+        <RSVPModal isOpen={isRSVPModalOpen} onClose={() => setIsRSVPModalOpen(false)} />
+      </div>
     </div>
   )
 }

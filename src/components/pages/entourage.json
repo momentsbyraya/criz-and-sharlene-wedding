@@ -9,17 +9,18 @@
   },
   "parents": {
     "groom": {
-      "father": "Lorem Ipsum",
-      "mother": "Lorem Ipsum"
+      "father": "Mr. Crizaldo O. Castro",
+      "mother": "Ms. Marites T. Arreola"
     },
     "bride": {
-      "father": "Lorem Ipsum",
-      "mother": "Lorem Ipsum"
+      "father": "Mr. Vicente A. Tagal",
+      "mother": "Mrs. Nora C. Tagal"
     }
   },
   "entourageList": [
     {
       "category": "Principal Sponsors",
+      "subtitle": "To stand as witness to our vows",
       "ninong": [
         "HON. MAYOR & MRS. EDGAR CAPUCHINO",
         "HON. & MRS. ENGR. JUAN CAPUCHINO",
@@ -35,7 +36,7 @@
         "PEMS RODERICK PLACIDO",
         "PCMS & MRS. OLIVER PEREZ",
         "PMSG ANNALYN AGGARI",
-        "PMSG JESUS RIVERA JR.",
+        "PMSG JESUS RIVERA JR",
         "PSSG & MRS. CHARLIE CAPUCHINO",
         "MSG & MRS. JIMMY AGGARI",
         "SSG & MRS. ANDRO CAPUCHINO",
@@ -95,7 +96,7 @@
       "ninang": [
         "MR. & MRS. JEFFERSON IBARRA",
         "MR. & MRS. NESTOR AREOLA",
-        "MR. & MRS. DADO AGSANO",
+        "MR. & MRS. DIOSDADO AGSANO",
         "MR. & MRS. GRAHAM HUTCHINSON",
         "MR. & MRS. LODOVICO DE LEON",
         "MR. FRANCISCO TAGAL",
@@ -170,7 +171,7 @@
     {
       "category": "Best Woman",
       "names": [
-        "Jamaica Mae De Leon"
+        "Joanna Mae De Leon"
       ]
     },
     {
@@ -182,11 +183,8 @@
     {
       "category": "Secondary Sponsors",
       "groomsmen": [
-        "Jethro Lorenzo",
-        "Marl Cristin Capuchino",
-        "Karl Bryn Casco",
-        "Aljim Tagal",
-        "Harold Tagal"
+        "Marl Cristian Capuchino",
+        "Karl Bryan Casco"
       ],
       "bridesmaid": [
         "May Liezel Vidal",
@@ -200,8 +198,7 @@
       "category": "Candle Sponsors",
       "subtitle": "To Light our path to Righteousness",
       "names": [
-        "Shena Monterubio",
-        "James Ollero"
+        "Sheena Monterubio"
       ]
     },
     {
@@ -216,8 +213,8 @@
       "category": "Cord Sponsors",
       "subtitle": "To Bind us together in Unity",
       "names": [
-        "Jamica Pascua",
-        "Florentino Areola"
+        "Jamaica Pascua",
+        "Florentino Arreola"
       ]
     },
     {
@@ -248,6 +245,13 @@
         "Kathleen Galabay",
         "Maria Cristina Mataverde",
         "Ma. Rhiane Vendivil"
+      ]
+    },
+    {
+      "category": "Little Groomsmen",
+      "names": [
+        "Alexis Murphy A. Calibuso",
+        "Gavyn Matteo A. Apostol"
       ]
     }
   ]

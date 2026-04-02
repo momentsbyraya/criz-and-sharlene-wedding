@@ -9,6 +9,11 @@ import './pages/Details.css'
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger)
 
+/** Under polaroid 6 only: full-width stack — this line first, then “Pero habang busy…” and closing English paragraph. */
+const PARAGRAPH_BELOW_POLAROID_6_SNIPPET =
+  'Ang tanging hangad lang namin noon bago pumasok ay matapos naming ligtas ang training'
+const POLAROID_6_INDEX = 5
+
 const LoveStory = () => {
   const sectionRef = useRef(null)
   const titleRef = useRef(null)
@@ -27,6 +32,10 @@ const LoveStory = () => {
   // Six polaroids: text chunks wrap beside each image, then continue below
   const CHUNK_SPLITS = [0, 3, 6, 8, 11, 14, paragraphs.length]
   const getChunk = (i) => paragraphs.slice(CHUNK_SPLITS[i], CHUNK_SPLITS[i + 1])
+
+  const trainingWishParagraph = paragraphs.find((p) =>
+    p.includes(PARAGRAPH_BELOW_POLAROID_6_SNIPPET)
+  )
 
   // Polaroid order matters: 1 = top, 6 = bottom (used by the modal layout)
   const polaroidImages = [
@@ -286,7 +295,19 @@ const LoveStory = () => {
             <div className="love-story-flow relative z-10">
               {polaroidImages.map((image, index) => {
                 const isLeft = index % 2 === 0
-                const chunkParagraphs = getChunk(index)
+                const chunkParagraphs = getChunk(index).filter(
+                  (p) => !p.includes(PARAGRAPH_BELOW_POLAROID_6_SNIPPET)
+                )
+
+                const renderParagraph = (paragraph, keySuffix) => (
+                  <p
+                    key={keySuffix}
+                    className="love-story-paragraph text-xs sm:text-sm font-albert font-thin text-burgundy-dark leading-relaxed"
+                  >
+                    {formatParagraph(paragraph)}
+                  </p>
+                )
+
                 return (
                   <React.Fragment key={index}>
                     <div
@@ -300,16 +321,27 @@ const LoveStory = () => {
                         objectPosition={index === 3 || index === 4 ? '50% 28%' : undefined}
                       />
                     </div>
-                    <div className="love-story-chunk">
-                      {chunkParagraphs.map((paragraph, pIndex) => (
-                        <p
-                          key={`${index}-${pIndex}`}
-                          className="love-story-paragraph text-xs sm:text-sm font-albert font-thin text-burgundy-dark leading-relaxed"
-                        >
-                          {formatParagraph(paragraph)}
-                        </p>
-                      ))}
-                    </div>
+                    {index === POLAROID_6_INDEX ? (
+                      <>
+                        <div className="love-story-float-clear" aria-hidden />
+                        <div className="love-story-below-polaroid love-story-polaroid6-text-stack">
+                          {trainingWishParagraph &&
+                            renderParagraph(
+                              trainingWishParagraph,
+                              `${index}-training-wish`
+                            )}
+                          {chunkParagraphs.map((paragraph, pIndex) =>
+                            renderParagraph(paragraph, `${index}-${pIndex}`)
+                          )}
+                        </div>
+                      </>
+                    ) : (
+                      <div className="love-story-chunk">
+                        {chunkParagraphs.map((paragraph, pIndex) =>
+                          renderParagraph(paragraph, `${index}-${pIndex}`)
+                        )}
+                      </div>
+                    )}
                   </React.Fragment>
                 )
               })}

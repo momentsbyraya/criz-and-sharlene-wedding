@@ -1,5 +1,5 @@
 import React from 'react'
-import { themeConfig } from '../config/themeConfig'
+import { Heart } from 'lucide-react'
 
 const Footer = () => {
   const handleFooterClick = () => {
@@ -21,7 +21,9 @@ const Footer = () => {
       {/* Footer text - white on dark navy */}
       <div className="text-center">
         <p className="text-sm sm:text-base font-albert font-thin text-white transition-colors duration-300 hover:!text-[#E5E7EB] active:!text-[#E5E7EB]">
-          Made with <ion-icon name="heart" className="inline-block mx-1 align-middle" style={{ fontSize: '1em', verticalAlign: 'middle' }}></ion-icon> by Moments by Raya
+          Made with{' '}
+          <Heart className="inline-block mx-1 align-middle w-[1em] h-[1em] fill-current text-red-300" aria-hidden />
+          {' '}by Moments by Raya
         </p>
       </div>
     </footer>
