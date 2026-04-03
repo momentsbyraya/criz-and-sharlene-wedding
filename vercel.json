@@ -12,6 +12,10 @@
         {
           "key": "Content-Type",
           "value": "application/javascript; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
         }
       ]
     },
@@ -30,11 +34,15 @@
         {
           "key": "Content-Type",
           "value": "application/javascript; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
         }
       ]
     },
     {
-      "source": "/assets/(.*\\.(js|css|mjs))$",
+      "source": "/assets/(.*\\.css)$",
       "headers": [
         {
           "key": "Cache-Control",
@@ -61,4 +69,4 @@
       ]
     }
   ]
-} 
+}
