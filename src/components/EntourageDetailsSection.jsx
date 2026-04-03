@@ -215,7 +215,7 @@ const EntourageDetailsSection = () => {
             <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-right text-burgundy-dark">{entourage.parents.bride.mother}</p>
           </div>
           <div className="flex-1">
-            <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-left uppercase" style={{ color: accentColor }}>Parents of the Groom</p>
+            <p className="text-[10px] sm:text-sm md:text-base alice-regular mb-2 text-left uppercase whitespace-nowrap" style={{ color: accentColor }}>Parents of the Groom</p>
             <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-left text-burgundy-dark">{entourage.parents.groom.father}</p>
             <p className="text-[10px] sm:text-sm md:text-base font-poppins uppercase text-left text-burgundy-dark">{entourage.parents.groom.mother}</p>
           </div>
